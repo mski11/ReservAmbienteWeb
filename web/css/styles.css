@@ -1,0 +1,471 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.h1, h1 {
+    font-size: 36px;
+}
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+}
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+input {
+    line-height: normal;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.ui-button-text-only .ui-button-text {
+    padding: 0;
+}
+fieldset {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+
+
+html {
+    display: block;
+    color: -internal-root-color;
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+body {
+    margin: 0;
+}
+
+.tudo{
+    margin: 0 auto;
+    height:600px;
+}
+.topo{
+    width: 100%;
+    height: 110px;
+    background-color: #1E9585;
+    padding: 5px 0 0 0;
+}
+.rectangle {
+    width: 120px;
+    float: left;
+}
+img {
+    vertical-align: middle;
+}
+img {
+    border: 0;
+}
+fieldset {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+.ui-widget-content{
+    border:0;
+}
+.ui-panel .ui-panel-content{
+    padding: 0;
+}
+
+.reserve {
+    width: 260px;
+    float: left;
+}
+.reserve h1 {
+    top: 12px;
+    font-family: 'Arial';
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    font-weight: bold;
+}
+.login {
+    float: right;
+    padding: 27px 20px 0 0;
+}
+.login .usuario {
+    float: left;
+    width: 120px;
+    background: #fff url(../img/user.png) no-repeat left;
+    padding: 0 0 0 30px;
+    margin: 0 5px;
+}
+.login .senha {
+    float: left;
+    width: 120px;
+    background: #fff url(../img/user.png) no-repeat left;
+    padding: 0 0 0 30px;
+    margin: 0 5px;
+}
+.login .botao {
+    float: left;
+    width: 55px;
+    font: 11px arial;
+    height: 34px;
+    margin: 0 5px;
+    text-shadow: none;
+}
+.login .esqueci {
+    text-align: center;
+    color: #fff;
+}
+.login .esqueci a {
+    color: #fff;
+    text-decoration: none;
+}
+.conteudo {
+    width: 100%;
+    float: left;
+    border: 1px solid #333;
+    border-top: 0px;
+}
+.conteudo .texto {
+    width: 300px;
+    float: left;
+    border-left: 3px solid #1E9585;
+    padding: 0 20px;
+    margin: 20px;
+}
+.conteudo .texto p {
+    color: #1E9585;
+    font-weight: bold;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+}
+.formulario {
+    float: right;
+    width: 380px;
+}
+.formulario .form-horizontal {
+    width: 240px;
+    margin: 10px 50px;
+    float: right;
+}
+.formulario .form-horizontal .registrese {
+    text-align: center;
+    font: 16px Arial;
+    color: #1E9585;
+    font-weight: bold;
+    padding: 10px 5px;
+}
+.formulario .form-horizontal .col-md-4 {
+    width: auto;
+    padding: 5px 0;
+}
+.formulario .form-horizontal .col-md-4 {
+    width: auto;
+    padding: 5px 0;
+}
+.formulario .form-horizontal input, .formulario .form-horizontal textarea {
+    width: 230px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    border: 1px solid #ccc;
+    font-size: 13px;
+}
+.formulario .form-horizontal .btn-success {
+    float: right;
+    font: 11px arial;
+    height: 45px;
+}
+.btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+
+/******************************
+    --  visualize
+*****************************/
+.h4, h4 {
+    font-size: 18px;
+}
+.h6, h6 {
+    font-size: 12px;
+}
+.topoadmin {
+    width: 100%;
+    background-color: #ECECEC;
+    padding: 5px 0 20px 0;
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+}
+.topoadmin .rectangle2, .topoadmin .rectangle3{
+    float: left;
+    display: flex;
+    align-items: center;
+}
+.topoadmin .informacoes{
+	width: 200px;
+	float: left;
+}
+.topoadmin .informacoes h4, .topoadmin .informacoes h6{
+	color: #1E9585;
+	margin: 5px 0px;
+}
+ .topoadmin .informacoes h6{
+	line-height: 15px;
+ }
+ .topoadmin .botoesajudasair{
+	 width: 200px;
+	 float: left;
+
+ }
+ .topoadmin .botaorelata,.topoadmin .botaosai{
+    width: 150px;
+    height: 50px;
+    font-size: 14px;
+ }
+ .topoadmin .rectangle3 button{
+    width: 90px;
+    height: 90px;
+    margin: 0px 10px;
+    white-space: normal;
+    font-size: 14px;
+ }
+ .topoadmin .rectangle3 {
+	background-color:#1E9585;
+ }
+ .adminlogo{
+	float: left;
+	width: 60px;
+}
+.adminlogo h1{
+	float: left;
+}
+.adminlogo img{
+	padding: 5px;
+
+}
+
+.conteudo h2 {
+    margin: 20px 67px 20px 63px;
+}
+.conteudo h2 .icon{
+    float: right;
+    font-weight: bold;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.conteudo .container {
+    width: 90%;
+    margin: 0 auto 50px;
+    border-left: 5px solid #197569;
+    padding: 0 5px;
+}
+
+.ui-accordion .ui-accordion-header{
+    background: #1E9585 none;
+    text-shadow: none;
+    color: #333;
+}
+
+.ui-accordion .ui-accordion-content{
+    background-color: #ECECEC;
+    padding: 5px;
+}
+.container table{
+    width: 100%;
+}
+.itenssala .itens{
+    width: 100%;
+    float: left;
+    padding: 3px 0;
+}
+.itenssala {
+    width: 65%;
+    height: 260px;
+    overflow-y: scroll;
+    float: left;
+}
+.itenssala h4{
+    margin: 0 0 5px 0;
+}
+.itenssala .item{
+    float:left;
+    width: 55%;
+}
+.itenssala .qtde{
+    float:left;
+    width: 35%;
+}
+.itenssala .btn-menos{
+    float: left;
+    width: 25px;
+    background-color: red;
+    text-align: center;
+    font-size: 19px;
+    height: 25px;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-weight: 900;
+    border-radius: 5px;
+}
+.itenssala .item{
+    border-left: 3px solid #1E9585;
+    padding: 5px;
+}
+
+
+.itensadd{
+    width: 35%;
+    float: left;
+    padding: 0 0 0 20px;
+}
+.itensadd .itens{
+    border-left: 5px solid #1E9585;
+    padding: 5px;
+    float: left;
+}
+.itensadd .itens .btn-success{
+    margin-top: 5px;
+}
+.itensadd .item{
+    float: left;
+    width: 55%;
+}
+.itensadd .item .btn-item{
+    width: 140px;
+}
+.itensadd .qtde .btn-quantidade{
+    width: 80px;
+}
+.itensadd .qtde{
+    float: left;
+}
+/* visuaisar reservas */
+
+.panel-heading .portaabrindo{
+	height: 30px;
+	width: 30px;
+}
+.conteudo   .container {
+	width: 90%;
+}
+.conteudo .panel-default{
+	background-color: #ECECEC;
+}
+.conteudo .panel-heading{
+	background-color: #1E9585!important;
+
+}
+.panel-group .collapseOne .nomeclaturas{
+	float:left;
+}
+.nomeclaturas .datareserva{
+	width: 100%;
+	height: 10%;
+	float: left;
+}
+.botoesescolha{
+	height: 80px;
+	width: 100%;
+	
+}
+.botoesescolha .botaorejeitar{
+	width: 150px;
+	height: 70px;
+	margin: 0px 10px;
+	font-weight: bold;
+
+}
+.botoesescolha .botaoaceitar{
+	width: 150px;
+	height: 70px;
+	margin: 0px 10px;
+	font-weight: bold;
+}
+.botoesescolha .textareadescricao{
+	resize: none;
+	width: 830px;
+	height: 70px;
+	margin: 0px 0px -31px 0px;
+	
+}
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}

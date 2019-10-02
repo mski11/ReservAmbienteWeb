@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Reserva Ambientes SENAI</title>
+          <link rel="stylesheet" href="css/styles.css"/>
+    </h:head>
+    <h:body>
+        <div class="tudo">        
+            <div class="topo">
+                <div class="rectangle"><img src="img/logo.png" width="120" height="100"/></div>
+                <div class="reserve"><h1>Reserve-se</h1></div>
+                <h:form> 
+                    <div class="login">
+                        <p:inputText type="usuario" class="form-control usuario" placeholder="Usuario"/>
+                        <p:inputText type="password" class="form-control senha" placeholder="Senha"/>
+                        <p:button  value="Entrar" class="btn botao"/>
+                        <div class="esqueci"><a href="" style="text-decoration: underline">Esqueceu sua senha?</a></div>
+                    </div>
+                </h:form>
+            </div>
+            
+            <div class="conteudo">
+                <br/>
+                <br/>
+                <br/>
+                <div class="texto">
+                        <p>O que é o Reserve-se?</p>
+                        O Reserve-se  é um site de reserva de ambientes do SENAI com o objetivo de deixar o processo fácil, acessível e rápido.<br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <p>Por que escolher o SENAI?</p>
+                        O SENAI conta com vários ambientes com equipamentos de alta qualidade e com capacidades variadas. Seja qual for o propósito de sua reserva, nosso equipamento será sei fiel aliado e estaremos sempre dispostos ã ajuda-lo!<br/>
+                        <br/><br/>
+                </div>
+                <div class="formulario">
+                    <h:form class="form-horizontal">
+                        <div class="registrese">Registre-se!</div>
+                        <fieldset>
+                            <p:panel>
+                                <p:messages />
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <p:inputText type="nome" class="form-control" placeholder="Digite seu Nome"/><br/>
+                                    <p:inputText type="telefone" class="form-control" placeholder="Digite seu Telefone"/><br/>
+                                    <p:inputText type="email" class="form-control" placeholder="Digite seu Email"/><br/>
+                                    <p:inputText type="matricula" class="form-control" placeholder="Numero de Matricula SENAI"/><br/>
+                                    <p:inputTextarea id="textarearegistro" rows="8" cols="40" queryDelay="750" minQueryLength="4" class="form-control" placeholder="Digite aqui o por que de você querer reservar um ambiente, ex: Sou palestrante, Professor..."/>
+                                    
+                                </h:panelGrid>
+                                <button class="btn btn-success botao">Enviar solicitação de acesso!</button>
+                            </p:panel>
+                        </fieldset>
+                    </h:form>
+                </div> 
+            </div>
+        </div>        
+    </h:body>
+</html>
