@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Reserva Ambientes SENAI</title>
+          <link rel="stylesheet" href="css/styles.css"/>
+    </h:head>
+    <h:body>
+        
+    <div class="tudo">
+
+    <div class="topoadmin">
+            <div class="rectangle2">
+                <div class="adminlogo">
+                    <img src="img/adminuser.png" width="50" height="50"/>
+                    <img src="img/logo.png" width="50" height="50"/>
+                </div>
+                
+                <div class="informacoes">
+                       <h4>Sammy</h4>
+                       <h6>Administrador</h6>
+                       <br/>
+                       <h6>Reserve-se</h6>
+                    </div>
+                <div class="botoesajudasair">
+            <button type="submit" class="botaorelata"><span class='glyphicon glyphicon-log-out' aria-hidden='true'></span>
+                                <br />Relatar um problema</button>
+            <button type="submit" class="botaosai"><span class='glyphicon glyphicon-check' aria-hidden='true'></span>
+            <br />Sair</button>
+                </div>
+            </div>
+            <div class="rectangle3"> 
+                              <a href="visualisarReservas.jsf">
+                    <p:button value="Visualizar Reserva" class="visualizaReserva" />
+                    </a>
+                    <a href="">
+                    <p:button value="Registra Usuarios" class="registrarUsuarios" />
+                    </a>
+                    <a href="">
+                    <p:button value="Visualizar usuários" class="visualizaUsuario" />
+                    </a>
+                    <a href="criarAmbiente.jsf">
+                    <p:button value="Criar ambiente" class="criarambiente" />
+                    </a>
+                    <a href="VisualisarAmbientes.jsf">
+                    <p:button value="Visualizar Ambientes" class="visualizaAmbiente" />
+                    </a>
+            </div>            
+
+
+        <div class="conteudo">
+            <br/>
+                        <br />
+
+        <div class="container demo">
+        
+        
+                       <p:accordionPanel>
+                        <p:tab title="Usuário: Teteu">
+                            
+                            <h:panelGrid columns="2" cellpadding="10">
+                               <div class="panel panel-usuario">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>                    
+                            <div class="panel-heading" role="tab" id="headingOne">
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="nomeclaturas">
+                          <strong>Informações:</strong>
+                          <br/>
+                          <br/>
+                          <div class="emailform">
+                          <strong>E-mail:</strong>
+                          <h5>tetey@obrabo.com</h5>
+                          </div>
+                          <br/>
+                        <br/>
+                            <div class="datareserva">
+                            <strong>Data: 12/12/19</strong>
+                            </div>
+                        <br />
+                        <br />
+                            <div class="horarioInicio">
+                            <strong>Horario de inicio: 14:30</strong>
+                            </div>
+                        <br />
+                            <div class="horarioFim">
+                                <strong>Horario de termino: 17:30</strong>
+                            </div>
+                            <br/>
+                            <div class="botoesescolha">
+                                <button class="btn btn-success botaoaceitar" >Aceitar Reserva</button>
+                                <button class="btn btn-danger botaorejeitar">Rejeitar Reserva</button>
+                                <textarea name="descircao" class="textareadescricao" placeholder="Motivo da rejeição"></textarea>
+                            </div>
+                        </div>
+                            </div>
+                </div>
+       
+                            </h:panelGrid>
+                        </p:tab>
+                    </p:accordionPanel>
+        
+        
+        </div>
+     </div>
+    </div>
+    </div>
+        
+    </h:body>
+</html>
+
