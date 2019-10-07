@@ -175,7 +175,6 @@ fieldset {
 .conteudo {
     width: 100%;
     float: left;
-    border: 1px solid #333;
     border-top: 0px;
 }
 .conteudo .texto {
@@ -474,4 +473,46 @@ visualisar usuarios
 */
 .emailform{
     float:left;
+    width: 100%;
+}
+.registrausuario{
+    width: 350px;
+    height: 500px;
+    padding: 5px 0px 0px 20px;  
+    display: block;
+        float:left;
+
+}
+.registrausuario2{
+    width: 350px;
+    height: 500px;
+    padding: 5px 0px 0px 20px;  
+    display: block;
+    float:left;
+}
+.registrausuario3{
+    width: 350px;
+    height: 500px;
+    padding: 5px 0px 0px 20px;  
+    display: block;
+    float:left;
+}
+.registrausuario4{
+    width: 350px;
+    height: 500px;
+    padding: 5px 0px 0px 20px;  
+    display: block;
+    float:left;
+}
+.teleform{
+    width: 100%;
+    float:left;
+}
+.matriculaform{
+    width: 100%;
+    float:left;
+}
+.removeusuario button{
+    width: 300px;
+    height: 70px;
 }

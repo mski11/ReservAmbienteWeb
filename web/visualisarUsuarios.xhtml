@@ -39,7 +39,7 @@
                     <a href="">
                     <p:button value="Registra Usuarios" class="registrarUsuarios" />
                     </a>
-                    <a href="">
+                    <a href="visualisarUsuarios.jsf">
                     <p:button value="Visualizar usuários" class="visualizaUsuario" />
                     </a>
                     <a href="criarAmbiente.jsf">
@@ -50,68 +50,578 @@
                     </a>
             </div>            
 
-
         <div class="conteudo">
             <br/>
                         <br />
 
-        <div class="container demo">
-        
-        
-                       <p:accordionPanel>
-                        <p:tab title="Usuário: Teteu">
-                            
+        <div class="registrausuario">
+                              <p:accordionPanel>
+                        <p:tab title="Usuário: Batman">
                             <h:panelGrid columns="2" cellpadding="10">
-                               <div class="panel panel-usuario">
+                               <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <h4 class="panel-title">
                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
                                 aria-expanded="true" aria-controls="collapseOne">
                                 <i class="glyphicon glyphicon-menu-down"></i>
-                            </a>                    
+                            </a>
+                      
                             <div class="panel-heading" role="tab" id="headingOne">
                             </div>
                         </h4>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturas">
-                          <strong>Informações:</strong>
-                          <br/>
-                          <br/>
-                          <div class="emailform">
-                          <strong>E-mail:</strong>
-                          <h5>tetey@obrabo.com</h5>
-                          </div>
+                        <div class="nomeclaturasRegistrados">
+                          <strong>Informaçoes:</strong>
                           <br/>
                         <br/>
-                            <div class="datareserva">
-                            <strong>Data: 12/12/19</strong>
-                            </div>
-                        <br />
-                        <br />
-                            <div class="horarioInicio">
-                            <strong>Horario de inicio: 14:30</strong>
-                            </div>
-                        <br />
-                            <div class="horarioFim">
-                                <strong>Horario de termino: 17:30</strong>
-                            </div>
-                            <br/>
-                            <div class="botoesescolha">
-                                <button class="btn btn-success botaoaceitar" >Aceitar Reserva</button>
-                                <button class="btn btn-danger botaorejeitar">Rejeitar Reserva</button>
-                                <textarea name="descircao" class="textareadescricao" placeholder="Motivo da rejeição"></textarea>
+                        <div class="emailform">
+                            <strong>Email:</strong>
+                            <h5>quejaoqueijnho@delicia.com</h5>
+                        </div>
+                        <br/>
+                        <br/>   
+                        <div class="teleform">
+                            <strong>Telefone:</strong>
+                            <h5>(48)98696969</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="matriculaform">
+                            <strong>Matricula SENAI:</strong>
+                            <h5>238778324472378</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                            <div class="removeusuario">
+                                <button class="btn btn-danger botaorejeitar">Remover Usuário</button>
                             </div>
                         </div>
                             </div>
                 </div>
-       
+                            </h:panelGrid>
+                        </p:tab>
+                     <p:tab title="Usuário: Batman">
+                            <h:panelGrid columns="2" cellpadding="10">
+                               <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                      
+                            <div class="panel-heading" role="tab" id="headingOne">
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="nomeclaturasRegistrados">
+                          <strong>Informaçoes:</strong>
+                          <br/>
+                        <br/>
+                        <div class="emailform">
+                            <strong>Email:</strong>
+                            <h5>quejaoqueijnho@delicia.com</h5>
+                        </div>
+                        <br/>
+                        <br/>   
+                        <div class="teleform">
+                            <strong>Telefone:</strong>
+                            <h5>(48)98696969</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="matriculaform">
+                            <strong>Matricula SENAI:</strong>
+                            <h5>238778324472378</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                            <div class="removeusuario">
+                                <button class="btn btn-danger botaorejeitar">Remover Usuário</button>
+                            </div>
+                        </div>
+                            </div>
+                </div>
+                            </h:panelGrid>
+                        </p:tab>
+                                     <p:tab title="Usuário: Batman">
+                            <h:panelGrid columns="2" cellpadding="10">
+                               <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                      
+                            <div class="panel-heading" role="tab" id="headingOne">
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="nomeclaturasRegistrados">
+                          <strong>Informaçoes:</strong>
+                          <br/>
+                        <br/>
+                        <div class="emailform">
+                            <strong>Email:</strong>
+                            <h5>quejaoqueijnho@delicia.com</h5>
+                        </div>
+                        <br/>
+                        <br/>   
+                        <div class="teleform">
+                            <strong>Telefone:</strong>
+                            <h5>(48)98696969</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="matriculaform">
+                            <strong>Matricula SENAI:</strong>
+                            <h5>238778324472378</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                            <div class="removeusuario">
+                                <button class="btn btn-danger botaorejeitar">Remover Usuário</button>
+                            </div>
+                        </div>
+                            </div>
+                </div>
+                                
                             </h:panelGrid>
                         </p:tab>
                     </p:accordionPanel>
-        
-        
+                  
+            
         </div>
+                        <div class="registrausuario2">
+                                      <p:accordionPanel>
+                        <p:tab title="Usuário: Batman">
+                            <h:panelGrid columns="2" cellpadding="10">
+                               <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                      
+                            <div class="panel-heading" role="tab" id="headingOne">
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="nomeclaturasRegistrados">
+                          <strong>Informaçoes:</strong>
+                          <br/>
+                        <br/>
+                        <div class="emailform">
+                            <strong>Email:</strong>
+                            <h5>quejaoqueijnho@delicia.com</h5>
+                        </div>
+                        <br/>
+                        <br/>   
+                        <div class="teleform">
+                            <strong>Telefone:</strong>
+                            <h5>(48)98696969</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="matriculaform">
+                            <strong>Matricula SENAI:</strong>
+                            <h5>238778324472378</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                            <div class="removeusuario">
+                                <button class="btn btn-danger botaorejeitar">Remover Usuário</button>
+                            </div>
+                        </div>
+                            </div>
+                </div>
+                            </h:panelGrid>
+                        </p:tab>
+                     <p:tab title="Usuário: Batman">
+                            <h:panelGrid columns="2" cellpadding="10">
+                               <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                      
+                            <div class="panel-heading" role="tab" id="headingOne">
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="nomeclaturasRegistrados">
+                          <strong>Informaçoes:</strong>
+                          <br/>
+                        <br/>
+                        <div class="emailform">
+                            <strong>Email:</strong>
+                            <h5>quejaoqueijnho@delicia.com</h5>
+                        </div>
+                        <br/>
+                        <br/>   
+                        <div class="teleform">
+                            <strong>Telefone:</strong>
+                            <h5>(48)98696969</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="matriculaform">
+                            <strong>Matricula SENAI:</strong>
+                            <h5>238778324472378</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                            <div class="removeusuario">
+                                <button class="btn btn-danger botaorejeitar">Remover Usuário</button>
+                            </div>
+                        </div>
+                            </div>
+                </div>
+                            </h:panelGrid>
+                        </p:tab>
+                                     <p:tab title="Usuário: Batman">
+                            <h:panelGrid columns="2" cellpadding="10">
+                               <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                      
+                            <div class="panel-heading" role="tab" id="headingOne">
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="nomeclaturasRegistrados">
+                          <strong>Informaçoes:</strong>
+                          <br/>
+                        <br/>
+                        <div class="emailform">
+                            <strong>Email:</strong>
+                            <h5>quejaoqueijnho@delicia.com</h5>
+                        </div>
+                        <br/>
+                        <br/>   
+                        <div class="teleform">
+                            <strong>Telefone:</strong>
+                            <h5>(48)98696969</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="matriculaform">
+                            <strong>Matricula SENAI:</strong>
+                            <h5>238778324472378</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                            <div class="removeusuario">
+                                <button class="btn btn-danger botaorejeitar">Remover Usuário</button>
+                            </div>
+                        </div>
+                            </div>
+                </div>
+                                
+                            </h:panelGrid>
+                        </p:tab>
+                    </p:accordionPanel>
+                   
+                            
+                        </div>
+                                           <div class="registrausuario3">
+                                      <p:accordionPanel>
+                        <p:tab title="Usuário: Batman">
+                            <h:panelGrid columns="2" cellpadding="10">
+                               <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                      
+                            <div class="panel-heading" role="tab" id="headingOne">
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="nomeclaturasRegistrados">
+                          <strong>Informaçoes:</strong>
+                          <br/>
+                        <br/>
+                        <div class="emailform">
+                            <strong>Email:</strong>
+                            <h5>quejaoqueijnho@delicia.com</h5>
+                        </div>
+                        <br/>
+                        <br/>   
+                        <div class="teleform">
+                            <strong>Telefone:</strong>
+                            <h5>(48)98696969</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="matriculaform">
+                            <strong>Matricula SENAI:</strong>
+                            <h5>238778324472378</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                            <div class="removeusuario">
+                                <button class="btn btn-danger botaorejeitar">Remover Usuário</button>
+                            </div>
+                        </div>
+                            </div>
+                </div>
+                            </h:panelGrid>
+                        </p:tab>
+                     <p:tab title="Usuário: Batman">
+                            <h:panelGrid columns="2" cellpadding="10">
+                               <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                      
+                            <div class="panel-heading" role="tab" id="headingOne">
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="nomeclaturasRegistrados">
+                          <strong>Informaçoes:</strong>
+                          <br/>
+                        <br/>
+                        <div class="emailform">
+                            <strong>Email:</strong>
+                            <h5>quejaoqueijnho@delicia.com</h5>
+                        </div>
+                        <br/>
+                        <br/>   
+                        <div class="teleform">
+                            <strong>Telefone:</strong>
+                            <h5>(48)98696969</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="matriculaform">
+                            <strong>Matricula SENAI:</strong>
+                            <h5>238778324472378</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                            <div class="removeusuario">
+                                <button class="btn btn-danger botaorejeitar">Remover Usuário</button>
+                            </div>
+                        </div>
+                            </div>
+                </div>
+                            </h:panelGrid>
+                        </p:tab>
+                                     <p:tab title="Usuário: Batman">
+                            <h:panelGrid columns="2" cellpadding="10">
+                               <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                      
+                            <div class="panel-heading" role="tab" id="headingOne">
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="nomeclaturasRegistrados">
+                          <strong>Informaçoes:</strong>
+                          <br/>
+                        <br/>
+                        <div class="emailform">
+                            <strong>Email:</strong>
+                            <h5>quejaoqueijnho@delicia.com</h5>
+                        </div>
+                        <br/>
+                        <br/>   
+                        <div class="teleform">
+                            <strong>Telefone:</strong>
+                            <h5>(48)98696969</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="matriculaform">
+                            <strong>Matricula SENAI:</strong>
+                            <h5>238778324472378</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                            <div class="removeusuario">
+                                <button class="btn btn-danger botaorejeitar">Remover Usuário</button>
+                            </div>
+                        </div>
+                            </div>
+                </div>
+                                
+                            </h:panelGrid>
+                        </p:tab>
+                    </p:accordionPanel>
+                   
+                            
+                        </div>
+                                                <div class="registrausuario4">
+                                      <p:accordionPanel>
+                        <p:tab title="Usuário: Batman">
+                            <h:panelGrid columns="2" cellpadding="10">
+                               <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                      
+                            <div class="panel-heading" role="tab" id="headingOne">
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="nomeclaturasRegistrados">
+                          <strong>Informaçoes:</strong>
+                          <br/>
+                        <br/>
+                        <div class="emailform">
+                            <strong>Email:</strong>
+                            <h5>quejaoqueijnho@delicia.com</h5>
+                        </div>
+                        <br/>
+                        <br/>   
+                        <div class="teleform">
+                            <strong>Telefone:</strong>
+                            <h5>(48)98696969</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="matriculaform">
+                            <strong>Matricula SENAI:</strong>
+                            <h5>238778324472378</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                            <div class="removeusuario">
+                                <button class="btn btn-danger botaorejeitar">Remover Usuário</button>
+                            </div>
+                        </div>
+                            </div>
+                </div>
+                            </h:panelGrid>
+                        </p:tab>
+                     <p:tab title="Usuário: Batman">
+                            <h:panelGrid columns="2" cellpadding="10">
+                               <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                      
+                            <div class="panel-heading" role="tab" id="headingOne">
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="nomeclaturasRegistrados">
+                          <strong>Informaçoes:</strong>
+                          <br/>
+                        <br/>
+                        <div class="emailform">
+                            <strong>Email:</strong>
+                            <h5>quejaoqueijnho@delicia.com</h5>
+                        </div>
+                        <br/>
+                        <br/>   
+                        <div class="teleform">
+                            <strong>Telefone:</strong>
+                            <h5>(48)98696969</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="matriculaform">
+                            <strong>Matricula SENAI:</strong>
+                            <h5>238778324472378</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                            <div class="removeusuario">
+                                <button class="btn btn-danger botaorejeitar">Remover Usuário</button>
+                            </div>
+                        </div>
+                            </div>
+                </div>
+                            </h:panelGrid>
+                        </p:tab>
+                                     <p:tab title="Usuário: Batman">
+                            <h:panelGrid columns="2" cellpadding="10">
+                               <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                      
+                            <div class="panel-heading" role="tab" id="headingOne">
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="nomeclaturasRegistrados">
+                          <strong>Informaçoes:</strong>
+                          <br/>
+                        <br/>
+                        <div class="emailform">
+                            <strong>Email:</strong>
+                            <h5>quejaoqueijnho@delicia.com</h5>
+                        </div>
+                        <br/>
+                        <br/>   
+                        <div class="teleform">
+                            <strong>Telefone:</strong>
+                            <h5>(48)98696969</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="matriculaform">
+                            <strong>Matricula SENAI:</strong>
+                            <h5>238778324472378</h5>
+                        </div>
+                        <br/>
+                        <br/>
+                            <div class="removeusuario">
+                                <button class="btn btn-danger botaorejeitar">Remover Usuário</button>
+                            </div>
+                        </div>
+                            </div>
+                </div>
+                                
+                            </h:panelGrid>
+                        </p:tab>
+                    </p:accordionPanel>
+                   
+                            
+                        </div>
      </div>
     </div>
     </div>
