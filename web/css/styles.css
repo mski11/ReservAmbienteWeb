@@ -516,3 +516,17 @@ visualisar usuarios
     width: 300px;
     height: 70px;
 }
+/*
+registrarUSUARIOS
+*/
+.tituloregistrar{
+    height: 20px; 
+    width: 60px;
+    padding: 0px 30px;
+}
+.tituloacordion{
+    background: #fff url(../img/user.png) no-repeat left;
+}
+.registrausuario{
+  
+}
