@@ -1,10 +1,9 @@
-package modelo;
+package br.senai.model;
 
 public class Usuario {
     private String idUsuario;
     private String nome, matricula, email, telefone, pass;
     private boolean mestre;
-
 
     public Usuario(){
 
@@ -64,8 +63,6 @@ public class Usuario {
 
     public void setTelefone(String telefone) { this.telefone = telefone; }
 
-    public void setTelefones(String telefones) { this.telefone = telefone; }
-
     public String getTelefone() {
         return telefone;
     }
@@ -77,4 +74,5 @@ public class Usuario {
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
+    
 }

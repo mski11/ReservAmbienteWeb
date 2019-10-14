@@ -1,4 +1,5 @@
-package modelo;
+/*
+package br.senai.model;
 
 public class UserLoged {
     // Todas classes modelo foram importadas do último projeto.
@@ -78,3 +79,4 @@ public class UserLoged {
 
     public static int getMestre() { return mestre; }
 }
+*/

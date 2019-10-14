@@ -1,4 +1,4 @@
-package modelo;
+package br.senai.model;
 
 public class Item {
     private String nome;

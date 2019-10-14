@@ -1,4 +1,4 @@
-package modelo;
+package br.senai.model;
 
 public class Pedido {
     private String descricao, diaReserva, diaPedido,

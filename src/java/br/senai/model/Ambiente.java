@@ -1,4 +1,4 @@
-package modelo;
+package br.senai.model;
 
 import java.util.ArrayList;
 
