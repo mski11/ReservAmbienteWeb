@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 public class FabricaConexao {
         
     private static Connection conexao;
-    private static final String URL_CONEXAO = "jdbc:mysql://localhost/livraria";
+    private static final String URL_CONEXAO = "jdbc:mysql://localhost/reservese";
     private static final String USUARIO = "root";
-    private static final String SENHA = "master123";
+    private static final String SENHA = "";
     
     public static Connection getConexao(){
         if(conexao == null){

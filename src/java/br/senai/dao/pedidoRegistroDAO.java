@@ -13,6 +13,15 @@ import java.util.logging.Logger;
 
 public class pedidoRegistroDAO {
     
+     public String conectar(){
+        Connection conexao = FabricaConexao.getConexao();
+        
+        if(conexao == null)
+            return "Conexão não pode ser realizada";
+        else
+        return "Conexão efetuada com sucesso";
+    }
+    
     public void salvar(PedidoRegistro PR){
         try {
         Connection conexao = FabricaConexao.getConexao();
