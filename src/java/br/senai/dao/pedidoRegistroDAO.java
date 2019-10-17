@@ -24,24 +24,63 @@ public class pedidoRegistroDAO {
     
     public void salvar(PedidoRegistro PR){
         try {
-        Connection conexao = FabricaConexao.getConexao();
-        PreparedStatement ps;
-        if(PR != null){
-            ps = conexao.prepareStatement("INSERT INTO pedidoRegistro (nome, telefone, email, matricula, descricao) VALUES (?, ?, ?, ?, ?)");
-            
-            ps.setString(1, PR.getNome());
-            ps.setString(2, PR.getTelefone());
-            ps.setString(3, PR.getEmail());
-            ps.setString(4, PR.getMatricula());
-            ps.setString(5, PR.getDescricao());
-            
-            ps.executeUpdate();
-            
-            FabricaConexao.fecharConexao();
-        }
+            Connection conexao = FabricaConexao.getConexao();
+            PreparedStatement ps;
+            if(PR != null){
+                ps = conexao.prepareStatement("INSERT INTO pedidoRegistro (nome, telefone, email, matricula, descricao) VALUES (?, ?, ?, ?, ?)"); 
+                ps.setString(1, PR.getNome());
+                ps.setString(2, PR.getTelefone());
+                ps.setString(3, PR.getEmail());
+                ps.setString(4, PR.getMatricula());
+                ps.setString(5, PR.getDescricao());
+                ps.executeUpdate();
+                FabricaConexao.fecharConexao();
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public void excluir(PedidoRegistro PR){
+        try {
+            Connection conexao = FabricaConexao.getConexao();
+            PreparedStatement ps;
+            if(PR != null){
+                ps = conexao.prepareStatement("DELETE * FROM pedidoRegistro WHERE idpedido = ?");
+                ps.setString(1, PR.getNome());
+                ps.executeUpdate();
+                FabricaConexao.fecharConexao();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public List<PedidoRegistro> buscar(){
+        try {
+            
+            Connection conexao = FabricaConexao.getConexao();
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM pedidoregistro");
+            ResultSet rs = ps.executeQuery();
+            List<PedidoRegistro> pedidos = new ArrayList();
+            
+            while(rs.next()){
+                PedidoRegistro pedido = new PedidoRegistro();
+                /*
+                pedido.setCodigo(rs.getInt("codigo"));
+                pedido.setNome(rs.getString("nome"));
+                pedido.setEditora(rs.getString("editora"));
+                */
+                pedidos.add(pedido);
+            }
+            
+            FabricaConexao.fecharConexao();
+            return pedidos;
+                    
+        } catch (SQLException ex) {
+            Logger.getLogger(LivroDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new ArrayList();
     }
     
 }

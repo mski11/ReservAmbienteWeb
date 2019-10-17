@@ -3,460 +3,87 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Reserva Ambientes SENAI</title>
           <link rel="stylesheet" href="css/styles.css"/>
     </h:head>
     <h:body>
         <div class="tudo">
-                       <div class="topoadmin">
+            <div class="topoadmin">
                 <div class="rectangle2">
                     <div class="adminlogo">
                         <img src="img/adminuser.png" width="50" height="50"/>
                         <img src="img/logo.png" width="50" height="50"/>
                     </div>
                     <div class="informacoes">
-                       <h4>Matheus</h4>
-                       <h6>Administrador</h6>
-                       <br/>
-                       <h6>Reserve-se</h6>
-                       <img src="img/logo-senai.jpg" height="25"/>
+                        <h4>Matheus</h4>
+                        <h6>Administrador</h6>
+                        <br/>
+                        <h6>Reserve-se</h6>
+                        <img src="img/logo-senai.jpg" height="25"/>
                     </div>
                     <div class="botoesajudasair">
                         <p:button value="Relatar um problema" class="botaorelata" />
                         <p:button value="Sair" class="botaosai" />
                     </div>
-                </div>
-            <div class="rectangle3"> 
-                              <a href="visualisarReservas.jsf">
-                    <p:button value="Visualisar Reserva" class="visualisaReserva" />
-                    </a>
-                    <a href="">
-                    <p:button value="Registra Usuarios" class="registrarUsuarios" />
-                    </a>
-                    <a href="visualisarUsuarios.jsf">
-                    <p:button value="Visualizar usuários" class="visualizaUsuario" />
-                    </a>
-                    <a href="criarAmbiente.jsf">
-                    <p:button value="Criar ambiente" class="criarambiente" />
-                    </a>
-                    <a href="VisualisarAmbientes.jsf">
-                    <p:button value="Visualizar Ambientes" class="visualizaAmbiente" />
-                    </a>
-            </div>            
-                     </div> 
-            <div class="conteudo">
-               
-                 <div class="tituloregistrar">
-                     <h5>Registros</h5>
-                </div>
-        <div class="registrausuario">
-            <p:accordionPanel>
-                       <p:tab class="tituloacordion" title="Usuário: Pai do Matheus">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                        <h4 class="panel-title">
-                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                        accesskey="" aria-expanded="true" aria-controls="collapseOne">
-                                        <i class="glyphicon glyphicon-menu-down"></i>
-                                        </a>
-                                        <div class="panel-heading" role="tab" id="headingOne"></div>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                        <div class="nomeclaturasRegistrados">
-                                            <strong>Data do pedido:</strong>
-                                            <h5>05/06/2002</h5> 
-                                            <div class="descUsuario">
-                                                <strong>Descrição do Usuário:</strong>
-                                                <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis vehicula porta. Cras nec augue eu mi tempus feugiat in id eros. Nullam orci metus, condimentum iaculis molestie sit amet, pharetra eu erat. Aliquam commodo libero neque, a dignissim dolor vehicula nec. In vestibulum vitae tellus eu rhoncus. Donec eget mauris lacinia, molestie eros vitae, dictum leo. Duis in sapien sit amet erat sollicitudin congue. Ut eget tellus a ipsum interdum rutrum.</h5>
-                                            </div>
-                                            <div class="negausuario">
-                                                <button class="btn btn-success botaoaceitar">Aceitar Usuário</button>
-                                                <button class="btn btn-danger botaonegar">Negar Usuário</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </h:panelGrid>
-                       </p:tab>
-                
-                
-                       <p:tab class="tituloacordion" title="Usuário: Pai do Matheus">
-                            <h:panelGrid columns="2" cellpadding="10">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingOne">
-                                    <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                        aria-expanded="true" aria-controls="collapseOne">
-                                            <i class="glyphicon glyphicon-menu-down"></i>
-                                    </a>
-                      
-                                <div class="panel-heading" role="tab" id="headingOne">
-                            </div>
-                        </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturasRegistrados">
-                          <strong>Data do pedido:</strong>
-                          <h5>05/06/2002</h5> 
-                             <div class="descUsuario">
-                            <strong>Descrição do Usuário:</strong>
-                            <h5>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis vehicula porta. Cras nec augue eu mi tempus feugiat in id eros. Nullam orci metus, condimentum iaculis molestie sit amet, pharetra eu erat. Aliquam commodo libero neque, a dignissim dolor vehicula nec. In vestibulum vitae tellus eu rhoncus. Donec eget mauris lacinia, molestie eros vitae, dictum leo. Duis in sapien sit amet erat sollicitudin congue. Ut eget tellus a ipsum interdum rutrum.</h5>
-                        </div>
-                            <div class="negausuario">
-                                <button class="btn btn-success botaoaceitar">Aceitar Usuário</button>
-                                <button class="btn btn-danger botaonegar">Negar Usuário</button>
-                            </div>
-                        </div>
-                            </div>
-                </div>
-                            </h:panelGrid>
-                       </p:tab>
-                                              <p:tab class="tituloacordion" title="Usuário: Pai do Matheus">
-                            <h:panelGrid columns="2" cellpadding="10">
-                               <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                <i class="glyphicon glyphicon-menu-down"></i>
-                            </a>
-                      
-                            <div class="panel-heading" role="tab" id="headingOne">
-                            </div>
-                        </h4>
+                    <div class="rectangle3"> 
+                        <a href="visualisarReservas.jsf">
+                            <p:button value="Visualisar Reserva" class="visualisaReserva" />
+                        </a>
+                        <a href="">
+                            <p:button value="Registra Usuarios" class="registrarUsuarios" />
+                        </a>
+                        <a href="visualisarUsuarios.jsf">
+                            <p:button value="Visualizar usuários" class="visualizaUsuario" />
+                        </a>
+                        <a href="criarAmbiente.jsf">
+                            <p:button value="Criar ambiente" class="criarambiente" />
+                        </a>
+                        <a href="VisualisarAmbientes.jsf">
+                            <p:button value="Visualizar Ambientes" class="visualizaAmbiente" />
+                        </a>
+                    </div>            
+                </div> 
+                <div class="conteudo">
+                    <div class="tituloregistrar">
+                        <h5>Registros</h5>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturasRegistrados">
-                          <strong>Data do pedido:</strong>
-                          <h5>05/06/2002</h5> 
-                             <div class="descUsuario">
-                            <strong>Descrição do Usuário:</strong>
-                            <h5>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis vehicula porta. Cras nec augue eu mi tempus feugiat in id eros. Nullam orci metus, condimentum iaculis molestie sit amet, pharetra eu erat. Aliquam commodo libero neque, a dignissim dolor vehicula nec. In vestibulum vitae tellus eu rhoncus. Donec eget mauris lacinia, molestie eros vitae, dictum leo. Duis in sapien sit amet erat sollicitudin congue. Ut eget tellus a ipsum interdum rutrum.</h5>
-                        </div>
-                            <div class="negausuario">
-                                <button class="btn btn-success botaoaceitar">Aceitar Usuário</button>
-                                <button class="btn btn-danger botaonegar">Negar Usuário</button>
-                            </div>
-                        </div>
-                            </div>
-                </div>
-                            </h:panelGrid>
-                       </p:tab>
-                    </p:accordionPanel>
-                  
-            
-        </div>
-                        <div class="registrausuario2">
-             <p:accordionPanel>
-                       <p:tab class="tituloacordion" title="Usuário: Pai do Matheus">
-                            <h:panelGrid columns="2" cellpadding="10">
-                               <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                <i class="glyphicon glyphicon-menu-down"></i>
-                            </a>
-                      
-                            <div class="panel-heading" role="tab" id="headingOne">
-                            </div>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturasRegistrados">
-                          <strong>Data do pedido:</strong>
-                          <h5>05/06/2002</h5> 
-                             <div class="descUsuario">
-                            <strong>Descrição do Usuário:</strong>
-                            <h5>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis vehicula porta. Cras nec augue eu mi tempus feugiat in id eros. Nullam orci metus, condimentum iaculis molestie sit amet, pharetra eu erat. Aliquam commodo libero neque, a dignissim dolor vehicula nec. In vestibulum vitae tellus eu rhoncus. Donec eget mauris lacinia, molestie eros vitae, dictum leo. Duis in sapien sit amet erat sollicitudin congue. Ut eget tellus a ipsum interdum rutrum.</h5>
-                        </div>
-                            <div class="negausuario">
-                                <button class="btn btn-success botaoaceitar">Aceitar Usuário</button>
-                                <button class="btn btn-danger botaonegar">Negar Usuário</button>
-                            </div>
-                        </div>
-                            </div>
-                </div>
-                            </h:panelGrid>
-                       </p:tab>
-                                              <p:tab class="tituloacordion" title="Usuário: Pai do Matheus">
-                            <h:panelGrid columns="2" cellpadding="10">
-                               <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                <i class="glyphicon glyphicon-menu-down"></i>
-                            </a>
-                      
-                            <div class="panel-heading" role="tab" id="headingOne">
-                            </div>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturasRegistrados">
-                          <strong>Data do pedido:</strong>
-                          <h5>05/06/2002</h5> 
-                             <div class="descUsuario">
-                            <strong>Descrição do Usuário:</strong>
-                            <h5>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis vehicula porta. Cras nec augue eu mi tempus feugiat in id eros. Nullam orci metus, condimentum iaculis molestie sit amet, pharetra eu erat. Aliquam commodo libero neque, a dignissim dolor vehicula nec. In vestibulum vitae tellus eu rhoncus. Donec eget mauris lacinia, molestie eros vitae, dictum leo. Duis in sapien sit amet erat sollicitudin congue. Ut eget tellus a ipsum interdum rutrum.</h5>
-                        </div>
-                            <div class="negausuario">
-                                <button class="btn btn-success botaoaceitar">Aceitar Usuário</button>
-                                <button class="btn btn-danger botaonegar">Negar Usuário</button>
-                            </div>
-                        </div>
-                            </div>
-                </div>
-                            </h:panelGrid>
-                       </p:tab>
-                                              <p:tab class="tituloacordion" title="Usuário: Pai do Matheus">
-                            <h:panelGrid columns="2" cellpadding="10">
-                               <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                <i class="glyphicon glyphicon-menu-down"></i>
-                            </a>
-                      
-                            <div class="panel-heading" role="tab" id="headingOne">
-                            </div>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturasRegistrados">
-                          <strong>Data do pedido:</strong>
-                          <h5>05/06/2002</h5> 
-                             <div class="descUsuario">
-                            <strong>Descrição do Usuário:</strong>
-                            <h5>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis vehicula porta. Cras nec augue eu mi tempus feugiat in id eros. Nullam orci metus, condimentum iaculis molestie sit amet, pharetra eu erat. Aliquam commodo libero neque, a dignissim dolor vehicula nec. In vestibulum vitae tellus eu rhoncus. Donec eget mauris lacinia, molestie eros vitae, dictum leo. Duis in sapien sit amet erat sollicitudin congue. Ut eget tellus a ipsum interdum rutrum.</h5>
-                        </div>
-                            <div class="negausuario">
-                                <button class="btn btn-success botaoaceitar">Aceitar Usuário</button>
-                                <button class="btn btn-danger botaonegar">Negar Usuário</button>
-                            </div>
-                        </div>
-                            </div>
-                </div>
-                            </h:panelGrid>
-                       </p:tab>
-                    </p:accordionPanel>
-                  
-            
-                        </div>
-                                           <div class="registrausuario3">
-                    <p:accordionPanel>
-                       <p:tab class="tituloacordion" title="Usuário: Pai do Matheus">
-                            <h:panelGrid columns="2" cellpadding="10">
-                               <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                <i class="glyphicon glyphicon-menu-down"></i>
-                            </a>
-                      
-                            <div class="panel-heading" role="tab" id="headingOne">
-                            </div>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturasRegistrados">
-                          <strong>Data do pedido:</strong>
-                          <h5>05/06/2002</h5> 
-                             <div class="descUsuario">
-                            <strong>Descrição do Usuário:</strong>
-                            <h5>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis vehicula porta. Cras nec augue eu mi tempus feugiat in id eros. Nullam orci metus, condimentum iaculis molestie sit amet, pharetra eu erat. Aliquam commodo libero neque, a dignissim dolor vehicula nec. In vestibulum vitae tellus eu rhoncus. Donec eget mauris lacinia, molestie eros vitae, dictum leo. Duis in sapien sit amet erat sollicitudin congue. Ut eget tellus a ipsum interdum rutrum.</h5>
-                        </div>
-                            <div class="negausuario">
-                                <button class="btn btn-success botaoaceitar">Aceitar Usuário</button>
-                                <button class="btn btn-danger botaonegar">Negar Usuário</button>
-                            </div>
-                        </div>
-                            </div>
-                </div>
-                            </h:panelGrid>
-                       </p:tab>
-                                              <p:tab class="tituloacordion" title="Usuário: Pai do Matheus">
-                            <h:panelGrid columns="2" cellpadding="10">
-                               <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                <i class="glyphicon glyphicon-menu-down"></i>
-                            </a>
-                      
-                            <div class="panel-heading" role="tab" id="headingOne">
-                            </div>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturasRegistrados">
-                          <strong>Data do pedido:</strong>
-                          <h5>05/06/2002</h5> 
-                             <div class="descUsuario">
-                            <strong>Descrição do Usuário:</strong>
-                            <h5>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis vehicula porta. Cras nec augue eu mi tempus feugiat in id eros. Nullam orci metus, condimentum iaculis molestie sit amet, pharetra eu erat. Aliquam commodo libero neque, a dignissim dolor vehicula nec. In vestibulum vitae tellus eu rhoncus. Donec eget mauris lacinia, molestie eros vitae, dictum leo. Duis in sapien sit amet erat sollicitudin congue. Ut eget tellus a ipsum interdum rutrum.</h5>
-                        </div>
-                            <div class="negausuario">
-                                <button class="btn btn-success botaoaceitar">Aceitar Usuário</button>
-                                <button class="btn btn-danger botaonegar">Negar Usuário</button>
-                            </div>
-                        </div>
-                            </div>
-                </div>
-                            </h:panelGrid>
-                       </p:tab>
-                                              <p:tab class="tituloacordion" title="Usuário: Pai do Matheus">
-                            <h:panelGrid columns="2" cellpadding="10">
-                               <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                <i class="glyphicon glyphicon-menu-down"></i>
-                            </a>
-                      
-                            <div class="panel-heading" role="tab" id="headingOne">
-                            </div>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturasRegistrados">
-                          <strong>Data do pedido:</strong>
-                          <h5>05/06/2002</h5> 
-                             <div class="descUsuario">
-                            <strong>Descrição do Usuário:</strong>
-                            <h5>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis vehicula porta. Cras nec augue eu mi tempus feugiat in id eros. Nullam orci metus, condimentum iaculis molestie sit amet, pharetra eu erat. Aliquam commodo libero neque, a dignissim dolor vehicula nec. In vestibulum vitae tellus eu rhoncus. Donec eget mauris lacinia, molestie eros vitae, dictum leo. Duis in sapien sit amet erat sollicitudin congue. Ut eget tellus a ipsum interdum rutrum.</h5>
-                        </div>
-                            <div class="negausuario">
-                                <button class="btn btn-success botaoaceitar">Aceitar Usuário</button>
-                                <button class="btn btn-danger botaonegar">Negar Usuário</button>
-                            </div>
-                        </div>
-                            </div>
-                </div>
-                            </h:panelGrid>
-                       </p:tab>
-                    </p:accordionPanel>
-                  
-            
-                        </div>
-                                                <div class="registrausuario4">
-            <p:accordionPanel>
-                       <p:tab class="tituloacordion" title="Usuário: Pai do Matheus">
-                            <h:panelGrid columns="2" cellpadding="10">
-                               <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                <i class="glyphicon glyphicon-menu-down"></i>
-                            </a>
-                      
-                            <div class="panel-heading" role="tab" id="headingOne">
-                            </div>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturasRegistrados">
-                          <strong>Data do pedido:</strong>
-                          <h5>05/06/2002</h5> 
-                             <div class="descUsuario">
-                            <strong>Descrição do Usuário:</strong>
-                            <h5>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis vehicula porta. Cras nec augue eu mi tempus feugiat in id eros. Nullam orci metus, condimentum iaculis molestie sit amet, pharetra eu erat. Aliquam commodo libero neque, a dignissim dolor vehicula nec. In vestibulum vitae tellus eu rhoncus. Donec eget mauris lacinia, molestie eros vitae, dictum leo. Duis in sapien sit amet erat sollicitudin congue. Ut eget tellus a ipsum interdum rutrum.</h5>
-                        </div>
-                            <div class="negausuario">
-                                <button class="btn btn-success botaoaceitar">Aceitar Usuário</button>
-                                <button class="btn btn-danger botaonegar">Negar Usuário</button>
-                            </div>
-                        </div>
-                            </div>
-                </div>
-                            </h:panelGrid>
-                       </p:tab>
-                                              <p:tab class="tituloacordion" title="Usuário: Pai do Matheus">
-                            <h:panelGrid columns="2" cellpadding="10">
-                               <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                <i class="glyphicon glyphicon-menu-down"></i>
-                            </a>
-                      
-                            <div class="panel-heading" role="tab" id="headingOne">
-                            </div>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturasRegistrados">
-                          <strong>Data do pedido:</strong>
-                          <h5>05/06/2002</h5> 
-                             <div class="descUsuario">
-                            <strong>Descrição do Usuário:</strong>
-                            <h5>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis vehicula porta. Cras nec augue eu mi tempus feugiat in id eros. Nullam orci metus, condimentum iaculis molestie sit amet, pharetra eu erat. Aliquam commodo libero neque, a dignissim dolor vehicula nec. In vestibulum vitae tellus eu rhoncus. Donec eget mauris lacinia, molestie eros vitae, dictum leo. Duis in sapien sit amet erat sollicitudin congue. Ut eget tellus a ipsum interdum rutrum.</h5>
-                        </div>
-                            <div class="negausuario">
-                                <button class="btn btn-success botaoaceitar">Aceitar Usuário</button>
-                                <button class="btn btn-danger botaonegar">Negar Usuário</button>
-                            </div>
-                        </div>
-                            </div>
-                </div>
-                            </h:panelGrid>
-                       </p:tab>
-                                              <p:tab class="tituloacordion" title="Usuário: Pai do Matheus">
-                            <h:panelGrid columns="2" cellpadding="10">
-                               <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                <i class="glyphicon glyphicon-menu-down"></i>
-                            </a>
-                      
-                            <div class="panel-heading" role="tab" id="headingOne">
-                            </div>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturasRegistrados">
-                          <strong>Data do pedido:</strong>
-                          <h5>05/06/2002</h5> 
-                             <div class="descUsuario">
-                            <strong>Descrição do Usuário:</strong>
-                            <h5>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis vehicula porta. Cras nec augue eu mi tempus feugiat in id eros. Nullam orci metus, condimentum iaculis molestie sit amet, pharetra eu erat. Aliquam commodo libero neque, a dignissim dolor vehicula nec. In vestibulum vitae tellus eu rhoncus. Donec eget mauris lacinia, molestie eros vitae, dictum leo. Duis in sapien sit amet erat sollicitudin congue. Ut eget tellus a ipsum interdum rutrum.</h5>
-                        </div>
-                            <div class="negausuario">
-                                <button class="btn btn-success botaoaceitar">Aceitar Usuário</button>
-                                <button class="btn btn-danger botaonegar">Negar Usuário</button>
-                            </div>
-                        </div>
-                            </div>
-                </div>
-                            </h:panelGrid>
-                       </p:tab>
-            </p:accordionPanel>  
-        </div> 
-            </div>       
+  <h:form id="form">
+    <p:growl id="msgs" showDetail="true" />
+ 
+    <p:dataTable id="DTPedidosRegistro" var="car" value="#{dtSelectionView.cars1}">
+        <f:facet name="header">
+            Pedidos de registro no sistema
+        </f:facet>
+        <p:column headerText="N° ID">
+            <h:outputText value="#{car.id}" />
+        </p:column>
+        <p:column headerText="Nome">
+            <h:outputText value="#{car.year}" />
+        </p:column>
+        <p:column headerText="Telefone">
+            <h:outputText value="#{car.brand}" />
+        </p:column>
+        <p:column headerText="E-Mail">
+            <h:outputText value="#{car.color}" />
+        </p:column>
+        <p:column headerText="Matrícula">
+            <h:outputText value="#{car.color}" />
+        </p:column>
+        <p:column headerText="Descricao">
+            <h:outputText value="#{car.color}" />
+        </p:column>
+        <p:column style="width:32px;text-align: center">
+             <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="pi pi-search" title="View">
+                <f:setPropertyActionListener value="#{car}" target="#{dtSelectionView.selectedCar}" />
+            </p:commandButton>
+        </p:column>
+    </p:dataTable>
+  </h:form>
+  </div>       
       </div>
     </h:body>
 </html>
