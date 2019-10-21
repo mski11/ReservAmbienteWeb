@@ -56,21 +56,60 @@ public class pedidoRegistroDAO {
         }
     }
     
-    public List<PedidoRegistro> buscar(){
+    public List<PedidoRegistro> findAll(){
+        
+        Connection conexao = FabricaConexao.getConexao(); 
+        String sql = "SELECT * FROM pedidoregistro";
+        
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        List<PedidoRegistro> pedidos = new ArrayList<>();
+        
+         try {
+             
+             stmt = conexao.prepareStatement(sql);
+             rs = stmt.executeQuery();
+             
+             while(rs.next()){
+                 
+                PedidoRegistro pedido = new PedidoRegistro();
+                
+                pedido.setIdPedido(rs.getInt("idPedido"));
+                pedido.setNome(rs.getString("nome"));
+                pedido.setTelefone(rs.getString("telefone"));
+                pedido.setEmail(rs.getString("email"));
+                pedido.setMatricula(rs.getString("matricula"));
+                pedido.setDescricao(rs.getString("descricao"));
+                pedidos.add(pedido);
+            }
+             
+         } catch (SQLException ex) {
+             Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
+         }  finally {
+             FabricaConexao.fecharConexao();
+         }
+         
+         return pedidos;
+        
+    }
+    
+    public List<PedidoRegistro> buscarPedidos(){
         try {
             
             Connection conexao = FabricaConexao.getConexao();
-            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM pedidoregistro");
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM pedidoregistro;");
             ResultSet rs = ps.executeQuery();
             List<PedidoRegistro> pedidos = new ArrayList();
             
             while(rs.next()){
                 PedidoRegistro pedido = new PedidoRegistro();
-                /*
-                pedido.setCodigo(rs.getInt("codigo"));
+                pedido.setIdPedido(rs.getInt("idPedido"));
                 pedido.setNome(rs.getString("nome"));
-                pedido.setEditora(rs.getString("editora"));
-                */
+                pedido.setTelefone(rs.getString("telefone"));
+                pedido.setEmail(rs.getString("email"));
+                pedido.setMatricula(rs.getString("matricula"));
+                pedido.setDescricao(rs.getString("descricao"));
                 pedidos.add(pedido);
             }
             

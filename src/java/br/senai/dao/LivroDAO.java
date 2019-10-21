@@ -79,7 +79,7 @@ public class LivroDAO {
 //            
 //            List<Livro> livros = new ArrayList();
 //            
-//            while(rs.next()){
+//           while(rs.next()){
 //                Livro livro = new Livro();
 //                livro.setCodigo(rs.getInt("codigo"));
 //                livro.setNome(rs.getString("nome"));
