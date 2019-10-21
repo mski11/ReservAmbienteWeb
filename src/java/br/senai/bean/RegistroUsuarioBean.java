@@ -11,8 +11,11 @@ import br.senai.dao.usuarioDAO;
 import br.senai.model.PedidoRegistro;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.event.SelectEvent;
 
 @ManagedBean
 @SessionScoped
@@ -27,7 +30,16 @@ public class RegistroUsuarioBean {
     // Tem que chamar a função que retorna o array do ResultSet!!!!!!!!! <--- Anotação p mim mesmo ke
 
     private List<PedidoRegistro> arrayPedidos = new ArrayList<>();
+    private PedidoRegistro pedidoSelecionado;
 
+    public PedidoRegistro getPedidoSelecionado() {
+        return pedidoSelecionado;
+    }
+
+    public void setPedidoSelecionado(PedidoRegistro pedidoSelecionado) {
+        this.pedidoSelecionado = pedidoSelecionado;
+    }
+        
     public void metodoBuscar(){
         arrayPedidos = PedidosDAO.buscarPedidos();
     }
@@ -54,10 +66,5 @@ public class RegistroUsuarioBean {
 
     public List<PedidoRegistro> getArrayPedidos() {
         return arrayPedidos;
-    }
-
-   
-
-    
-    
+    }  
 }

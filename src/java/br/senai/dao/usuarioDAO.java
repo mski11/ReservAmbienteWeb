@@ -1,5 +1,6 @@
 package br.senai.dao;
 
+import br.senai.model.PedidoRegistro;
 import br.senai.model.Usuario;
 import br.senai.util.FabricaConexao;
 import java.sql.Connection;
@@ -13,6 +14,46 @@ import java.util.logging.Logger;
 
 public class usuarioDAO {
     
+    public Usuario buscarUsuarioDesejado(int idPedido){
+        
+        Connection conexao = FabricaConexao.getConexao(); 
+        String SELECT = "SELECT * FROM pedidoregistro WHERE idpedido = " + idPedido;
+       
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+         try{
+            
+            stmt = conexao.prepareStatement(SELECT);
+            rs = stmt.executeQuery();
+            
+            Usuario dadosUsuario = new Usuario();
+            dadosUsuario.setNome(rs.getString("nome"));
+            dadosUsuario.setTelefone(rs.getString("telefone"));
+            dadosUsuario.setEmail(rs.getString("email"));
+            dadosUsuario.setMatricula(rs.getString("matricula"));
+            
+            String INSERT = "INSERT INTO usuario (nome, telefone, email, matricula, mestre) VALUES (?, ?, ?, ?, N)";
+            
+            
+                
+            } catch (SQLException ex) {
+             Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }  finally {
+             FabricaConexao.fecharConexao();
+            }
+         
+         return dadosUsuario;
+        
+    }
+    
+    public void registrarUsuario(Usuario usuario){
+        
+        
+        
+    }
+    
+    // Antigo método salvar.
     public void salvar(Usuario usuario){
         try {
         Connection conexao = FabricaConexao.getConexao();

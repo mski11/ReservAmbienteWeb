@@ -72,12 +72,29 @@
                         <p:column headerText="Matrícula">
                             <h:outputText value="#{pedido.matricula}" />
                         </p:column>
-                        <p:column headerText="Descricao">
-                            <h:outputText value="#{pedido.descricao}" />
-                        </p:column>
+                        <p:column style="width:32px; text-align: center">
+                            <p:commandButton update="form:pedidoDetail" oncomplete="PF('pedidoDialog').show()" icon="pi pi-search" title="View">
+                                <f:setPropertyActionListener value="#{pedido}" target="#{registroUsuarioBean.pedidoSelecionado}" />
+                            </p:commandButton>
+                        </p:column> 
                     </p:dataTable>
+                    
                     <p:commandButton value="Atualizar" action="#{registroUsuarioBean.metodoBuscar()}" update="form"></p:commandButton>
+                    
+                    <p:dialog width="450px" header="Descrição do pedido" widgetVar="pedidoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true">
+                        <p:outputPanel id="pedidoDetail" style="text-align:center;">
+                            <p:panelGrid layout="grid" columns="2" rendered="#{not empty registroUsuarioBean.pedidoSelecionado}" columnClasses="label,value">
+                                <h:outputText value="ID:" />
+                                 <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.idPedido}"/>
+                                <h:outputText value="Nome: "/>
+                                 <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.nome}"/>
+                                <h:outputText value="Descrição do pedido de registro: " />
+                                 <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.descricao}"/>
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
                 </h:form>
+                
             </div>       
         </div>
     </h:body>
