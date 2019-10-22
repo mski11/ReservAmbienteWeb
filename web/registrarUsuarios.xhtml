@@ -84,12 +84,15 @@
                     <p:dialog width="450px" header="Descrição do pedido" widgetVar="pedidoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true">
                         <p:outputPanel id="pedidoDetail" style="text-align:center;">
                             <p:panelGrid layout="grid" columns="2" rendered="#{not empty registroUsuarioBean.pedidoSelecionado}" columnClasses="label,value">
-                                <h:outputText value="ID:" />
-                                 <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.idPedido}"/>
+                                <h:outputText value="ID:" /> 
+                                <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.idPedido}"/>
+                                
                                 <h:outputText value="Nome: "/>
-                                 <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.nome}"/>
+                                <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.nome}"/>
+                                
                                 <h:outputText value="Descrição do pedido de registro: " />
-                                 <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.descricao}"/>
+                                <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.descricao}"/>
+                                <p:commandButton action="#{registroUsuarioBean.aceitar()}"/>
                             </p:panelGrid>
                         </p:outputPanel>
                     </p:dialog>

@@ -14,43 +14,50 @@ import java.util.logging.Logger;
 
 public class usuarioDAO {
     
-    public Usuario buscarUsuarioDesejado(int idPedido){
+    public void registrarUsuario(int idPedido){
         
         Connection conexao = FabricaConexao.getConexao(); 
-        String SELECT = "SELECT * FROM pedidoregistro WHERE idpedido = " + idPedido;
+        String SELECT = "SELECT * FROM pedidoregistro WHERE idpedido = ?";
        
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-         try{
-            
+        try{
+            // Abre conexão e executa o SELECT, armazenando os resultados em 'rs'
             stmt = conexao.prepareStatement(SELECT);
+            stmt.setInt(1, idPedido);
             rs = stmt.executeQuery();
             
+            // Cria objeto usuário com base no resultado do ResultSet
             Usuario dadosUsuario = new Usuario();
+            if(rs.next()){
             dadosUsuario.setNome(rs.getString("nome"));
             dadosUsuario.setTelefone(rs.getString("telefone"));
             dadosUsuario.setEmail(rs.getString("email"));
             dadosUsuario.setMatricula(rs.getString("matricula"));
-            
-            String INSERT = "INSERT INTO usuario (nome, telefone, email, matricula, mestre) VALUES (?, ?, ?, ?, N)";
-            
-            
-                
-            } catch (SQLException ex) {
-             Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }  finally {
-             FabricaConexao.fecharConexao();
             }
-         
-         return dadosUsuario;
-        
-    }
-    
-    public void registrarUsuario(Usuario usuario){
-        
-        
-        
+            
+            // Inserção na tabela usuario com os dados de dadosUsuario
+            stmt = conexao.prepareStatement("INSERT INTO usuario (nome, telefone, email, matricula, mestre) VALUES (?, ?, ?, ?, ?)");
+            stmt.setString(1, dadosUsuario.getNome());
+            stmt.setString(2, dadosUsuario.getTelefone());
+            stmt.setString(3, dadosUsuario.getEmail());
+            if(dadosUsuario.getMatricula() != null){
+                stmt.setString(4, dadosUsuario.getMatricula());
+            }else{
+                stmt.setString(4, "Não matriculado");
+            }
+            stmt.setString(5, "N");
+            
+            stmt.executeUpdate();
+            FabricaConexao.fecharConexao();
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }  finally {
+            FabricaConexao.fecharConexao();
+        }
+                 
     }
     
     // Antigo método salvar.

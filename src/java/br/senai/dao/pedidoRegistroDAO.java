@@ -41,16 +41,20 @@ public class pedidoRegistroDAO {
         }
     }
     
-    public void excluir(PedidoRegistro PR){
+    public void excluirPedido(int idPedido){
+        
+        Connection conexao = FabricaConexao.getConexao();
+        String DELETE = "DELETE FROM pedidoregistro WHERE idpedido = ?";
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
         try {
-            Connection conexao = FabricaConexao.getConexao();
-            PreparedStatement ps;
-            if(PR != null){
-                ps = conexao.prepareStatement("DELETE * FROM pedidoRegistro WHERE idpedido = ?");
-                ps.setString(1, PR.getNome());
-                ps.executeUpdate();
-                FabricaConexao.fecharConexao();
-            }
+            
+            stmt = conexao.prepareStatement(DELETE);
+            stmt.setInt(1, idPedido);
+            stmt.executeUpdate();
+            FabricaConexao.fecharConexao();
+         
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

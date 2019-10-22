@@ -31,6 +31,11 @@ public class RegistroUsuarioBean {
 
     private List<PedidoRegistro> arrayPedidos = new ArrayList<>();
     private PedidoRegistro pedidoSelecionado;
+    
+    public void aceitar(){
+        novoUsuarioDAO.registrarUsuario(pedidoSelecionado.getIdPedido());
+        PedidosDAO.excluirPedido(pedidoSelecionado.getIdPedido());
+    }
 
     public PedidoRegistro getPedidoSelecionado() {
         return pedidoSelecionado;
