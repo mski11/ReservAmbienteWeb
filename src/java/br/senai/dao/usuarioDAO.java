@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Random;
 
 public class usuarioDAO {
     
@@ -30,6 +31,8 @@ public class usuarioDAO {
             
             // Cria objeto usuário com base no resultado do ResultSet
             Usuario dadosUsuario = new Usuario();
+            int senhaGerada = (int) (Math.random()*10000);
+
             if(rs.next()){
             dadosUsuario.setNome(rs.getString("nome"));
             dadosUsuario.setTelefone(rs.getString("telefone"));
@@ -38,16 +41,19 @@ public class usuarioDAO {
             }
             
             // Inserção na tabela usuario com os dados de dadosUsuario
-            stmt = conexao.prepareStatement("INSERT INTO usuario (nome, telefone, email, matricula, mestre) VALUES (?, ?, ?, ?, ?)");
+            stmt = conexao.prepareStatement("INSERT INTO usuario (nome, telefone, email, matricula, mestre, senha) VALUES (?, ?, ?, ?, ?, ?);");
             stmt.setString(1, dadosUsuario.getNome());
             stmt.setString(2, dadosUsuario.getTelefone());
             stmt.setString(3, dadosUsuario.getEmail());
-            if(dadosUsuario.getMatricula() != null){
+            //if(dadosUsuario.getMatricula() != null){
                 stmt.setString(4, dadosUsuario.getMatricula());
-            }else{
-                stmt.setString(4, "Não matriculado");
-            }
-            stmt.setString(5, "N");
+            //}else{
+            //    stmt.setString(4, "Não matriculado");
+            //}
+            stmt.setString(5, "N");       
+            stmt.setInt(6, senhaGerada);
+            
+            
             
             stmt.executeUpdate();
             FabricaConexao.fecharConexao();
@@ -60,28 +66,6 @@ public class usuarioDAO {
                  
     }
     
-    // Antigo método salvar.
-    public void salvar(Usuario usuario){
-        try {
-        Connection conexao = FabricaConexao.getConexao();
-        PreparedStatement ps;
-        if(usuario != null){
-            ps = conexao.prepareStatement("INSERT INTO usuario (nome, telefone, email, matricula, mestre) VALUES (?, ?, ?, ?, ?)");
-            
-            ps.setString(1, usuario.getNome());
-            ps.setString(2, usuario.getTelefone());
-            ps.setString(3, usuario.getEmail());
-            ps.setString(4, usuario.getMatricula());
-            ps.setString(5, "N");
-            
-            ps.executeUpdate();
-            
-            FabricaConexao.fecharConexao();
-        }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
     
     public void excluir(Usuario usuario){
     try {
@@ -99,6 +83,17 @@ public class usuarioDAO {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public void login(){
+        
+        Connection conexao = FabricaConexao.getConexao();
+        ResultSet rsEmails = null;
+        ResultSet rsSenhas = null;
+        
+        String SELECTemail = "SELECT email FROM usuario";
+        String SELECTsenha = "SELECT senha FROM usuario";
+        
     }
     
 }
