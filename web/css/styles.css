@@ -264,7 +264,6 @@ fieldset {
 .topoadmin {
     width: 100%;
     background-color: #ECECEC;
-    padding: 5px 0 20px 0;
     float: left;
     display: flex;
     flex-wrap: wrap;
@@ -516,19 +515,41 @@ visualisar usuarios
     width: 300px;
     height: 70px;
 }
-/*
-registrarUSUARIOS
-*/
-.tituloregistrar{
-    height: 20px; 
-    width: 60px;
-    padding: 0px 30px;
+/*USUARIOMAIN*/
+.nomeaplicativo{
+    height: 100%;
+    width:45%;
 }
-.tituloacordion{
-    background: #fff url(../img/user.png) no-repeat left;
+.nomeaplicativo h1{
+        color: #1E9585;
+    font-weight: bold;
 }
-.registrausuario{
-  
+.elRisco{
+        border-right: 3px solid #1E9585;
+        margin: 1px 1px 1px 1px;
+}
+.utilidades{
+    display: flex;
+    height: 50px;
+    width: 150px;
+}
+.utilidades img{
+    margin-top: 15px;
+    padding: 1px 1px 1px 1px;
+}
+.logout{
+    width: 150px;
+    height: 30px;
+    margin: 7px 0px 0px 10px;
+}
+.utilidadesmetade{
+    display: flex;
+    height: 50px;
+}
+.botaoproblema{
+    width: 150px;
+    height: 30px;
+    margin:50px 0px 0px 0px;
 }
     .value {
         font-weight: bold;
