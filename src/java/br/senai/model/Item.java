@@ -4,13 +4,25 @@ public class Item {
     private String nome;
     private String descricao;
     private int quantidade;
+    private int idItem;
 
+    public Item(){}
     public Item(String nome, String descricao, int quantidade){
         this.nome = nome;
         this.descricao = descricao;
         this.quantidade = quantidade;
     }
 
+    public int getIdItem() {
+        return idItem;
+    }
+
+    public void setIdItem(int idItem) {
+        this.idItem = idItem;
+    }
+
+    
+    
     public String getNome() {
         return nome;
     }

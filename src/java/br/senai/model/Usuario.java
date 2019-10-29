@@ -8,7 +8,7 @@ public class Usuario {
     public Usuario(){
 
     }
-
+    
     public Usuario(String idUsuario, String nome, String matricula){
         this.idUsuario = idUsuario;
         this.nome = nome;

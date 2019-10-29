@@ -85,15 +85,58 @@ public class usuarioDAO {
         }
     }
     
-    public void login(){
+    public String loginCheck(Usuario infoUsuario){
         
         Connection conexao = FabricaConexao.getConexao();
+        PreparedStatement stmtEmail;
+        PreparedStatement stmtSenha = null;
         ResultSet rsEmails = null;
         ResultSet rsSenhas = null;
         
         String SELECTemail = "SELECT email FROM usuario";
         String SELECTsenha = "SELECT senha FROM usuario";
         
+        ArrayList<String> emails = new ArrayList<>();
+        ArrayList<String> senhas = new ArrayList<>();
+        String tipoConta = null;
+
+        
+        try {
+            
+            stmtEmail = conexao.prepareStatement(SELECTemail);
+            rsEmails = stmtEmail.executeQuery();
+            rsSenhas = stmtSenha.executeQuery();
+            
+            while(rsEmails.next()){
+                Usuario usuario = new Usuario();
+                usuario.setEmail(rsEmails.getString("email"));
+                emails.add(usuario.getEmail());
+            }
+            
+            while(rsSenhas.next()){
+                Usuario usuario = new Usuario();
+                usuario.setPass(rsSenhas.getString("senha"));
+                senhas.add(usuario.getPass());
+            }
+            
+            for(int i = 0; i <= emails.size(); i++){
+                if(emails.get(i) != infoUsuario.getEmail() && senhas.get(i) != infoUsuario.getPass()){
+                    tipoConta = "erro";
+                }else if(emails.get(i) == infoUsuario.getEmail() && senhas.get(i) == infoUsuario.getPass()){
+                    tipoConta = "user";
+                } else if(infoUsuario.getEmail() == "chrys@hotmail.com" && infoUsuario.getPass() == "1234"){
+                    tipoConta = "adm";
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return tipoConta;
     }
-    
 }
+    
+
+            
+       
+
