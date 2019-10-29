@@ -22,7 +22,7 @@ public class pedidoRegistroDAO {
         return "Conexão efetuada com sucesso";
     }
     
-    public void salvar(PedidoRegistro PR){
+    public void salvar(PedidoRegistro PR) throws Exception{
         try {
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
@@ -38,7 +38,10 @@ public class pedidoRegistroDAO {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }
+           /* FabricaConexao.cancelarTransacao(); */
+        } catch (Exception ex) {
+             Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
     
     public void excluirPedido(int idPedido){

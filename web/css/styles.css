@@ -77,7 +77,11 @@ fieldset {
     border: 0;
 }
 
-
+#listaItens {
+    width: 765px;
+    height: 300px;
+    float:left;
+}
 
 html {
     display: block;
@@ -571,4 +575,8 @@ visualisar usuarios
     .ui-datatable .ui-button-icon-only .ui-button-text {
         padding: 0;
         line-height: 1.2;
+    }
+    
+    #inputNomeAmbiente{
+        margin-bottom: 10px;
     }

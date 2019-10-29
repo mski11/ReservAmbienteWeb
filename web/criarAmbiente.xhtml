@@ -21,7 +21,6 @@
                        <h6>Administrador</h6>
                        <br/>
                        <h6>Reserve-se</h6>
-                       <img src="img/logo-senai.jpg" height="25"/>
                     </div>
                     <div class="botoesajudasair">
                         <p:button value="Relatar um problema" class="botaorelata" />
@@ -37,28 +36,54 @@
                 </div>            
             </div>
             <div class="conteudo">
-                <h2>Reservas <div class="icon">&#8634;</div></h2>
+                <h2>Criar ambiente <div class="icon">&#8634;</div></h2>
+                
                 <div class="container">
                     <p:tab title="Ambiente: Laboratório Aberto">
+                        <h:form>
+                            <div id="listaItens">
+                        
+                            <h3>Nome do ambiente</h3>
+                            <p:inputText id="inputNomeAmbiente" placeholder="Insira um nome"/>
+                            <p:dataTable id="dt" var="item" value="#{criarAmbienteBean.itensAmbiente}">
+                                <p:column headerText="Nome">
+                                    <h:outputText value="#{item.nome}"/>
+                                </p:column>
+
+                                <p:column headerText="Quantidade">
+                                    <h:outputText value="#{item.quantidade}"/>
+                                </p:column>
+
+                                <p:column headerText="Descrição">
+                                    <h:outputText value="#{item.descricao}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </div>
                         <div class="itensadd">
-                            <h4>Adicionar um novo item</h4>
                             <div class="itens">
+                                <h4>Adicionar um novo item</h4>
                                 <div class="item">
                                     <b>Item</b><br/>
-                                    <input type="item" class="form-control btn-item" placeholder="Quadro branco"/> 
+                                    <input value="#{criarAmbienteBean.item.nome}" type="text" class="form-control btn-item" placeholder="Nome do item"/> 
                                 </div>
                                 <div class="qtde">
                                     Quantidade<br/>
-                                    <input type="quantidade" class="form-control btn-quantidade" placeholder="12"/> 
+                                    <input value="#{criarAmbienteBean.item.quantidade}" type="text" class="form-control btn-quantidade" placeholder="1-99"/> 
                                 </div>
-                                <input value="Confirmar" class="btn btn-success botao" type="button"/>
+                                <div class="descricao">
+                                    Descricao<br/>
+                                    <input value="#{criarAmbienteBean.item.descricao}" type="text" class="form-control btn-quantidade" placeholder="Descreva o item"/> 
+                                </div>
+                                <p:commandButton value="Atualizar" action="#{criarAmbienteBean.adicionarItem()}" update="@form"></p:commandButton>
+                                <input update="@form" action="#{criarAmbienteBean.adicionarItem()}" value="Confirmar" class="btn btn-success botao" type="button"/>
                                 <br></br><br></br>
                                 <div class="botaofodamuitozika">
                                     <input value="Limpar todos os Campos" class="btn btn-danger botao" type="button"/>
                                     <input value="Criar Ambientes" class="btn btn-success botao" type="button"/>         
-                                </div>  
+                                </div>
                             </div>
                         </div>
+                        </h:form>
                     </p:tab>    
                 </div>   
             </div>

@@ -10,14 +10,14 @@ import java.sql.SQLException;
 
 public class ItemDAO {
     
-    public void salvar(Item itemAmbiente, Ambiente ambienteInserido){
+    public void adicionarItem(Item itemAmbiente, String ambienteInserido){
         try {
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
             if(itemAmbiente != null){
                 ps = conexao.prepareStatement("INSERT INTO itemambiente (idItem, idAmbiente, nome, descricao, quantidade) VALUES (?, ?, ?, ?, ?)"); 
                 ps.setInt(1, itemAmbiente.getIdItem());
-                ps.setInt(2, ambienteInserido.getIdAmbiente());
+                ps.setString(2, ambienteInserido);
                 ps.setString(3, itemAmbiente.getNome());
                 ps.setString(4, itemAmbiente.getDescricao());
                 ps.setInt(5, itemAmbiente.getQuantidade());
