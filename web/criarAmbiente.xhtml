@@ -37,52 +37,81 @@
             </div>
             <div class="conteudo">
                 <h2>Criar ambiente <div class="icon">&#8634;</div></h2>
-                
                 <div class="container">
                     <p:tab title="Ambiente: Laboratório Aberto">
-                        <h:form>
-                            <div id="listaItens">
-                        
-                            <h3>Nome do ambiente</h3>
-                            <p:inputText id="inputNomeAmbiente" placeholder="Insira um nome"/>
-                            <p:dataTable id="dt" var="item" value="#{criarAmbienteBean.itensAmbiente}">
-                                <p:column headerText="Nome">
-                                    <h:outputText value="#{item.nome}"/>
-                                </p:column>
+                        <h:form id="form">
+                            <p:growl id="msgs" showDetail="true"/>
+                            
+                            <div id="listaItens">         
+                                <h3>Nome do ambiente</h3>
+                                <p:inputText id="inputNomeAmbiente" placeholder="Insira um nome" value="#{criarAmbienteBean.nomeAmbiente}"/>
+                                
+                                <h4 id="itensAmbienteHeader">Itens do ambiente</h4>
+                                
+                                <p:dataTable id="dt" var="item" value="#{criarAmbienteBean.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem">
 
-                                <p:column headerText="Quantidade">
-                                    <h:outputText value="#{item.quantidade}"/>
-                                </p:column>
+                                    <p:ajax event="cellEdit" listener="#{criarAmbienteBean.onCellEdit}" update=":form:msgs" />
 
-                                <p:column headerText="Descrição">
-                                    <h:outputText value="#{item.descricao}"/>
-                                </p:column>
-                            </p:dataTable>
-                        </div>
-                        <div class="itensadd">
-                            <div class="itens">
-                                <h4>Adicionar um novo item</h4>
-                                <div class="item">
-                                    <b>Item</b><br/>
-                                    <input value="#{criarAmbienteBean.item.nome}" type="text" class="form-control btn-item" placeholder="Nome do item"/> 
-                                </div>
-                                <div class="qtde">
-                                    Quantidade<br/>
-                                    <input value="#{criarAmbienteBean.item.quantidade}" type="text" class="form-control btn-quantidade" placeholder="1-99"/> 
-                                </div>
-                                <div class="descricao">
-                                    Descricao<br/>
-                                    <input value="#{criarAmbienteBean.item.descricao}" type="text" class="form-control btn-quantidade" placeholder="Descreva o item"/> 
-                                </div>
-                                <p:commandButton value="Atualizar" action="#{criarAmbienteBean.adicionarItem()}" update="@form"></p:commandButton>
-                                <input update="@form" action="#{criarAmbienteBean.adicionarItem()}" value="Confirmar" class="btn btn-success botao" type="button"/>
-                                <br></br><br></br>
-                                <div class="botaofodamuitozika">
-                                    <input value="Limpar todos os Campos" class="btn btn-danger botao" type="button"/>
-                                    <input value="Criar Ambientes" class="btn btn-success botao" type="button"/>         
+                                    <p:column headerText="Nome">
+                                        <p:cellEditor>
+                                            <f:facet name="output"><h:outputText value="#{item.nome}" /></f:facet>
+                                            <f:facet name="input"><p:inputText value="#{item.nome}" style="width:96%"/></f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="Quantidade">
+                                        <p:cellEditor>
+                                            <f:facet name="output"><h:outputText value="#{item.quantidade}" /></f:facet>
+                                            <f:facet name="input"><p:inputNumber value="#{item.quantidade}" style="width:96%" label="Year"/></f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="Descricao">
+                                        <p:cellEditor>
+                                            <f:facet name="output"><h:outputText value="#{item.descricao}" /></f:facet>
+                                            <f:facet name="input"><p:inputText value="#{item.descricao}" style="width:96%"/></f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+                                    
+                                    <p:column>
+                                        <p:commandButton action="#{criarAmbienteBean.deletarItem(item)}" update="dt"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </div>
+                            
+                            <div class="itensadd">
+                                <div class="itens">
+                                    <h4>Adicionar um novo item</h4>
+                                    
+                                    <div class="item">
+                                        <b>Item</b><br/>
+                                        <p:inputText value="#{criarAmbienteBean.item.nome}" class="form-control btn-item" placeholder="Nome do item"/> 
+                                    </div>
+                                    
+                                    <div class="qtde">
+                                        Quantidade<br/>
+                                        <p:inputText value="#{criarAmbienteBean.item.quantidade}" type="text" class="form-control btn-quantidade" placeholder="1-99"/> 
+                                    </div>
+                                    
+                                    <div class="descricao">
+                                        Descricao<br/>
+                                        <p:inputText value="#{criarAmbienteBean.item.descricao}" type="text" class="form-control btn-quantidade" placeholder="Descreva o item"/> 
+                                    </div>
+                                    
+                                    <p:commandButton class="btn btn-success botao" value="Adicionar item" action="#{criarAmbienteBean.adicionarItem()}" update="@form"></p:commandButton>                                   <br></br><br></br>
+                                    
+                                    <div class="botaofodamuitozika">
+                                        <input value="Limpar todos os Campos" class="btn btn-danger botao" type="button"/>
+                                        <input value="Criar Ambientes" class="btn btn-success botao" type="button"/>         
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            
+                            <p:contextMenu for="dt" widgetVar="cMenu">   
+                                <p:menuitem value="Editar item" icon="pi pi-search" onclick="PF('cellItem').showCellEditor();return false;"/>  
+                                <p:menuitem value="Fechar menu" icon="pi pi-times" onclick="PF('cMenu').hide()"/>  
+                            </p:contextMenu> 
+                            
                         </h:form>
                     </p:tab>    
                 </div>   
