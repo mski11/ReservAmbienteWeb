@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class usuarioDAO {
     
-    public void registrarUsuario(int idPedido){
+    public boolean registrarUsuario(int idPedido){
         
         Connection conexao = FabricaConexao.getConexao(); 
         String SELECT = "SELECT * FROM pedidoregistro WHERE idpedido = ?";
@@ -24,6 +24,7 @@ public class usuarioDAO {
         ResultSet rs = null;
         
         try{
+            
             // Abre conexão e executa o SELECT, armazenando os resultados em 'rs'
             stmt = conexao.prepareStatement(SELECT);
             stmt.setInt(1, idPedido);
@@ -34,10 +35,10 @@ public class usuarioDAO {
             int senhaGerada = (int) (Math.random()*10000);
 
             if(rs.next()){
-            dadosUsuario.setNome(rs.getString("nome"));
-            dadosUsuario.setTelefone(rs.getString("telefone"));
-            dadosUsuario.setEmail(rs.getString("email"));
-            dadosUsuario.setMatricula(rs.getString("matricula"));
+                dadosUsuario.setNome(rs.getString("nome"));
+                dadosUsuario.setTelefone(rs.getString("telefone"));
+                dadosUsuario.setEmail(rs.getString("email"));
+                dadosUsuario.setMatricula(rs.getString("matricula"));
             }
             
             // Inserção na tabela usuario com os dados de dadosUsuario
@@ -60,29 +61,35 @@ public class usuarioDAO {
                 
         } catch (SQLException ex) {
             Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }  finally {
             FabricaConexao.fecharConexao();
         }
-                 
+        return true; 
     }
     
     
-    public void excluir(Usuario usuario){
+    public boolean excluir(Usuario usuario){
     try {
+        
         Connection conexao = FabricaConexao.getConexao();
         PreparedStatement ps;
+        
         if(usuario != null){
-            ps = conexao.prepareStatement("DELETE FROM usuario WHERE id = ?");
+            ps = conexao.prepareStatement("DELETE FROM usuario WHERE idUsuario = ?");
             
-            ps.setString(1, usuario.getIdUsuario());
+            ps.setInt(1, usuario.getIdUsuario());
             
             ps.executeUpdate();
             
             FabricaConexao.fecharConexao();
         }
+        
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return false;
         }
+        return true;
     }
     
     public String loginCheck(Usuario infoUsuario){

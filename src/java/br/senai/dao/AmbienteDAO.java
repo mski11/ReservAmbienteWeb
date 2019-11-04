@@ -6,7 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class AmbienteDAO {
-    public void criarAmbiente(String idAmbiente){
+    
+    public boolean criarAmbiente(String idAmbiente){
         try {
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
@@ -18,6 +19,9 @@ public class AmbienteDAO {
             
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return false;
         }
+        return true;
     }
+    
 }

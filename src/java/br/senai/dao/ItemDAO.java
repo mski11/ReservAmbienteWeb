@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class ItemDAO {
     
-    public void adicionarItem(Item itemAmbiente, String ambienteInserido){
+    public boolean adicionarItem(Item itemAmbiente, String ambienteInserido){
         try {
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
@@ -26,6 +26,8 @@ public class ItemDAO {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return false;
         }
+        return true;
     }
 }

@@ -2,18 +2,19 @@ package br.senai.model;
 
 public class Pedido {
     private String descricao, diaReserva, diaPedido,
-            horaInicio, horaFim, diaResposta, respostaMestre,
-            idPedido, idUsuario, idAmbiente;
+            horaInicio, horaFim, diaResposta, respostaMestre;
+    private int idPedido, idUsuario, idAmbiente;
     private Boolean statusResposta;
 
-
-    public Pedido(String idAmbiente, String idUsuario, String diaPedido){
+    public Pedido(){}
+    
+    public Pedido(int idAmbiente, int idUsuario, String diaPedido){
         this.idAmbiente = idAmbiente;
         this.idUsuario = idUsuario;
         this.diaPedido = diaPedido;
     }
 
-    public Pedido(String descricao, String diaReserva, String horaInicio, String horaFim, String idUsuario, String idAmbiente,String diaPedido) {
+    public Pedido(String descricao, String diaReserva, String horaInicio, String horaFim, int idUsuario, int idAmbiente, String diaPedido) {
         this.descricao = descricao;
         this.diaReserva = diaReserva;
         this.horaInicio = horaInicio;
@@ -23,27 +24,41 @@ public class Pedido {
         this.diaPedido = diaPedido;
     }
 
-    public String getIdPedido() {
+    public Pedido(String descricao, String diaReserva, String diaPedido, String horaInicio, String horaFim, int idPedido, int idUsuario, int idAmbiente, Boolean statusResposta) {
+        this.descricao = descricao;
+        this.diaReserva = diaReserva;
+        this.diaPedido = diaPedido;
+        this.horaInicio = horaInicio;
+        this.horaFim = horaFim;
+        this.idPedido = idPedido;
+        this.idUsuario = idUsuario;
+        this.idAmbiente = idAmbiente;
+        this.statusResposta = statusResposta;
+    }
+    
+    
+
+    public int getIdPedido() {
         return idPedido;
     }
 
-    public void setIdPedido(String idPedido) {
+    public void setIdPedido(int idPedido) {
         this.idPedido = idPedido;
     }
 
-    public String getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public String getIdAmbiente() {
+    public int getIdAmbiente() {
         return idAmbiente;
     }
 
-    public void setIdAmbiente(String idAmbiente) {
+    public void setIdAmbiente(int idAmbiente) {
         this.idAmbiente = idAmbiente;
     }
 

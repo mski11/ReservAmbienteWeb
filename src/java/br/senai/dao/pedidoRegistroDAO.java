@@ -22,7 +22,7 @@ public class pedidoRegistroDAO {
         return "Conexão efetuada com sucesso";
     }
     
-    public void salvar(PedidoRegistro PR) throws Exception{
+    public boolean salvar(PedidoRegistro PR) throws Exception{
         try {
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
@@ -39,12 +39,14 @@ public class pedidoRegistroDAO {
         } catch (SQLException ex) {
             ex.printStackTrace();
            /* FabricaConexao.cancelarTransacao(); */
+           return false;
         } catch (Exception ex) {
              Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
-         }
+        }
+        return true;
     }
     
-    public void excluirPedido(int idPedido){
+    public boolean excluirPedido(int idPedido){
         
         Connection conexao = FabricaConexao.getConexao();
         String DELETE = "DELETE FROM pedidoregistro WHERE idpedido = ?";
@@ -60,7 +62,9 @@ public class pedidoRegistroDAO {
          
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return false;
         }
+        return true;
     }
     
     public List<PedidoRegistro> findAll(){

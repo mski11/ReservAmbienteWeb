@@ -1,7 +1,7 @@
 package br.senai.model;
 
 public class Usuario {
-    private String idUsuario;
+    private int idUsuario;
     private String nome, matricula, email, telefone, pass;
     private boolean mestre;
 
@@ -9,13 +9,23 @@ public class Usuario {
 
     }
     
-    public Usuario(String idUsuario, String nome, String matricula){
+    public Usuario(int idUsuario, String nome, String matricula){
         this.idUsuario = idUsuario;
         this.nome = nome;
         this.matricula = matricula;
-
     }
 
+    public Usuario(int idUsuario, String nome, String matricula, String email, String telefone, String pass, boolean mestre) {
+        this.idUsuario = idUsuario;
+        this.nome = nome;
+        this.matricula = matricula;
+        this.email = email;
+        this.telefone = telefone;
+        this.pass = pass;
+        this.mestre = mestre;
+    }
+
+    /*
     public void setAll(String nome, String matricula, boolean mestre, String email, String telefone, String pass){
         this.nome = nome;
         this.matricula = matricula;
@@ -24,16 +34,17 @@ public class Usuario {
         this.telefone = telefone;
         this.pass = pass;
     }
+    */
 
     public String getPass() { return pass; }
 
     public void setPass(String pass) { this.pass = pass; }
 
-    public String getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 

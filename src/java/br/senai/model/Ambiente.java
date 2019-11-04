@@ -3,38 +3,24 @@ package br.senai.model;
 import java.util.ArrayList;
 
 public class Ambiente {
-    private int idAmbiente;
-    private String nome;
+    
+    private String idAmbiente;
     private boolean status;
     private ArrayList<Item> itensAmbiente;
 
-    public int getIdAmbiente() {
+    public String getIdAmbiente() {
         return idAmbiente;
     }
 
-    public void setIdAmbiente(int idAmbiente) {
+    public void setIdAmbiente(String idAmbiente) {
         this.idAmbiente = idAmbiente;
-    }
-    
-    public Ambiente(int idAmbiente, String nome){
-        this.idAmbiente = idAmbiente;
-        this.nome = nome;
     }
 
-    public Ambiente(String nome, ArrayList<Item> itensAmbiente) {
-        this.nome = nome;
-        this.itensAmbiente = itensAmbiente;
-    }
-
-    public Ambiente(int idAmbiente, String nome, boolean status, ArrayList<Item> itensAmbiente) {
+    public Ambiente(){}
+    public Ambiente(String idAmbiente,  boolean status, ArrayList<Item> itensAmbiente) {
         this.idAmbiente = idAmbiente;
-        this.nome = nome;
         this.status = status;
         this.itensAmbiente = itensAmbiente;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public boolean isStatus() {
@@ -43,6 +29,10 @@ public class Ambiente {
 
     public ArrayList<Item> getItensAmbiente() {
         return itensAmbiente;
+    }
+
+    public void setItensAmbiente(ArrayList<Item> itensAmbiente) {
+        this.itensAmbiente = itensAmbiente;
     }
 
     public void setStatus(String a){

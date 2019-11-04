@@ -9,6 +9,16 @@ public class PedidoRegistro {
     private String matricula;
     private String descricao;
 
+    public PedidoRegistro(){}
+    public PedidoRegistro(int idPedido, String nome, String telefone, String email, String matricula, String descricao) {
+        this.idPedido = idPedido;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.matricula = matricula;
+        this.descricao = descricao;
+    }
+    
     public int getIdPedido() {
         return idPedido;
     }
