@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Reserva Ambientes SENAI</title>
+          <link rel="stylesheet" href="css/styles.css"/>
+    </h:head>
+    <h:body>
+<div class="tudo">
+    <div class="containereserva">
+    <button></button>
+    <h5>Preencha todos os campos para fazer sua reserva!</h5>
+    </div>
+    <div class="conteudo">
+        <div class="topofoda">
+            <img src="img/portaabrind.jpg" width="60" height="70" alt="portaabrind"/>
+            <h5>Ambiente:</h5>
+            <h4> insira seu ambiente aq</h4>
+        </div>
+        <div class="informacaoreserva">
+            <div class="itensambiente">
+                <h5>Itens do Ambiente:</h5>
+                <p:dataTable var="car" value="#{dtBasicView.cars}">
+                   <p:column headerText="Id">
+                       <h:outputText value="#{car.id}" />
+                   </p:column>
+
+                   <p:column headerText="Year">
+                       <h:outputText value="#{car.year}" />
+                   </p:column>
+                </p:dataTable>
+            </div>
+            <div class="formulariofoda">
+                <h5>Escolha uma data</h5>
+                <input type="date"></input>
+                <h5>Quando começa seu evento?</h5>
+                <input type="time"></input>
+                <h5>Quando termina seu evento?</h5>
+                <input type="time"></input>
+            </div>
+        </div>
+        <div class="motivoreserva">
+            <h5>Motivo da Reserva:</h5>
+        </div>
+        <div class="textareaaaa">
+            <input type="textarea" class="textareaaaa"> </input>
+        </div>
+        
+    </div>
+    
+</div>
+
+    </h:body>
+</html>

@@ -584,3 +584,89 @@ visualisar usuarios
     #itensAmbienteHeader{
         margin-bottom: 2px;
     }
+    
+/*
+Reservar Ambientes
+*/
+.containereserva{
+    display: flex;
+}
+.containereserva button{
+    height: 33px;
+    width: 80px;
+    background: url(../img/voltar.JPG);
+    margin: 12px 0px 0px 10px;
+}
+.containereserva h5{
+    padding: 0px 0px 0px 142px;
+    font-size: 15px;
+}
+.topofoda h5{
+    font-size: 20px;
+    padding: 0px 5px 5px 0px;
+    margin: 20px 0px 0px 0px;
+    color:white;
+    font-weight: bold;
+}
+.topofoda h4{
+    font-size: 20px;
+    padding: 0px 5px 5px 0px;
+    margin: 20px 0px 0px 0px;
+     
+}
+.topofoda img{
+  padding:10px 10px 10px 10px;
+}
+.topofoda{
+    margin: 0px 50px 0px 50px;
+    height:70px;
+    width: auto;
+    background-color: #1E9585;
+    display:flex;
+}
+.informacaoreserva{
+    margin: 0px 50px 0px 50px;
+    height: 350px;
+    display: flex;
+}
+.itensambiente{
+    margin: 0px 0px 0px 40px;
+    height:350px;
+    width: 600px;
+}
+.itensambiente h5{
+    font-size: 20px;
+    padding: 0px 5px 5px 0px;
+    margin: 20px 0px 0px 0px;
+    color:black;
+    font-weight: bold;
+}
+.formulariofoda{
+    padding: 0px 5px 5px 20px;
+    margin: 30px 0px 0px 0px;
+    height:300px;
+    width: 300px;   
+}
+.formulariofoda h5{
+    font-size: 20px;
+    padding: 0px 5px 5px 0px;
+    margin: 20px 0px 0px 0px;
+    color:black;
+    font-weight: bold;
+}
+.motivoreserva{
+    margin: 0px 50px 0px 50px;
+}
+
+.motivoreserva h5{
+    font-size: 20px;
+    padding: 0px 5px 5px 0px;
+    margin: 20px 0px -40px 40px;
+    color:black;
+    font-weight: bold;
+}
+.textareaaaa{
+    height: 150px;
+    width: 900px;
+    margin: 20px 0px 00px 40px;
+}
