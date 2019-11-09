@@ -12,8 +12,9 @@ public class AmbienteDAO {
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
             
-            ps = conexao.prepareStatement("INSERT INTO ambiente (idAmbiente) VALUES (?)"); 
-            ps.setString(1, "idAmbiente");
+            ps = conexao.prepareStatement("INSERT INTO ambiente (idAmbiente, status) VALUES (?, ?)"); 
+            ps.setString(1, idAmbiente);
+            ps.setString(2, "N");
             ps.executeUpdate();
             FabricaConexao.fecharConexao();
             

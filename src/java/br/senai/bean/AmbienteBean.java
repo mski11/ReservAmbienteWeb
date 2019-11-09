@@ -1,5 +1,7 @@
 package br.senai.bean;
 
+import br.senai.dao.AmbienteDAO;
+import br.senai.dao.ItemDAO;
 import br.senai.model.Item;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,8 @@ import org.primefaces.event.CellEditEvent;
 @ManagedBean
 public class AmbienteBean {
     
+    private AmbienteDAO ambienteDAO = new AmbienteDAO();
+    private ItemDAO itensDAO = new ItemDAO();
     private List<Item> itensAmbiente = new ArrayList();
     private Item item = new Item();
     public String nomeAmbiente;
@@ -22,8 +26,17 @@ public class AmbienteBean {
         item = new Item();
     }
     
+    public void definirNome(){
+        
+    }
+    
     public void deletarItem(Item item){
         itensAmbiente.remove(item);
+    }
+    
+    public void criarAmbiente(){
+        ambienteDAO.criarAmbiente(nomeAmbiente);
+        itensDAO.inserirItemNovoAmbiente(itensAmbiente, nomeAmbiente);
     }
     
     public void onCellEdit(CellEditEvent event) {
