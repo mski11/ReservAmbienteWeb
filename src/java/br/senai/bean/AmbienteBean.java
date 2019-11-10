@@ -2,6 +2,7 @@ package br.senai.bean;
 
 import br.senai.dao.AmbienteDAO;
 import br.senai.dao.ItemDAO;
+import br.senai.model.Ambiente;
 import br.senai.model.Item;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,27 +17,53 @@ import org.primefaces.event.CellEditEvent;
 public class AmbienteBean {
     
     private AmbienteDAO ambienteDAO = new AmbienteDAO();
+    
+    /*  Neste Bean, o itensDAO é utilizado somente na hora
+    *   de criar um novo ambiente. Todas outras funções relacionadas
+    *   à itens são feitas em ItemBean.
+    */
     private ItemDAO itensDAO = new ItemDAO();
-    private List<Item> itensAmbiente = new ArrayList();
-    private Item item = new Item();
+    
+    /* Lista receptora do método buscarAmbientes do AmbienteDAO */
+    private List<Ambiente> ambientes = new ArrayList();
+    
+    
+    /*
+    *   Lista que recebe itens e guarda-os em sessão no bean
+    *   para depois inserir estes no banco de dados com a
+    *   confirmação de criação de um novo ambiente.
+    */
+    private List<Item> itensNovoAmbiente = new ArrayList();
+    
+    
+    
+    /* Recebe nome do ambiente no momento da criação. */
     public String nomeAmbiente;
+        
+    private Item item = new Item();
+    
+    public Ambiente ambienteSelecionado;
+    
+    public void excluirItem(){
+        itensDAO.excluirItem(item.getIdItem());
+    }
+    
+    public void buscarAmbiente(){
+        ambientes = ambienteDAO.buscarAmbientes();
+    }
     
     public void adicionarItem(){
-        itensAmbiente.add(item);
+        itensNovoAmbiente.add(item);
         item = new Item();
     }
     
-    public void definirNome(){
-        
-    }
-    
     public void deletarItem(Item item){
-        itensAmbiente.remove(item);
+        itensNovoAmbiente.remove(item);
     }
     
     public void criarAmbiente(){
         ambienteDAO.criarAmbiente(nomeAmbiente);
-        itensDAO.inserirItemNovoAmbiente(itensAmbiente, nomeAmbiente);
+        itensDAO.inserirItemNovoAmbiente(itensNovoAmbiente, nomeAmbiente);
     }
     
     public void onCellEdit(CellEditEvent event) {
@@ -49,12 +76,54 @@ public class AmbienteBean {
         }
     }
 
+    public List<Ambiente> getAmbientes() {
+        return ambientes;
+    }
+
+    public void setAmbientes(List<Ambiente> ambientes) {
+        this.ambientes = ambientes;
+    }
+
+    public Ambiente getAmbienteSelecionado() {
+        return ambienteSelecionado;
+    }
+
+    public void setAmbienteSelecionado(Ambiente ambienteSelecionado) {
+        this.ambienteSelecionado = ambienteSelecionado;
+    }
+    
+    
+    
+    public AmbienteDAO getAmbienteDAO() {
+        return ambienteDAO;
+    }
+
+    public void setAmbienteDAO(AmbienteDAO ambienteDAO) {
+        this.ambienteDAO = ambienteDAO;
+    }
+
+    public ItemDAO getItensDAO() {
+        return itensDAO;
+    }
+
+    public void setItensDAO(ItemDAO itensDAO) {
+        this.itensDAO = itensDAO;
+    }
+
+    public List<Ambiente> getAmbiente() {
+        return ambientes;
+    }
+
+    public void setAmbiente(List<Ambiente> ambiente) {
+        this.ambientes = ambiente;
+    }
+    
     public List<Item> getItensAmbiente() {
-        return itensAmbiente;
+        return itensNovoAmbiente;
     }
 
     public void setItensAmbiente(List<Item> itensAmbiente) {
-        this.itensAmbiente = itensAmbiente;
+        this.itensNovoAmbiente = itensAmbiente;
     }
 
     public Item getItem() {
