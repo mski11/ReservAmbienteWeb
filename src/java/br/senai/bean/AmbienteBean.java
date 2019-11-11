@@ -27,7 +27,6 @@ public class AmbienteBean {
     /* Lista receptora do método buscarAmbientes do AmbienteDAO */
     private List<Ambiente> ambientes = new ArrayList();
     
-    
     /*
     *   Lista que recebe itens e guarda-os em sessão no bean
     *   para depois inserir estes no banco de dados com a
@@ -35,10 +34,10 @@ public class AmbienteBean {
     */
     private List<Item> itensNovoAmbiente = new ArrayList();
     
-    
-    
     /* Recebe nome do ambiente no momento da criação. */
     public String nomeAmbiente;
+    
+    Ambiente ambiente = new Ambiente();
         
     private Item item = new Item();
     

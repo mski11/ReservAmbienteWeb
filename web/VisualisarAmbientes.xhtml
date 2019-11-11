@@ -52,77 +52,71 @@
             <div class="conteudo">
                 <h2>Reservas <div class="icon">&#8634;</div></h2>
                 <div class="container">
-                    
-                <h:form id="form">
-                    <p:growl id="msgs" showDetail="true" />
- 
-                    <p:dataTable id="dtAmbientes" var="ambiente" value="#{ambienteBean.ambientes}">
-                        <f:facet name="header">
-                            Ambientes registrados no sistema
-                        </f:facet>
-                        <p:column headerText="Nome do ambiente">
-                            <h:outputText value="#{ambiente.idAmbiente}" />
-                        </p:column>
-                        <p:column headerText="editar" style="width:32px;text-align: center">
-                             <p:commandButton update=":form:ambienteDetail" oncomplete="PF('ambienteDialog').show()" icon="pi pi-search" title="View">
-                                 <f:setPropertyActionListener value="#{ambiente}" target="#{ambienteBean.ambienteSelecionado}" />
-                            </p:commandButton>
-                        </p:column>
-                    </p:dataTable>
-                    
-                    <p:dialog width="650px" header="Descrição do ambiente" widgetVar="ambienteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true">
-                        <p:outputPanel id="ambienteDetail" style="text-align:center;">
-                            <p:panelGrid layout="grid" columns="2" rendered="#{not empty ambienteBean.ambienteSelecionado}">
-                                <h:outputLabel for="idAmbiente" value="Itens do ambiente" /> 
-                                <h:outputText id="idAmbiente" value="#{ambienteBean.ambienteSelecionado.idAmbiente}"/>
-                                
-                                <h:outputLabel for="" value="Nome: "/>
-                                <h:form id="form">
-                            <p:growl id="msgs" showDetail="true"/>
-                            
-                            <div>         
-                                
-                                <p:dataTable id="dt" var="item" value="#{ambienteBean.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem">
+                    <h:form id="form">
+                        <p:growl id="msgs" showDetail="true" />
 
-                                    <p:ajax event="cellEdit" listener="#{ambienteBean.onCellEdit}" update=":form:msgs" />
+                        <p:dataTable id="dtAmbientes" var="ambiente" value="#{ambienteBean.ambientes}">
+                            <f:facet name="header">
+                                Ambientes registrados no sistema
+                            </f:facet>
+                            <p:column headerText="Nome do ambiente">
+                                <h:outputText value="#{ambiente.idAmbiente}" />
+                            </p:column>
+                            <p:column headerText="editar" style="width:32px;text-align: center">
+                                 <p:commandButton update=":form:ambienteDetail" oncomplete="PF('ambienteDialog').show()" icon="pi pi-search" title="View">
+                                     <f:setPropertyActionListener value="#{ambiente}" target="#{ambienteBean.ambienteSelecionado}" />
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
 
-                                    <p:column headerText="Nome" style="width:150px">
-                                        <p:cellEditor>
-                                            <f:facet name="output"><h:outputText value="#{item.nome}" /></f:facet>
-                                            <f:facet name="input"><p:inputText value="#{item.nome}" style="width:96%"/></f:facet>
-                                        </p:cellEditor>
-                                    </p:column>
+                        <p:dialog width="650px" header="Descrição do ambiente" widgetVar="ambienteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true">
+                            <p:outputPanel id="ambienteDetail" style="text-align:center;">
+                                <p:panelGrid layout="grid" columns="2" rendered="#{not empty ambienteBean.ambienteSelecionado}">
+                                    <h:outputLabel for="idAmbiente" value="Itens do ambiente" />
+                                    <h:outputText id="idAmbiente" value="#{ambienteBean.ambienteSelecionado.idAmbiente}"/>
 
-                                    <p:column headerText="Quantidade" style="width:100px">
-                                        <p:cellEditor >
-                                            <f:facet name="output" ><h:outputText value="#{item.quantidade}"/></f:facet>
-                                            <f:facet name="input"><p:inputNumber value="#{item.quantidade}" style="width:96%;"/></f:facet>
-                                        </p:cellEditor>
-                                    </p:column> 
+                                    <h:form id="formItens">
+                                        <p:growl id="msgs" showDetail="true"/>
+                                        <div>
+                                            <p:dataTable id="dt" var="item" value="#{itemBean.itensAmbienteSelecionado}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem">
+                                                <p:ajax event="cellEdit" listener="#{ambienteBean.onCellEdit}" update=":form:msgs" />
 
-                                    <p:column headerText="Descricao">
-                                        <p:cellEditor>
-                                            <f:facet name="output"><h:outputText value="#{item.descricao}" /></f:facet>
-                                            <f:facet name="input"><p:inputText value="#{item.descricao}" style="width:96%"/></f:facet>
-                                        </p:cellEditor>
-                                    </p:column>
-                                    <p:column style="width:70px;">
-                                        <p:commandButton value="Excluir item" action="#{itemBean.deletarItem(item)}" update="@form"/>
-                                    </p:column>
-                                </p:dataTable>
-                                
-                                <p:contextMenu for="dt" widgetVar="cMenu">   
-                                    <p:menuitem value="Editar item" icon="pi pi-search" onclick="PF('cellItem').showCellEditor();return false;"/>  
-                                    <p:menuitem value="Fechar menu" icon="pi pi-times" onclick="PF('cMenu').hide()"/>  
-                                </p:contextMenu> 
-                                        </h:form>
-                                </div>
-                                
-                            </p:panelGrid>
-                        </p:outputPanel>
-                    </p:dialog>
-                </h:form> 
-                    
+                                                <p:column headerText="Nome" style="width:150px">
+                                                    <p:cellEditor>
+                                                        <f:facet name="output"><h:outputText value="#{item.nome}" /></f:facet>
+                                                        <f:facet name="input"><p:inputText value="#{item.nome}" style="width:96%"/></f:facet>
+                                                    </p:cellEditor>
+                                                </p:column>
+
+                                                <p:column headerText="Quantidade" style="width:100px">
+                                                    <p:cellEditor >
+                                                        <f:facet name="output" ><h:outputText value="#{item.quantidade}"/></f:facet>
+                                                        <f:facet name="input"><p:inputNumber value="#{item.quantidade}" style="width:96%;"/></f:facet>
+                                                    </p:cellEditor>
+                                                </p:column> 
+
+                                                <p:column headerText="Descricao">
+                                                    <p:cellEditor>
+                                                        <f:facet name="output"><h:outputText value="#{item.descricao}" /></f:facet>
+                                                        <f:facet name="input"><p:inputText value="#{item.descricao}" style="width:96%"/></f:facet>
+                                                    </p:cellEditor>
+                                                </p:column>
+
+                                                <p:column style="width:70px;">
+                                                    <p:commandButton value="Excluir item" action="#{itemBean.deletarItem(item.idItem)}" update="formItens"/>
+                                                </p:column>
+                                            </p:dataTable>
+
+                                            <p:contextMenu for="dt" widgetVar="cMenu">   
+                                                <p:menuitem value="Editar item" icon="pi pi-search" onclick="PF('cellItem').showCellEditor();return false;"/>  
+                                                <p:menuitem value="Fechar menu" icon="pi pi-times" onclick="PF('cMenu').hide()"/>  
+                                            </p:contextMenu> 
+                                        </div>
+                                    </h:form>
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
+                    </h:form>     
                 </div>
             </div>
         </div>        

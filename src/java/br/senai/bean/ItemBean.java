@@ -22,8 +22,33 @@ public class ItemBean {
         itensAmbienteSelecionado = itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente());
     }
     
-    public void deletarItem(Item item){
-        itensDAO.excluirItem(item.getIdItem());
+    public void deletarItem(int idItem){
+        itensDAO.excluirItem(idItem);
     }
+
+    public ItemDAO getItensDAO() {
+        return itensDAO;
+    }
+
+    public void setItensDAO(ItemDAO itensDAO) {
+        this.itensDAO = itensDAO;
+    }
+
+    public Ambiente getAmbienteSelecionado() {
+        return ambienteSelecionado;
+    }
+
+    public void setAmbienteSelecionado(Ambiente ambienteSelecionado) {
+        this.ambienteSelecionado = ambienteSelecionado;
+    }
+
+    public List<Item> getItensAmbienteSelecionado() {
+        return itensAmbienteSelecionado;
+    }
+
+    public void setItensAmbienteSelecionado(List<Item> itensAmbienteSelecionado) {
+        this.itensAmbienteSelecionado = itensAmbienteSelecionado;
+    }
+    
     
 }
