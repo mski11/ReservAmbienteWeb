@@ -52,6 +52,22 @@ public class LoginBean {
     public void setPr(pedidoRegistroDAO pr) {
         this.pr = pr;
     }
+
+    public Usuario getInfoUsuario() {
+        return infoUsuario;
+    }
+
+    public void setInfoUsuario(Usuario infoUsuario) {
+        this.infoUsuario = infoUsuario;
+    }
+
+    public usuarioDAO getUserDAO() {
+        return userDAO;
+    }
+
+    public void setUserDAO(usuarioDAO userDAO) {
+        this.userDAO = userDAO;
+    }
     
     
     

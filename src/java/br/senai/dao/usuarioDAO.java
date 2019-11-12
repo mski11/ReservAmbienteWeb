@@ -1,5 +1,6 @@
 package br.senai.dao;
 
+import br.senai.model.Item;
 import br.senai.model.PedidoRegistro;
 import br.senai.model.Usuario;
 import br.senai.util.FabricaConexao;
@@ -90,6 +91,41 @@ public class usuarioDAO {
             return false;
         }
         return true;
+    }
+    
+    public List<Usuario> buscarUsuarios(){
+        
+        List<Usuario> UsuariosEncontrados = new ArrayList<>();
+        
+        try { 
+             
+            Connection conexao = FabricaConexao.getConexao(); 
+            
+            ResultSet rs = null;
+            String SELECT = "SELECT * FROM usuario";
+            
+            PreparedStatement stmt;
+            stmt = conexao.prepareStatement(SELECT);
+            rs = stmt.executeQuery();
+             
+            while(rs.next()){
+                Usuario usuario = new Usuario();
+                
+                usuario.setIdUsuario(rs.getInt("idUsuario"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setTelefone(rs.getString("telefone"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setMatricula(rs.getString("matricula"));
+                
+                UsuariosEncontrados.add(usuario);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            FabricaConexao.fecharConexao();
+        }
+        
+        return UsuariosEncontrados;
     }
     
     public String loginCheck(Usuario infoUsuario){

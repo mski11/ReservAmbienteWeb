@@ -15,6 +15,29 @@ import java.util.logging.Logger;
 
 public class ItemDAO {
     
+    public void inserirItem(Item item, String idAmbiente){
+        try {
+            
+            Connection conexao = FabricaConexao.getConexao();
+            
+            String INSERT = "INSERT INTO (idAmbiente, nome, descricao, quantidade) itemambiente VALUES (?, ?, ?, ?)";
+            
+            PreparedStatement ps;
+            ps = conexao.prepareStatement(INSERT);
+            ps.setString(1, idAmbiente);
+            ps.setString(2, item.getNome());
+            ps.setString(3, item.getDescricao());
+            ps.setInt(4, item.getQuantidade());
+            ps.executeQuery();
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(ItemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            FabricaConexao.fecharConexao();
+        }
+    }   
+    
+    
     public boolean inserirItemNovoAmbiente(List<Item> itensAmbiente, String idAmbiente){
         try {
             Connection conexao = FabricaConexao.getConexao();
@@ -43,7 +66,7 @@ public class ItemDAO {
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
             
-            ps = conexao.prepareStatement("DELETE * FROM itemambiente WHERE idItem = ?"); 
+            ps = conexao.prepareStatement("DELETE FROM itemambiente WHERE idItem = ?"); 
             ps.setInt(1, idItem);
             ps.executeUpdate();
                 
@@ -54,23 +77,48 @@ public class ItemDAO {
         }
     }
     
+    public void editarItem(Item item){
+        try {
+            
+            Connection conexao = FabricaConexao.getConexao();
+            
+            String UPDATE = "UPDATE itemambiente SET nome = ?, descricao = ?, quantidade = ? WHERE idItem = ?";
+            
+            PreparedStatement ps;
+            ps = conexao.prepareStatement(UPDATE);
+            
+            ps.setString(1, item.getNome());
+            ps.setString(2, item.getDescricao());
+            ps.setInt(3, item.getQuantidade());
+            ps.setInt(1, item.getIdItem());
+            
+            ps.executeQuery();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ItemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            FabricaConexao.fecharConexao();
+        }
+    }
+    
     public List<Item> buscarItens(String idAmbiente){
-        
-        Connection conexao = FabricaConexao.getConexao(); 
-        String sql = "SELECT * FROM itemambiente WHERE idAmbiente = ?";
-        
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
         
         List<Item> itensEncontrados = new ArrayList<>();
         
-         try {
+        try { 
              
-             stmt = conexao.prepareStatement(sql);
-             stmt.setString(1, idAmbiente);
-             rs = stmt.executeQuery();
+            Connection conexao = FabricaConexao.getConexao(); 
+            String SELECT = "SELECT * FROM itemambiente WHERE idAmbiente = ?";
+            
+            ResultSet rs = null;
+        
+            
+            PreparedStatement stmt = null;
+            stmt = conexao.prepareStatement(SELECT);
+            stmt.setString(1, idAmbiente);
+            rs = stmt.executeQuery();
              
-             while(rs.next()){
+            while(rs.next()){
                 Item item = new Item();
                 
                 item.setIdItem(rs.getInt("idItem"));
@@ -78,15 +126,13 @@ public class ItemDAO {
                 item.setQuantidade(rs.getInt("quantidade"));
                 item.setDescricao(rs.getString("descricao"));
                 itensEncontrados.add(item);
-                
             }
-             
-         } catch (SQLException ex) {
-             Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
-         }  finally {
-             FabricaConexao.fecharConexao();
-         }
-         
-         return itensEncontrados;
+        } catch (SQLException ex) {
+            Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            FabricaConexao.fecharConexao();
+        }
+        
+        return itensEncontrados;
     }
 }

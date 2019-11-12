@@ -15,6 +15,7 @@ public class AmbienteDAO {
     
     public boolean criarAmbiente(String idAmbiente){
         try {
+            
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
             
@@ -33,23 +34,22 @@ public class AmbienteDAO {
     
     public List buscarAmbientes(){
         
-        Connection conexao = FabricaConexao.getConexao(); 
-        String sql = "SELECT * FROM ambiente";
-        
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        
         List<Ambiente> ambientes = new ArrayList<>();
         
         try{
             
-            stmt = conexao.prepareStatement(sql);
+            Connection conexao = FabricaConexao.getConexao(); 
+
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+
+            String SELECT = "SELECT * FROM ambiente";
+            stmt = conexao.prepareStatement(SELECT);
             rs = stmt.executeQuery();
              
             if(rs.next()){
                 while(rs.next()){
                     Ambiente ambiente = new Ambiente();
-
                     ambiente.setIdAmbiente(rs.getString("idAmbiente"));
                     ambientes.add(ambiente);
                 }
@@ -62,4 +62,55 @@ public class AmbienteDAO {
         }     
         return ambientes;
     }
+    
+    public void editarIdAmbiente(String idAmbiente){
+        try {
+            
+            Connection conexao = FabricaConexao.getConexao();
+            
+            String UPDATEitemambiente = "UPDATE itemambiente SET idAmbiente = ? WHERE idAmbiente = ?";
+            String UPDATEambiente = "UPDATE ambiente SET idAmbiente = ? WHERE idAmbiente = ?";
+            
+            PreparedStatement stmt = null;
+            
+            stmt = conexao.prepareStatement(UPDATEitemambiente);
+            stmt.setString(1, idAmbiente);
+            stmt.setString(2, idAmbiente);
+            stmt.executeQuery();
+            
+            stmt = conexao.prepareStatement(UPDATEambiente);
+            stmt.setString(1, idAmbiente);
+            stmt.setString(2, idAmbiente);
+            stmt.executeQuery();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AmbienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            FabricaConexao.fecharConexao();
+        }     
+        
+    }
+    
+    public void excluirAmbiente(String idAmbiente){
+        try {
+            Connection conexao = FabricaConexao.getConexao();
+            
+            String excluirItens = "DELETE FROM itemambiente WHERE idAmbiente = ?";
+            String excluirAmbiente = "DELETE FROM ambiente WHERE idAmbiente = ?";
+            
+            PreparedStatement ps;
+            
+            ps = conexao.prepareStatement(excluirItens);
+            ps.setString(1, idAmbiente);
+            
+            ps = conexao.prepareStatement(excluirAmbiente);
+            ps.setString(1, idAmbiente);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AmbienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            FabricaConexao.fecharConexao();
+        }
+    }
+    
 }

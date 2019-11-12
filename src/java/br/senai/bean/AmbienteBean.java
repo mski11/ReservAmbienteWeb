@@ -9,6 +9,8 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.CellEditEvent;
 
@@ -65,6 +67,42 @@ public class AmbienteBean {
         itensDAO.inserirItemNovoAmbiente(itensNovoAmbiente, nomeAmbiente);
     }
     
+    public void validaCampoItem(FacesContext context, UIComponent toValidate, Object value){
+        
+        boolean valida = false;
+        
+        if(value == null || value == "" || value == "0"){
+            valida = false;
+        } else {
+            valida = true;
+        }
+            ((UIInput) toValidate).setValid(!valida);
+            
+            FacesMessage message = new FacesMessage("Nenhum dos valores do item podem estar vazios.");
+            message.setSeverity(FacesMessage.SEVERITY_ERROR);
+            context.addMessage(toValidate.getClientId(context), message);            
+        }
+                    
+        /* Código da net
+        boolean validax = false;
+        
+        if(value != null){
+            for (char letra : ((String) value).toCharArray()) {
+                if(letra < ‘0’ || letra > ‘9’) {
+                    valida = true;
+                    break;
+                }
+            }
+
+            ((UIInput) toValidate).setValid(!valida);
+
+            FacesMessage message = new FacesMessage(" Valor com numeros!");
+            message.setSeverity(FacesMessage.SEVERITY_ERROR);
+            context.addMessage(toValidate.getClientId(context), message);
+        
+         } */
+    
+    
     public void onCellEdit(CellEditEvent event) {
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
@@ -90,8 +128,6 @@ public class AmbienteBean {
     public void setAmbienteSelecionado(Ambiente ambienteSelecionado) {
         this.ambienteSelecionado = ambienteSelecionado;
     }
-    
-    
     
     public AmbienteDAO getAmbienteDAO() {
         return ambienteDAO;

@@ -22,7 +22,7 @@ public class pedidoRegistroDAO {
         return "Conexão efetuada com sucesso";
     }
     
-    public boolean salvar(PedidoRegistro PR) throws Exception{
+    public boolean salvar(PedidoRegistro PR) {
         try {
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
