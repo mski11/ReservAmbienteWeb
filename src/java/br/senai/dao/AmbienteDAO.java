@@ -110,7 +110,7 @@ public class AmbienteDAO {
             Logger.getLogger(AmbienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             FabricaConexao.fecharConexao();
-        }
+        } /* top */
     }
     
 }
