@@ -1,11 +1,12 @@
 package br.senai.model;
 
 public class Item {
+    
     private String nome;
     private String descricao;
     private int quantidade;
     private int idItem;
-
+    
     public Item(){}
     public Item(String nome, String descricao, int quantidade){
         this.nome = nome;

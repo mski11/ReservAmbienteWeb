@@ -43,7 +43,7 @@
 
                         <h3>Nome do ambiente</h3>
                         <p:inputText id="inputNomeAmbiente" placeholder="Insira um nome" value="#{ambienteBean.nomeAmbiente}"/>
-                        <p:commandButton value="Definir" />
+                        <h:message for="inputNomeAmbiente"></h:message>
                         <br></br>
 
                         <div id="listaItens">         
@@ -74,8 +74,7 @@
                                 <p:column style="width:70px;">
                                     <p:commandButton value="Excluir item" action="#{ambienteBean.deletarItem(item)}" update="@form"/>
                                 </p:column>
-                            </p:dataTable>
-                            
+                            </p:dataTable>                            
 
                             <p:contextMenu for="dt" widgetVar="cMenu">   
                                 <p:menuitem value="Editar item" icon="pi pi-search" onclick="PF('cellItem').showCellEditor();return false;"/>  
@@ -88,24 +87,22 @@
 
                                 <div class="item">
                                     <b>Item</b><br/>
-                                    <p:inputText value="#{ambienteBean.item.nome}" class="form-control btn-item" placeholder="Nome do item" validator="#{ambienteBean.validaCampoItem(context, toValidate, value)}"/> 
+                                    <p:inputText id="NomeItem" value="#{ambienteBean.item.nome}" class="form-control btn-item" placeholder="Nome do item" /> 
                                 </div>
 
                                 <div class="qtde">
                                     Quantidade<br/>
-                                    <p:inputNumber value="#{ambienteBean.item.quantidade}" class="form-control btn-quantidade" placeholder="1-99"  minValue="1" maxValue="99" /> 
+                                    <p:inputNumber id="qtdItem" value="#{ambienteBean.item.quantidade}" class="form-control btn-quantidade" placeholder="1-99"  minValue="1" maxValue="99" /> 
                                 </div>
 
                                 <div class="descricao">
                                     Descricao<br/>
-                                    <p:inputText value="#{ambienteBean.item.descricao}" type="text" class="form-control btn-quantidade" placeholder="Descreva o item" /> 
+                                    <p:inputText id="descItem" value="#{ambienteBean.item.descricao}" type="text" class="form-control btn-quantidade" placeholder="Descreva o item" /> 
                                 </div>
 
-                                       
-                                
                                 <div class="botaofodamuitozika">
                                     <h:button value="Limpar todos os Campos" class="btn btn-danger botao" />
-                                    <p:commandButton class="btn btn-success botao" value="Adicionar item" action="#{ambienteBean.adicionarItem()}" update="@form" />                                  <br></br><br></br>
+                                    <p:commandButton class="btn btn-success botao" value="Adicionar item" action="#{ambienteBean.adicionarItem()}" update="dt"/>                                  <br></br><br></br>
                                     <p:commandButton value="Criar Ambiente" class="btn btn-success botao" action="#{ambienteBean.criarAmbiente()}"/>  
                                 </div>
                             </div>

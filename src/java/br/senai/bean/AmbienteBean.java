@@ -12,6 +12,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.validation.constraints.NotNull;
 import org.primefaces.event.CellEditEvent;
 
 @SessionScoped
@@ -22,7 +23,7 @@ public class AmbienteBean {
     
     /*  Neste Bean, o itensDAO é utilizado somente na hora
     *   de criar um novo ambiente. Todas outras funções relacionadas
-    *   à itens são feitas em ItemBean.
+    *   à itens deveriam ser feitas em ItemBean.
     */
     private ItemDAO itensDAO = new ItemDAO();
     
@@ -40,8 +41,8 @@ public class AmbienteBean {
     
     
     /* Recebe nome do ambiente no momento da criação. */
-    public String nomeAmbiente;
-        
+    public Ambiente ambiente = new Ambiente();
+    
     private Item item = new Item();
     
     public Ambiente ambienteSelecionado;
@@ -64,10 +65,9 @@ public class AmbienteBean {
     }
     
     public void criarAmbiente(){
-        ambienteDAO.criarAmbiente(nomeAmbiente);
-        itensDAO.inserirItemNovoAmbiente(itensNovoAmbiente, nomeAmbiente);
+        ambienteDAO.criarAmbiente(ambiente);
     }
-    
+    /*
     public void validaCampoItem(FacesContext context, UIComponent toValidate, Object value){
         
         boolean valida = false;
@@ -101,8 +101,8 @@ public class AmbienteBean {
             message.setSeverity(FacesMessage.SEVERITY_ERROR);
             context.addMessage(toValidate.getClientId(context), message);
         
-         } */
-    
+         } 
+    */
     
     public void onCellEdit(CellEditEvent event) {
         Object oldValue = event.getOldValue();

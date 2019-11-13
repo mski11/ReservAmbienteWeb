@@ -13,17 +13,21 @@ import java.util.logging.Logger;
 
 public class AmbienteDAO {
     
-    public boolean criarAmbiente(String idAmbiente){
+    private ItemDAO itensDAO;
+    
+    public boolean criarAmbiente(Ambiente ambiente){
         try {
             
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
             
             ps = conexao.prepareStatement("INSERT INTO ambiente (idAmbiente, status) VALUES (?, ?)"); 
-            ps.setString(1, idAmbiente);
+            ps.setString(1, ambiente.getIdAmbiente());
             ps.setString(2, "N");
             ps.executeUpdate();
             FabricaConexao.fecharConexao();
+            
+            itensDAO.inserirItemNovoAmbiente(ambiente.getItensAmbiente(), ambiente.getIdAmbiente());
             
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -32,35 +36,29 @@ public class AmbienteDAO {
         return true;
     }
     
-    public List buscarAmbientes(){
-        
-        List<Ambiente> ambientes = new ArrayList<>();
-        
+    public List<Ambiente> buscarAmbientes(){
         try{
             
             Connection conexao = FabricaConexao.getConexao(); 
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM ambiente");
+            ResultSet rs = ps.executeQuery();
+            List<Ambiente> ambientes = new ArrayList<>();
 
-            PreparedStatement stmt = null;
-            ResultSet rs = null;
-
-            String SELECT = "SELECT * FROM ambiente";
-            stmt = conexao.prepareStatement(SELECT);
-            rs = stmt.executeQuery();
-             
-            if(rs.next()){
+            //if(rs.next()){
                 while(rs.next()){
                     Ambiente ambiente = new Ambiente();
                     ambiente.setIdAmbiente(rs.getString("idAmbiente"));
                     ambientes.add(ambiente);
                 }
-            }
+            //}
+            
+            FabricaConexao.fecharConexao();
+            return ambientes;
         
         } catch (SQLException ex) {
             Logger.getLogger(AmbienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            FabricaConexao.fecharConexao();
-        }     
-        return ambientes;
+        }
+        return new ArrayList();
     }
     
     public void editarIdAmbiente(String idAmbiente){

@@ -101,9 +101,9 @@ public class ItemDAO {
         }
     }
     
-    public List<Item> buscarItens(String idAmbiente){
+    public ArrayList<Item> buscarItens(String idAmbiente){
         
-        List<Item> itensEncontrados = new ArrayList<>();
+        ArrayList<Item> itensEncontrados = new ArrayList<>();
         
         try { 
              
