@@ -46,10 +46,10 @@ public class ItemDAO {
                 for(int i = 0; i <  itensAmbiente.size(); i++){
                     ps = conexao.prepareStatement("INSERT INTO itemambiente (idAmbiente, nome, descricao, quantidade) VALUES (?, ?, ?, ?)"); 
                     ps.setString(1, idAmbiente);
-                    ps.setString(2, ( (Item) itensAmbiente.get(i)).getNome());
-                    ps.setString(3, ( (Item) itensAmbiente.get(i)).getDescricao());
+                    ps.setString(2, ( (Item) itensAmbiente.get(i)).getNome() );
+                    ps.setString(3, ( (Item) itensAmbiente.get(i)).getDescricao() );
                     ps.setString(4, ( (Item) itensAmbiente.get(i)).getQuantidadeString() );
-                ps.executeUpdate();
+                    ps.executeUpdate();
                 }
                 FabricaConexao.fecharConexao();
             }

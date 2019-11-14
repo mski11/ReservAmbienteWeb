@@ -1,6 +1,7 @@
 package br.senai.dao;
 
 import br.senai.model.Ambiente;
+import br.senai.model.Item;
 import br.senai.util.FabricaConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

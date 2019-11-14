@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Reserva Ambientes SENAI</title>
+          <link rel="stylesheet" href="css/styles.css"/>
+    </h:head>
+    <h:body>
+        <div class="tudo">        
+            <div class="topoadmin">
+                <div class="rectangle2">
+                    <div class="adminlogo">
+                        <img src="img/adminuser.png" width="50" height="50"/>
+                        <img src="img/logo.png" width="50" height="50"/>
+                    </div>
+                    <div class="informacoes">
+                       <h4>Sammy</h4>
+                       <h6>Administrador</h6>
+                       <br/>
+                       <h6>Reserve-se</h6>
+                    </div>
+                    <div class="botoesajudasair">
+                        <p:button value="Relatar um problema" class="botaorelata" />
+                        <p:button value="Sair" class="botaosai" />
+                    </div>
+                </div>
+                <div class="rectangle3"> 
+                    <a href="visualisarReservas.jsf"><p:button value="Visualizar Reserva" class="visualizaReserva" /></a>
+                    <a href=""><p:button value="Registra Usuarios" class="registrarUsuarios" /></a>
+                    <a href="visualisarUsuarios.jsf"><p:button value="Visualizar usuários" class="visualizaUsuario" /></a>
+                    <a href="criarAmbiente.jsf"><p:button value="Criar ambiente" class="criarambiente" /></a>
+                    <a href="VisualisarAmbientes.jsf"><p:button value="Visualizar Ambientes" class="visualizaAmbiente" /></a>
+                </div>            
+            </div>
+            <div class="conteudo">
+                <h2>Criar ambiente <div class="icon">&#8634;</div></h2>
+                <div class="container">
+                    <h:form id="form">
+                        <p:growl id="msgs" showDetail="true"/>
+
+                        <h3>Nome do ambiente</h3>
+                        <p:inputText id="inputNomeAmbiente" placeholder="Insira um nome" value="#{ambienteBean.nomeAmbiente}"/>
+                        <h:message for="inputNomeAmbiente"></h:message>
+                        <br></br>
+
+                        <div id="listaItens">         
+                            <h4 id="itensAmbienteHeader">Itens do ambiente</h4>
+                            <p:dataTable id="dt" var="item" value="#{ambienteBean.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem">
+                                <p:ajax event="cellEdit" listener="#{ambienteBean.onCellEdit}" update=":form:msgs" />
+
+                                <p:column headerText="Nome" style="width:150px">
+                                    <p:cellEditor>
+                                        <f:facet name="output"><h:outputText value="#{item.nome}" /></f:facet>
+                                        <f:facet name="input"><p:inputText value="#{item.nome}" style="width:96%"/></f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Quantidade" style="width:100px">
+                                    <p:cellEditor >
+                                        <f:facet name="output" ><h:outputText value="#{item.quantidade}"/></f:facet>
+                                        <f:facet name="input"><p:inputNumber value="#{item.quantidade}" style="width:96%;"/></f:facet>
+                                    </p:cellEditor>
+                                </p:column> 
+
+                                <p:column headerText="Descricao">
+                                    <p:cellEditor>
+                                        <f:facet name="output"><h:outputText value="#{item.descricao}" /></f:facet>
+                                        <f:facet name="input"><p:inputText value="#{item.descricao}" style="width:96%"/></f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+                                <p:column style="width:70px;">
+                                    <p:commandButton value="Excluir item" action="#{ambienteBean.deletarItem(item)}" update="@form"/>
+                                </p:column>
+                            </p:dataTable>                            
+
+                            <p:contextMenu for="dt" widgetVar="cMenu">   
+                                <p:menuitem value="Editar item" icon="pi pi-search" onclick="PF('cellItem').showCellEditor();return false;"/>  
+                                <p:menuitem value="Fechar menu" icon="pi pi-times" onclick="PF('cMenu').hide()"/>  
+                            </p:contextMenu> 
+                        </div>
+                        <div class="itensadd">
+                            <div class="itens">
+                                <h4>Adicionar um novo item</h4>
+
+                                <div class="item">
+                                    <b>Item</b><br/>
+                                    <p:inputText id="NomeItem" value="#{ambienteBean.item.nome}" class="form-control btn-item" placeholder="Nome do item" /> 
+                                </div>
+
+                                <div class="qtde">
+                                    Quantidade<br/>
+                                    <p:inputNumber id="qtdItem" value="#{ambienteBean.item.quantidade}" class="form-control btn-quantidade" placeholder="1-99"  minValue="1" maxValue="99" /> 
+                                </div>
+
+                                <div class="descricao">
+                                    Descricao<br/>
+                                    <p:inputText id="descItem" value="#{ambienteBean.item.descricao}" type="text" class="form-control btn-quantidade" placeholder="Descreva o item" /> 
+                                </div>
+
+                                <div class="botaofodamuitozika">
+                                    <h:button value="Limpar todos os Campos" class="btn btn-danger botao" />
+                                    <p:commandButton class="btn btn-success botao" value="Adicionar item" action="#{ambienteBean.adicionarItem()}" update="dt"/>                                  <br></br><br></br>
+                                    <p:commandButton value="Criar Ambiente" class="btn btn-success botao" action="#{ambienteBean.criarAmbiente()}"/>  
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>   
+            </div>
+        </div>   
+    </h:body>
+</html>

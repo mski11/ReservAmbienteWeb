@@ -64,8 +64,8 @@
                             </p:column>
 
                             <p:column headerText="" style="width:115px;text-align: center">
-                                 <p:commandButton value="Editar" style="border:none;width:100%; height:100%;" update=":form:ambienteDetail" oncomplete="PF('ambienteDialog').show()" icon="pi pi-search" title="View">
-                                     <f:setPropertyActionListener value="#{ambiente}" target="#{ambienteBean.ambienteSelecionado}" />
+                                <p:commandButton value="Editar" style="border:none;width:100%; height:100%;"  icon="pi pi-search" title="View" action="">
+                                    <f:setPropertyActionListener value="#{ambiente}" target="#{ambienteBean.ambienteSelecionado}" />
                                 </p:commandButton>
                             </p:column>
                             
@@ -75,57 +75,8 @@
 
                         </p:dataTable>
                         
-                        <p:commandButton style="" value="Atualizar lista de ambientes!" action="#{ambienteBean.buscarAmbiente()}" update="@form"></p:commandButton>
+                        <p:commandButton value="Atualizar lista de ambientes" action="#{ambienteBean.buscarAmbiente()}" update="@form"></p:commandButton>
                         
-                        <p:dialog width="1280px" height="450px" header="Descrição do ambiente" widgetVar="ambienteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true">
-                            <p:outputPanel id="ambienteDetail" style="text-align:center;">
-                                <p:panelGrid layout="grid" columns="2" rendered="#{not empty ambienteBean.ambienteSelecionado}">
-                                    <p:growl id="msgsDialog" showDetail="true"/>
-
-                                    <h:outputLabel for="idAmbiente" value="Nome do ambiente" /> 
-                                    <h:inputText id="idAmbienteDialog" value="#{ambienteBean.ambienteSelecionado.idAmbiente}"/>
-                                    <div>
-                                        <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem">
-                                            <p:ajax event="cellEdit" listener="#{ambienteBean.onCellEdit}" update=":form:msgs" />
-
-                                            <p:column headerText="Nome" style="width:150px">
-                                                <p:cellEditor>
-                                                    <f:facet name="output"><h:outputText value="#{item.nome}" /></f:facet>
-                                                    <f:facet name="input"><p:inputText value="#{item.nome}" style="width:96%"/></f:facet>
-                                                </p:cellEditor>
-                                            </p:column>
-
-                                            <p:column headerText="Quantidade" style="width:100px">
-                                                <p:cellEditor >
-                                                    <f:facet name="output" ><h:outputText value="#{item.quantidade}"/></f:facet>
-                                                    <f:facet name="input"><p:inputNumber value="#{item.quantidade}" style="width:96%;"/></f:facet>
-                                                </p:cellEditor>
-                                            </p:column> 
-
-                                            <p:column headerText="Descricao" style="text-align:left;">
-                                                <p:cellEditor>
-                                                    <f:facet name="output"><h:outputText value="#{item.descricao}" /></f:facet>
-                                                    <f:facet name="input"><p:inputText value="#{item.descricao}" style="width:96%"/></f:facet>
-                                                </p:cellEditor>
-                                            </p:column>
-
-                                            <p:column style="width:70px;">
-                                                <p:commandButton value="Excluir item" action="#{itemBean.deletarItem(item)}" update="@form"/>
-                                            </p:column>
-
-                                        </p:dataTable>
-                                        
-                                        <p:commandButton value="Atualizar lista de itens" action="#{itemBean.buscarItensAmbienteSelecionado()}"
-
-                                        <p:contextMenu for="dt" widgetVar="cMenu">   
-                                            <p:menuitem value="Editar item" icon="pi pi-search" onclick="PF('cellItem').showCellEditor();return false;"/>  
-                                            <p:menuitem value="Fechar menu" icon="pi pi-times" onclick="PF('cMenu').hide()"/>  
-                                        </p:contextMenu> 
-                                        
-                                    </div>
-                                </p:panelGrid>
-                            </p:outputPanel>
-                        </p:dialog>
                     </h:form>
                 </div>
             </div>

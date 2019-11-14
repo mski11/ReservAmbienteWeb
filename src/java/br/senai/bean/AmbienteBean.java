@@ -4,6 +4,7 @@ import br.senai.dao.AmbienteDAO;
 import br.senai.dao.ItemDAO;
 import br.senai.model.Ambiente;
 import br.senai.model.Item;
+import static com.sun.faces.el.FacesCompositeELResolver.ELResolverChainType.Faces;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -65,8 +66,10 @@ public class AmbienteBean {
     }
     
     public void criarAmbiente(){
+        ambiente.setItensAmbiente(itensNovoAmbiente);
         ambienteDAO.criarAmbiente(ambiente);
     }
+    
     /*
     public void validaCampoItem(FacesContext context, UIComponent toValidate, Object value){
         
@@ -145,14 +148,6 @@ public class AmbienteBean {
     public void setItensDAO(ItemDAO itensDAO) {
         this.itensDAO = itensDAO;
     }
-
-    public List<Ambiente> getAmbiente() {
-        return ambientes;
-    }
-
-    public void setAmbiente(List<Ambiente> ambiente) {
-        this.ambientes = ambiente;
-    }
     
     public List<Item> getItensAmbiente() {
         return itensNovoAmbiente;
@@ -170,14 +165,12 @@ public class AmbienteBean {
         this.item = item;
     }
 
-    public String getNomeAmbiente() {
-        return nomeAmbiente;
+    public Ambiente getAmbiente() {
+        return ambiente;
     }
 
-    public void setNomeAmbiente(String nomeAmbiente) {
-        this.nomeAmbiente = nomeAmbiente;
+    public void setAmbiente(Ambiente ambiente) {
+        this.ambiente = ambiente;
     }
-    
-    
     
 }
