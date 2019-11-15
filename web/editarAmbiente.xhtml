@@ -36,19 +36,19 @@
                 </div>            
             </div>
             <div class="conteudo">
-                <h2>Criar ambiente <div class="icon">&#8634;</div></h2>
+                <h2>Editar ambiente <div class="icon">&#8634;</div></h2>
                 <div class="container">
                     <h:form id="form">
                         <p:growl id="msgs" showDetail="true"/>
 
                         <h3>Nome do ambiente</h3>
-                        <p:inputText id="inputNomeAmbiente" placeholder="Insira um nome" value="#{ambienteBean.nomeAmbiente}"/>
+                        <p:inputText id="inputNomeAmbiente" placeholder="Insira um nome" value="#{ambienteBean.ambienteSelecionado.idAmbiente}"/>
                         <h:message for="inputNomeAmbiente"></h:message>
                         <br></br>
 
                         <div id="listaItens">         
                             <h4 id="itensAmbienteHeader">Itens do ambiente</h4>
-                            <p:dataTable id="dt" var="item" value="#{ambienteBean.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem">
+                            <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem">
                                 <p:ajax event="cellEdit" listener="#{ambienteBean.onCellEdit}" update=":form:msgs" />
 
                                 <p:column headerText="Nome" style="width:150px">
