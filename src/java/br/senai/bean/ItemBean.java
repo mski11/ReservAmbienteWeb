@@ -19,7 +19,7 @@ public class ItemBean {
     public Ambiente ambienteSelecionado;
     
     public void buscarItensAmbienteSelecionado(Ambiente ambiente){
-        ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambiente));
+        ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambiente.getIdAmbiente()));
     }
     
     public void adicionarItem(Item item){

@@ -43,14 +43,19 @@ public class AmbienteDAO {
             ResultSet rs = ps.executeQuery();
             List<Ambiente> ambientes = new ArrayList<>();
 
-            if(rs.next()){
-                while(rs.next()){
-                    Ambiente ambiente = new Ambiente();
-                    ambiente.setIdAmbiente(rs.getString("idAmbiente"));
-                    ambientes.add(ambiente);
-                }
+            while(rs.next()){
+                Ambiente ambiente = new Ambiente();
+                ambiente.setIdAmbiente(rs.getString("idAmbiente"));
+                //List<Item> lista;
+                
+                //lista = itensDAO.buscarItens(ambiente.getIdAmbiente());
+                
+                //ambiente.setItensAmbiente(itensDAO.buscarItens(ambiente.getIdAmbiente()));
+                
+                //ambiente.setItensAmbiente(lista);
+                ambientes.add(ambiente);
             }
-               
+                          
             FabricaConexao.fecharConexao();
             return ambientes;
         

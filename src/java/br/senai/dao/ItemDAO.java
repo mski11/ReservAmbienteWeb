@@ -118,21 +118,18 @@ public class ItemDAO {
             stmt.setString(1, idAmbiente);
             rs = stmt.executeQuery();
              
-            if(rs.next()){
                 while(rs.next()){
 
                     Item item = new Item();
-
+                    
                     item.setIdItem(rs.getInt("idItem"));
                     item.setNome(rs.getString("nome"));
                     item.setQuantidade(rs.getInt("quantidade"));
                     item.setDescricao(rs.getString("descricao"));
 
                     itensEncontrados.add(item);
-
                 }
-            }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

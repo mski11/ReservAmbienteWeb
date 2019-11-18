@@ -1,6 +1,7 @@
 package br.senai.junit;
 
 import br.senai.dao.ItemDAO;
+import br.senai.model.Ambiente;
 import br.senai.model.Item;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +30,14 @@ public class ItemDAOUnit {
     public void testePesquisarItens(){
         
         ItemDAO dao = new ItemDAO();
-        String idAmbiente = "Nome do ambiente";
+        List<Item> itens = new ArrayList();
         
-        if(dao.buscarItens(idAmbiente) != null){
-            System.out.println("Itens buscados com sucesso!");
-        } else {
-            fail("Erro! Deu ruim.");
-        }
+        
+        Ambiente ambiente = new Ambiente("AmbienteTeste", false, null);
+        ambiente.setItensAmbiente(itens);
+        
+        for(Item i: ambiente.getItensAmbiente())
+            System.out.println("Item: " + i.getNome());
     }
     
     

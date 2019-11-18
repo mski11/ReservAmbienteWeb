@@ -69,9 +69,12 @@ public class AmbienteBean {
     }
     
     public void buscarItensAmbienteSelecionado(){
+        
         List<Item> itensEncontrados;
         itensEncontrados = itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente());
         ambienteSelecionado.setItensAmbiente(itensEncontrados);
+        
+        
     }
     
     /*
