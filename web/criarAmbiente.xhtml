@@ -42,14 +42,14 @@
                         <p:growl id="msgs" showDetail="true"/>
 
                         <h3>Nome do ambiente</h3>
-                        <p:inputText id="inputNomeAmbiente" placeholder="Insira um nome" value="#{ambienteBean.nomeAmbiente}"/>
+                        <p:inputText id="inputNomeAmbiente" placeholder="Insira um nome" value="#{ambienteBean.ambiente.idAmbiente}"/>
                         <h:message for="inputNomeAmbiente"></h:message>
                         <br></br>
 
                         <div id="listaItens">         
                             <h4 id="itensAmbienteHeader">Itens do ambiente</h4>
                             <p:dataTable id="dt" var="item" value="#{ambienteBean.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem">
-                                <p:ajax event="cellEdit" listener="#{ambienteBean.onCellEdit}" update=":form:msgs" />
+                                <p:ajax event="cellEdit" listener="#{ambienteBean.onCellEditNovoAmbiente}" update=":form:msgs" />
 
                                 <p:column headerText="Nome" style="width:150px">
                                     <p:cellEditor>
@@ -102,7 +102,7 @@
 
                                 <div class="botaofodamuitozika">
                                     <h:button value="Limpar todos os Campos" class="btn btn-danger botao" />
-                                    <p:commandButton class="btn btn-success botao" value="Adicionar item" action="#{ambienteBean.adicionarItem()}" update="dt"/>                                  <br></br><br></br>
+                                    <p:commandButton class="btn btn-success botao" value="Adicionar item" action="#{ambienteBean.adicionarItemNovoAmbiente()}" update="dt"/>                                  <br></br><br></br>
                                     <p:commandButton value="Criar Ambiente" class="btn btn-success botao" action="#{ambienteBean.criarAmbiente()}"/>  
                                 </div>
                             </div>

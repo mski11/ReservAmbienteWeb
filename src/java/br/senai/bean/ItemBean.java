@@ -5,7 +5,9 @@ import br.senai.dao.ItemDAO;
 import br.senai.model.Ambiente;
 import br.senai.model.Item;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
 
 @ManagedBean
 @SessionScoped
@@ -13,10 +15,15 @@ public class ItemBean {
     
     public ItemDAO itensDAO = new ItemDAO();
     
+    @ManagedProperty(value = "ambienteSelecionado")
     public Ambiente ambienteSelecionado;
     
-    public void buscarItensAmbienteSelecionado(){
-        this.ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
+    public void buscarItensAmbienteSelecionado(Ambiente ambiente){
+        ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambiente));
+    }
+    
+    public void adicionarItem(Item item){
+        itensDAO.inserirItem(item, ambienteSelecionado.getIdAmbiente());
     }
     
     public void deletarItem(Item item){
@@ -37,6 +44,6 @@ public class ItemBean {
 
     public void setAmbienteSelecionado(Ambiente ambienteSelecionado) {
         this.ambienteSelecionado = ambienteSelecionado;
-    } 
+    }
     
 }

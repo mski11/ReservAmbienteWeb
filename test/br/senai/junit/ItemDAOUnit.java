@@ -26,6 +26,19 @@ public class ItemDAOUnit {
     }
     
     @Test
+    public void testePesquisarItens(){
+        
+        ItemDAO dao = new ItemDAO();
+        String idAmbiente = "Nome do ambiente";
+        
+        if(dao.buscarItens(idAmbiente) != null){
+            System.out.println("Itens buscados com sucesso!");
+        } else {
+            fail("Erro! Deu ruim.");
+        }
+    }
+    
+    
     public void teste(){
         Item item = new Item("Nome", "Descricao", 1);
         List<Item> itensAmbiente = new ArrayList();

@@ -4,16 +4,12 @@ import br.senai.dao.AmbienteDAO;
 import br.senai.dao.ItemDAO;
 import br.senai.model.Ambiente;
 import br.senai.model.Item;
-import static com.sun.faces.el.FacesCompositeELResolver.ELResolverChainType.Faces;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
-import javax.validation.constraints.NotNull;
 import org.primefaces.event.CellEditEvent;
 
 @SessionScoped
@@ -56,7 +52,7 @@ public class AmbienteBean {
         ambientes = ambienteDAO.buscarAmbientes();
     }
     
-    public void adicionarItem(){
+    public void adicionarItemNovoAmbiente(){
         itensNovoAmbiente.add(item);
         item = new Item();
     }
@@ -68,6 +64,14 @@ public class AmbienteBean {
     public void criarAmbiente(){
         ambiente.setItensAmbiente(itensNovoAmbiente);
         ambienteDAO.criarAmbiente(ambiente);
+        itensDAO.inserirItemNovoAmbiente(ambiente);
+
+    }
+    
+    public void buscarItensAmbienteSelecionado(){
+        List<Item> itensEncontrados;
+        itensEncontrados = itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente());
+        ambienteSelecionado.setItensAmbiente(itensEncontrados);
     }
     
     /*
@@ -107,7 +111,9 @@ public class AmbienteBean {
          } 
     */
     
-    public void onCellEdit(CellEditEvent event) {
+    
+    
+    public void onCellEditNovoAmbiente(CellEditEvent event) {
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
          

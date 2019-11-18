@@ -38,17 +38,17 @@ public class ItemDAO {
     }   
     
     
-    public boolean inserirItemNovoAmbiente(List<Item> itensAmbiente, String idAmbiente){
+    public boolean inserirItemNovoAmbiente(Ambiente ambiente){
         try {
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
-            if(itensAmbiente != null){
-                for(int i = 0; i <  itensAmbiente.size(); i++){
+            if(ambiente.getItensAmbiente() != null){
+                for(int i = 0; i <  ambiente.getItensAmbiente() .size(); i++){
                     ps = conexao.prepareStatement("INSERT INTO itemambiente (idAmbiente, nome, descricao, quantidade) VALUES (?, ?, ?, ?)"); 
-                    ps.setString(1, idAmbiente);
-                    ps.setString(2, ( (Item) itensAmbiente.get(i)).getNome() );
-                    ps.setString(3, ( (Item) itensAmbiente.get(i)).getDescricao() );
-                    ps.setString(4, ( (Item) itensAmbiente.get(i)).getQuantidadeString() );
+                    ps.setString(1, ambiente.getIdAmbiente());
+                    ps.setString(2, ( (Item) ambiente.getItensAmbiente().get(i)).getNome() );
+                    ps.setString(3, ( (Item) ambiente.getItensAmbiente().get(i)).getDescricao() );
+                    ps.setString(4, ( (Item) ambiente.getItensAmbiente().get(i)).getQuantidadeString() );
                     ps.executeUpdate();
                 }
                 FabricaConexao.fecharConexao();
@@ -118,15 +118,21 @@ public class ItemDAO {
             stmt.setString(1, idAmbiente);
             rs = stmt.executeQuery();
              
-            while(rs.next()){
-                Item item = new Item();
-                
-                item.setIdItem(rs.getInt("idItem"));
-                item.setNome(rs.getString("nome"));
-                item.setQuantidade(rs.getInt("quantidade"));
-                item.setDescricao(rs.getString("descricao"));
-                itensEncontrados.add(item);
+            if(rs.next()){
+                while(rs.next()){
+
+                    Item item = new Item();
+
+                    item.setIdItem(rs.getInt("idItem"));
+                    item.setNome(rs.getString("nome"));
+                    item.setQuantidade(rs.getInt("quantidade"));
+                    item.setDescricao(rs.getString("descricao"));
+
+                    itensEncontrados.add(item);
+
+                }
             }
+            
         } catch (SQLException ex) {
             Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

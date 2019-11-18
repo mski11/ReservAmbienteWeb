@@ -27,9 +27,7 @@ public class AmbienteDAO {
             ps.setString(2, "N");
             ps.executeUpdate();
             FabricaConexao.fecharConexao();
-            
-            itensDAO.inserirItemNovoAmbiente(ambiente.getItensAmbiente(), ambiente.getIdAmbiente());
-            
+                       
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
@@ -45,14 +43,14 @@ public class AmbienteDAO {
             ResultSet rs = ps.executeQuery();
             List<Ambiente> ambientes = new ArrayList<>();
 
-            //if(rs.next()){
+            if(rs.next()){
                 while(rs.next()){
                     Ambiente ambiente = new Ambiente();
                     ambiente.setIdAmbiente(rs.getString("idAmbiente"));
                     ambientes.add(ambiente);
                 }
-            //}
-            
+            }
+               
             FabricaConexao.fecharConexao();
             return ambientes;
         
