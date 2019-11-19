@@ -29,7 +29,7 @@
                 </div>
                 <div class="rectangle3"> 
                     <a href="visualisarReservas.jsf"><p:button value="Visualizar Reserva" class="visualizaReserva" /></a>
-                    <a href=""><p:button value="Registra Usuarios" class="registrarUsuarios" /></a>
+                    <a href="registrarUsuarios.jsf"><p:button value="Registra Usuarios" class="registrarUsuarios" /></a>
                     <a href="visualisarUsuarios.jsf"><p:button value="Visualizar usuários" class="visualizaUsuario" /></a>
                     <a href="criarAmbiente.jsf"><p:button value="Criar ambiente" class="criarambiente" /></a>
                     <a href="VisualisarAmbientes.jsf"><p:button value="Visualizar Ambientes" class="visualizaAmbiente" /></a>
@@ -72,7 +72,7 @@
                                     </p:cellEditor>
                                 </p:column>
                                 <p:column style="width:70px;">
-                                    <p:commandButton value="Excluir item" action="#{ambienteBean.deletarItem(item)}" update="@form"/>
+                                    <p:commandButton value="Excluir item" action="#{ambienteBean.deletarItemNovoAmbiente(item)}" update="@form"/>
                                 </p:column>
                             </p:dataTable>                            
 

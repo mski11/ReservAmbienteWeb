@@ -128,54 +128,44 @@ public class usuarioDAO {
         return UsuariosEncontrados;
     }
     
-    public String loginCheck(Usuario infoUsuario){
+    public Usuario loginCheck(Usuario infoUsuario){
         
         Connection conexao = FabricaConexao.getConexao();
-        PreparedStatement stmtEmail;
-        PreparedStatement stmtSenha = null;
-        ResultSet rsEmails = null;
-        ResultSet rsSenhas = null;
-        
-        String SELECTemail = "SELECT email FROM usuario";
-        String SELECTsenha = "SELECT senha FROM usuario";
-        
-        ArrayList<String> emails = new ArrayList<>();
-        ArrayList<String> senhas = new ArrayList<>();
-        String tipoConta = null;
-
-        
+        PreparedStatement ps;
+                        
         try {
             
-            stmtEmail = conexao.prepareStatement(SELECTemail);
-            rsEmails = stmtEmail.executeQuery();
-            rsSenhas = stmtSenha.executeQuery();
+            ps = conexao.prepareStatement("SELECT * FROM usuario WHERE email = ? AND senha = ?");
+            ps.setString(1, infoUsuario.getEmail());
+            ps.setString(2, infoUsuario.getPass());
+            ResultSet rs = ps.executeQuery();
             
-            while(rsEmails.next()){
-                Usuario usuario = new Usuario();
-                usuario.setEmail(rsEmails.getString("email"));
-                emails.add(usuario.getEmail());
-            }
+            if(rs.next()){
+                
+                Usuario usuarioLogado = new Usuario();
+                usuarioLogado.setIdUsuario(rs.getInt("idUsuario"));
+                usuarioLogado.setNome(rs.getString("nome"));
+                usuarioLogado.setMatricula(rs.getString("matricula"));
+                usuarioLogado.setEmail(rs.getString("email"));
+                usuarioLogado.setTelefone(rs.getString("telefone"));
+                usuarioLogado.setMestre(rs.getBoolean("mestre"));
+                
+            } /*else if(infoUsuario.getEmail() == "x" && infoUsuario.getPass() == "y") {
+                
+                Usuario usuarioLogado = new Usuario();
+                usuarioLogado.setNome("ADM");
+                usuarioLogado.setEmail("ADM@ADM");
+                usuarioLogado.setTelefone("N° ADM");
+                usuarioLogado.setMestre(true);
+                
+                return usuarioLogado;
+                
+            }*/
             
-            while(rsSenhas.next()){
-                Usuario usuario = new Usuario();
-                usuario.setPass(rsSenhas.getString("senha"));
-                senhas.add(usuario.getPass());
-            }
-            
-            for(int i = 0; i <= emails.size(); i++){
-                if(emails.get(i) != infoUsuario.getEmail() && senhas.get(i) != infoUsuario.getPass()){
-                    tipoConta = "erro";
-                }else if(emails.get(i) == infoUsuario.getEmail() && senhas.get(i) == infoUsuario.getPass()){
-                    tipoConta = "user";
-                } else if(infoUsuario.getEmail() == "chrys@hotmail.com" && infoUsuario.getPass() == "1234"){
-                    tipoConta = "adm";
-                }
-            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         
-        return tipoConta;
     }
 }
     

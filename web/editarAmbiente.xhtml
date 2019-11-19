@@ -29,7 +29,7 @@
                 </div>
                 <div class="rectangle3"> 
                     <a href="visualisarReservas.jsf"><p:button value="Visualizar Reserva" class="visualizaReserva" /></a>
-                    <a href=""><p:button value="Registra Usuarios" class="registrarUsuarios" /></a>
+                    <a href="registrarUsuarios.jsf"><p:button value="Registra Usuarios" class="registrarUsuarios" /></a>
                     <a href="visualisarUsuarios.jsf"><p:button value="Visualizar usuários" class="visualizaUsuario" /></a>
                     <a href="criarAmbiente.jsf"><p:button value="Criar ambiente" class="criarambiente" /></a>
                     <a href="VisualisarAmbientes.jsf"><p:button value="Visualizar Ambientes" class="visualizaAmbiente" /></a>
@@ -48,36 +48,24 @@
                         <div id="listaItens">         
                             <h4 id="itensAmbienteHeader">Itens do ambiente</h4>
                             <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem">
-
                                 <p:column headerText="Nome" style="width:150px">
-                                    <p:cellEditor>
-                                        <f:facet name="output"><h:outputText value="#{item.nome}" /></f:facet>
-                                        <f:facet name="input"><p:inputText value="#{item.nome}" style="width:96%"/></f:facet>
-                                    </p:cellEditor>
+                                        <h:outputText value="#{item.nome}" />
                                 </p:column>
+                                
                                 <p:column headerText="Quantidade" style="width:100px">
-                                    <p:cellEditor >
-                                        <f:facet name="output" ><h:outputText value="#{item.quantidade}"/></f:facet>
-                                        <f:facet name="input"><p:inputNumber value="#{item.quantidade}" style="width:96%;"/></f:facet>
-                                    </p:cellEditor>
+                                        <h:outputText value="#{item.quantidade}"/>
                                 </p:column> 
+                                
                                 <p:column headerText="Descricao">
-                                    <p:cellEditor>
-                                        <f:facet name="output"><h:outputText value="#{item.descricao}" /></f:facet>
-                                        <f:facet name="input"><p:inputText value="#{item.descricao}" style="width:96%"/></f:facet>
-                                    </p:cellEditor>
+                                        <h:outputText value="#{item.descricao}" />
                                 </p:column>
+                                
                                 <p:column style="width:70px;">
                                     <p:commandButton value="Excluir item" action="#{ambienteBean.deletarItem(item)}" update="@form"/>
                                 </p:column>
                             </p:dataTable>
                             
-                            <p:contextMenu for="dt" widgetVar="cMenu">   
-                                <p:menuitem value="Editar item" icon="pi pi-search" onclick="PF('cellItem').showCellEditor();return false;"/>  
-                                <p:menuitem value="Fechar menu" icon="pi pi-times" onclick="PF('cMenu').hide()"/>  
-                            </p:contextMenu>
-                            
-                            <p:commandButton action="#{ambienteBean.buscarItensAmbienteSelecionado()}" update="@form"/>                            
+                            <p:commandButton action="#{ambienteBean.buscarItensAmbienteSelecionado()}" update="@form"/>
                         </div>
                         <div class="itensadd">
                             <div class="itens">
@@ -96,7 +84,7 @@
                                 </div>
                                 <div class="botaofodamuitozika">
                                     <h:button value="Limpar todos os Campos" class="btn btn-danger botao" />
-                                    <p:commandButton class="btn btn-success botao" value="Adicionar item" action="#{ambienteBean.adicionarItem()}" update="dt"/>                                  <br></br><br></br>
+                                    <p:commandButton class="btn btn-success botao" value="Adicionar item" action="#{ambienteBean.adicionarItem()}" update="@form"/>                                  <br></br><br></br>
                                     <p:commandButton value="Criar Ambiente" class="btn btn-success botao" action="#{ambienteBean.criarAmbiente()}"/>  
                                 </div>
                             </div>

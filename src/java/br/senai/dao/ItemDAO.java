@@ -15,12 +15,12 @@ import java.util.logging.Logger;
 
 public class ItemDAO {
     
-    public void inserirItem(Item item, String idAmbiente){
+    public boolean inserirItem(Item item, String idAmbiente){
         try {
             
             Connection conexao = FabricaConexao.getConexao();
             
-            String INSERT = "INSERT INTO (idAmbiente, nome, descricao, quantidade) itemambiente VALUES (?, ?, ?, ?)";
+            String INSERT = "INSERT INTO itemambiente (idAmbiente, nome, descricao, quantidade) VALUES (?, ?, ?, ?)";
             
             PreparedStatement ps;
             ps = conexao.prepareStatement(INSERT);
@@ -28,13 +28,17 @@ public class ItemDAO {
             ps.setString(2, item.getNome());
             ps.setString(3, item.getDescricao());
             ps.setInt(4, item.getQuantidade());
-            ps.executeQuery();
+            ps.executeUpdate();
+            
+            
            
         } catch (SQLException ex) {
             Logger.getLogger(ItemDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } finally {
             FabricaConexao.fecharConexao();
         }
+        return true;
     }   
     
     

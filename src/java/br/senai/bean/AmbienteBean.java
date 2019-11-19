@@ -57,7 +57,7 @@ public class AmbienteBean {
         item = new Item();
     }
     
-    public void deletarItem(Item item){
+    public void deletarItemNovoAmbiente(Item item){
         itensNovoAmbiente.remove(item);
     }
     
@@ -65,11 +65,28 @@ public class AmbienteBean {
         ambiente.setItensAmbiente(itensNovoAmbiente);
         ambienteDAO.criarAmbiente(ambiente);
         itensDAO.inserirItemNovoAmbiente(ambiente);
-
     }
     
     public void buscarItensAmbienteSelecionado(){
         ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
+    }
+    
+    public void deletarItem(Item item){
+        itensDAO.excluirItem(item.getIdItem());
+        ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
+    }
+    
+    public void adicionarItem(){
+        /*
+        FacesContext context = FacesContext.getCurrentInstance();
+        
+        if(item.getNome() == null || item.getNome() == ""){
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!",  "Você precisa inserir um nome para o item!") );
+        } else {
+        */
+            itensDAO.inserirItem(item, ambienteSelecionado.getIdAmbiente());
+        ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
+        
     }
     
     /*
@@ -108,8 +125,6 @@ public class AmbienteBean {
         
          } 
     */
-    
-    
     
     public void onCellEditNovoAmbiente(CellEditEvent event) {
         Object oldValue = event.getOldValue();

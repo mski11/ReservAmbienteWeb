@@ -11,14 +11,14 @@ import static org.junit.Assert.*;
 
 public class ItemDAOUnit {
     
-    
+    @Test
     public void testeAdicionarItem(){
         
         Item item = new Item("Nome", "Descricao", 1);
         ItemDAO dao = new ItemDAO();
-        String idAmbiente = "ofilasi";
+        String idAmbiente = "AmbienteTeste";
         
-        if(dao.adicionarItem(item, idAmbiente)){
+        if(dao.inserirItem(item, idAmbiente)){
             System.out.println("Item inserido no ambiente com sucesso!");
         } else {
             fail("Erro! O item não foi inserido no ambiente.");
@@ -26,7 +26,6 @@ public class ItemDAOUnit {
         
     }
     
-    @Test
     public void testePesquisarItens(){
         
         ItemDAO dao = new ItemDAO();

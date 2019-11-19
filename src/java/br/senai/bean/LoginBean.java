@@ -14,20 +14,25 @@ public class LoginBean {
     PedidoRegistro pedidoRegistro = new PedidoRegistro();
     pedidoRegistroDAO pr = new pedidoRegistroDAO();
     
-    Usuario infoUsuario = new Usuario();
+    Usuario infoUser = new Usuario();
     usuarioDAO userDAO = new usuarioDAO();
     
-    public void logar(){
-        /*if(userDAO.loginCheck(infoUsuario) == "erro"){
-            n faço ideia???
-        }*/
-        /* if(userDAO.loginCheck(infoUsuario) == "user"){
-            // manda p pg de usuario
-        } */
-        if(userDAO.loginCheck(infoUsuario) == "adm"){
-            // Redireciona pra pag de adm
+    public String logar(){
+        
+        Usuario infoNova = userDAO.loginCheck(infoUser);
+       
+        if(infoNova != null){
+            infoUser = infoNova;
+            if(infoUser.isMestre()){
+                return "visualisarReservas.jsf";
+            } else {
+                return "mainUsuario.jsf";
+            }
+        } else {
+            return "Login.jsf";
         }
     }
+    
     
     public void salvar(){
         pr.salvar(pedidoRegistro);
