@@ -1,6 +1,6 @@
 package br.senai.junit;
 
-import br.senai.dao.usuarioDAO;
+import br.senai.dao.UsuarioDAO;
 import br.senai.model.PedidoRegistro;
 import br.senai.model.Usuario;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class UsuarioDAOUnit {
         pedido.setMatricula("1234");
         pedido.setDescricao("Oi");
         
-        usuarioDAO userDAO = new usuarioDAO();
+        UsuarioDAO userDAO = new UsuarioDAO();
         
         if(userDAO.registrarUsuario(pedido.getIdPedido())){
             System.out.println("Pedido de registro aceito e usuário registrado com sucesso!");
@@ -31,7 +31,7 @@ public class UsuarioDAOUnit {
     @Test
     public void testeExcluirUsuario(){
         
-        usuarioDAO userDAO = new usuarioDAO();
+        UsuarioDAO userDAO = new UsuarioDAO();
         Usuario user = new Usuario(1, "Chrys", "1234");
         
         if(userDAO.excluir(user)){

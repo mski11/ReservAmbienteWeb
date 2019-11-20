@@ -626,8 +626,9 @@ Reservar Ambientes
 }
 .informacaoreserva{
     margin: 0px 50px 0px 50px;
-    height: 350px;
+    height: 565px;
     display: flex;
+    background-color: #ECECEC;
 }
 .itensambiente{
     margin: 0px 0px 0px 40px;
@@ -655,7 +656,7 @@ Reservar Ambientes
     font-weight: bold;
 }
 .motivoreserva{
-    margin: 0px 50px 0px 50px;
+    margin: 175px 0 0 0;
 }
 
 .motivoreserva h5{
@@ -666,14 +667,23 @@ Reservar Ambientes
     font-weight: bold;
 }
 .textareaaaa{
+    
     height: 150px;
     width: 900px;
-    margin: 20px 0px 00px 40px;
+    margin: auto;
 }
 
 #ambientesUser {
-    width: 755px;
+    margin: 50px auto;
+    width: 1150px;
     height: 300px;
-    float:left;
+}
+
+#descEventoInput {
+    display: block;
+    width:300px;
+    font-size: 1.5em;
+    margin: 0.83em 1.0em 0 0;
+    font-weight: bold;
 }
 

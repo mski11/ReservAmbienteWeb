@@ -17,7 +17,8 @@ public class AmbienteDAO {
     private ItemDAO itensDAO;
     
     public boolean criarAmbiente(Ambiente ambiente){
-        try {
+        
+        try { 
             
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
@@ -26,11 +27,12 @@ public class AmbienteDAO {
             ps.setString(1, ambiente.getIdAmbiente());
             ps.setString(2, "N");
             ps.executeUpdate();
-            FabricaConexao.fecharConexao();
-                       
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
+        } finally {
+            FabricaConexao.fecharConexao();
         }
         return true;
     }

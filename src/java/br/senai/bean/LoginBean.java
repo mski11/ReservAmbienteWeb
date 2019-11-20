@@ -1,11 +1,15 @@
 package br.senai.bean;
 
 import br.senai.dao.pedidoRegistroDAO;
-import br.senai.dao.usuarioDAO;
+import br.senai.dao.UsuarioDAO;
 import br.senai.model.PedidoRegistro;
 import br.senai.model.Usuario;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @SessionScoped
@@ -14,22 +18,26 @@ public class LoginBean {
     PedidoRegistro pedidoRegistro = new PedidoRegistro();
     pedidoRegistroDAO pr = new pedidoRegistroDAO();
     
+    Usuario userLoginInput = new Usuario();
     Usuario infoUser = new Usuario();
-    usuarioDAO userDAO = new usuarioDAO();
     
-    public String logar(){
-        
-        infoUser = userDAO.loginCheck(infoUser);
-       
-        if(infoNova != null){
-            infoUser = infoNova;
-            if(infoUser.isMestre()){
-                return "visualisarReservas.jsf";
+    UsuarioDAO userDAO = new UsuarioDAO();
+    
+    public void login(){
+        infoUser = userDAO.loginCheck(userLoginInput);
+        try {
+            if(infoUser != null){
+                
+                if(infoUser.isMestre()){
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("visualisarReservas.jsf");
+                } else {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("mainUsuario.jsf");
+                }
             } else {
-                return "mainUsuario.jsf";
+                // Mensagem de erro dizendo ao usuário que inseriu dados errados/inexistentes!
             }
-        } else {
-            return "Login.jsf";
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -58,20 +66,28 @@ public class LoginBean {
         this.pr = pr;
     }
 
-    public Usuario getInfoUsuario() {
-        return infoUsuario;
-    }
-
-    public void setInfoUsuario(Usuario infoUsuario) {
-        this.infoUsuario = infoUsuario;
-    }
-
-    public usuarioDAO getUserDAO() {
+    public UsuarioDAO getUserDAO() {
         return userDAO;
     }
 
-    public void setUserDAO(usuarioDAO userDAO) {
+    public void setUserDAO(UsuarioDAO userDAO) {
         this.userDAO = userDAO;
+    }
+
+    public Usuario getUserLoginInput() {
+        return userLoginInput;
+    }
+
+    public void setUserLoginInput(Usuario userLoginInput) {
+        this.userLoginInput = userLoginInput;
+    }
+
+    public Usuario getInfoUser() {
+        return infoUser;
+    }
+
+    public void setInfoUser(Usuario infoUser) {
+        this.infoUser = infoUser;
     }
     
     

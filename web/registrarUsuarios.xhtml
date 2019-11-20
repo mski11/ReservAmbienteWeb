@@ -81,7 +81,7 @@
                     
                     <p:commandButton value="Atualizar" action="#{registroUsuarioBean.metodoBuscar()}" update="form"></p:commandButton>
                     
-                    <p:dialog width="450px" header="Descrição do pedido" widgetVar="pedidoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true">
+                    <p:dialog showEffect="fold" width="450px" header="Descrição do pedido" widgetVar="pedidoDialog" modal="true" hideEffect="fold" resizable="true">
                         <p:outputPanel id="pedidoDetail" style="text-align:center;">
                             <p:panelGrid layout="grid" columns="2" rendered="#{not empty registroUsuarioBean.pedidoSelecionado}" columnClasses="label,value">
                                 <h:outputText value="ID:" /> 

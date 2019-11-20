@@ -7,7 +7,7 @@
 package br.senai.bean;
 
 import br.senai.dao.pedidoRegistroDAO;
-import br.senai.dao.usuarioDAO;
+import br.senai.dao.UsuarioDAO;
 import br.senai.model.PedidoRegistro;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class RegistroUsuarioBean {
     private pedidoRegistroDAO PedidosDAO = new pedidoRegistroDAO();
     
  // novoUsuarioDAO registra novos usuários no sistema.
-    private usuarioDAO novoUsuarioDAO = new usuarioDAO();
+    private UsuarioDAO novoUsuarioDAO = new UsuarioDAO();
     
     
     private List<PedidoRegistro> arrayPedidos = new ArrayList<>();
@@ -56,11 +56,11 @@ public class RegistroUsuarioBean {
         this.PedidosDAO = PedidosDAO;
     }
 
-    public usuarioDAO getNovoUsuarioDAO() {
+    public UsuarioDAO getNovoUsuarioDAO() {
         return novoUsuarioDAO;
     }
 
-    public void setNovoUsuarioDAO(usuarioDAO novoUsuarioDAO) {
+    public void setNovoUsuarioDAO(UsuarioDAO novoUsuarioDAO) {
         this.novoUsuarioDAO = novoUsuarioDAO;
     }
 
