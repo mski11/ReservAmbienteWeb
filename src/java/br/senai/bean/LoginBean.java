@@ -19,7 +19,7 @@ public class LoginBean {
     
     public String logar(){
         
-        Usuario infoNova = userDAO.loginCheck(infoUser);
+        infoUser = userDAO.loginCheck(infoUser);
        
         if(infoNova != null){
             infoUser = infoNova;

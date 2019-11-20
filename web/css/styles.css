@@ -670,3 +670,10 @@ Reservar Ambientes
     width: 900px;
     margin: 20px 0px 00px 40px;
 }
+
+#ambientesUser {
+    width: 755px;
+    height: 300px;
+    float:left;
+}
+
