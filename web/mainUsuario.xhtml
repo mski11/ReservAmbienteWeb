@@ -24,7 +24,7 @@
                          <h3>#{loginBean.infoUser.nome.split(" ")[0]}</h3>
                     </div>      
                     <div class="utilidadesmetade">
-                        <button class="logout">Desconectar</button>
+                        <button class="logout">Desconectar</button> 
                     </div>
                 </div>            <br></br>
                 
@@ -37,12 +37,12 @@
                             <p:column headerText="Ambiente">
                                 <h:outputText value="#{ambiente.idAmbiente}" />
                             </p:column>
-                            <p:column headerText="Status">
+                            <p:column headerText="Status" style="width: 50px;">
                                 <h:outputText value="#{ambiente.status}" />
                             </p:column>
 
                             <p:column style="width:32px;text-align: center">
-                                <p:commandButton value="Editar" title="View" action="editarAmbiente.jsf" style="border:none;width:100%; height:100%;">
+                                <p:commandButton value="Editar" title="View"  action="reservarAmbientes.jsf" style="border:none;width:100%; height:100%;" >
                                      <f:setPropertyActionListener value="#{ambiente}" target="#{ambienteBean.ambienteSelecionado}" />
                                 </p:commandButton>
                             </p:column>

@@ -16,6 +16,8 @@ import org.primefaces.event.CellEditEvent;
 @ManagedBean
 public class AmbienteBean {
     
+    /* ----------------------------- Atributos ---------------------------- */
+    
     private AmbienteDAO ambienteDAO = new AmbienteDAO();
     
     /*  Neste Bean, o itensDAO é utilizado somente na hora
@@ -36,46 +38,77 @@ public class AmbienteBean {
     private List<Item> itensNovoAmbiente = new ArrayList();
     
     
-    
     /* Recebe nome do ambiente no momento da criação. */
     public Ambiente ambiente = new Ambiente();
     
+    /* Usado para criação de novos itens para criação e edição de ambientes */
     private Item item = new Item();
     
+    /* Usado para resgatar valores de um ambiente selecionado em dataTables */
     public Ambiente ambienteSelecionado;
     
-    public void excluirItem(){
-        itensDAO.excluirItem(item.getIdItem());
-    }
     
+    /* ----------------------------- Fim de atributos -------------------- */
+    
+    
+    /* ----------------------------- Métodos ----------------------------- */
+    
+    /*
+    *   Função que faz a busca por ambientes registrados no sistema.
+    *   A lista receptora é usada para impressão em dataTables.
+    */
     public void buscarAmbiente(){
         ambientes = ambienteDAO.buscarAmbientes();
     }
     
+    /*
+    *   Função que adiciona itens temporariamente na lista itensNovoAmbiente
+    *   para registro posterior de um novo ambiente no banco de dados.
+    */
     public void adicionarItemNovoAmbiente(){
         itensNovoAmbiente.add(item);
         item = new Item();
     }
     
+    /*
+    *   Função que remove itens da lista itensNovoAmbiente para registro 
+    *   posterior de um novo ambiente no banco de dados.
+    */
     public void deletarItemNovoAmbiente(Item item){
         itensNovoAmbiente.remove(item);
     }
     
+    /*
+    *   Função que define itensAmbiente de ambiente e depois usa este para
+    *   registro de um novo ambiente e seus itens no banco de dados.
+    */
     public void criarAmbiente(){
         ambiente.setItensAmbiente(itensNovoAmbiente);
         ambienteDAO.criarAmbiente(ambiente);
         itensDAO.inserirItemNovoAmbiente(ambiente);
     }
     
+    /*
+    *   Função que busca itensAmbiente de ambienteSelecionado.
+    *   Usada para preencher dataTables.
+    */
     public void buscarItensAmbienteSelecionado(){
         ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
     }
     
+    /*
+    *   Função usada pelo administrador para excluir itens de ambientes registrados
+    *   no sistema. 
+    */
     public void deletarItem(Item item){
         itensDAO.excluirItem(item.getIdItem());
         ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
     }
     
+    /*
+    *   
+    *
+    */
     public void adicionarItem(){
         /*
         FacesContext context = FacesContext.getCurrentInstance();
@@ -84,7 +117,7 @@ public class AmbienteBean {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!",  "Você precisa inserir um nome para o item!") );
         } else {
         */
-            itensDAO.inserirItem(item, ambienteSelecionado.getIdAmbiente());
+        itensDAO.inserirItem(item, ambienteSelecionado.getIdAmbiente());
         ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
         
     }
@@ -136,6 +169,11 @@ public class AmbienteBean {
         }
     }
 
+    /* ----------------------------- Fim de métodos ---------------------- */
+    
+    
+    /* ----------------------------- Getters e Setters ------------------- */
+    
     public List<Ambiente> getAmbientes() {
         return ambientes;
     }
@@ -191,5 +229,7 @@ public class AmbienteBean {
     public void setAmbiente(Ambiente ambiente) {
         this.ambiente = ambiente;
     }
+    
+    /* ----------------------------- Fim de Getters e Setters ------------ */
     
 }
