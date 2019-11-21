@@ -22,27 +22,23 @@
         </div>
         <div class="informacaoreserva">
             <div class="itensambiente">
-                <h5>Itens do Ambiente:</h5>
-                <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem">
-                    <p:column headerText="Nome" style="width:150px">
-                        <h:outputText value="#{item.nome}" />
-                    </p:column>
-                                
-                    <p:column headerText="Quantidade" style="width:100px">
-                            <h:outputText value="#{item.quantidade}"/>
-                    </p:column> 
+                <h:form>
+                    <h5>Itens do Ambiente:</h5>
+                    <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" widgetVar="cellItem">
+                        <p:column headerText="Nome" style="width:150px">
+                            <h:outputText value="#{item.nome}" />
+                        </p:column>
 
-                    <p:column headerText="Descricao">
-                            <h:outputText value="#{item.descricao}" />
-                    </p:column>
+                        <p:column headerText="Quantidade" style="width:100px">
+                                <h:outputText value="#{item.quantidade}"/>
+                        </p:column> 
 
-                    <p:column style="width:70px;">
-                        <p:commandButton value="Excluir item" action="#{ambienteBean.deletarItem(item)}" update="@form"/>
-                    </p:column>
-                </p:dataTable>
-
-                <p:commandButton action="#{ambienteBean.buscarItensAmbienteSelecionado()}" />
-                
+                        <p:column headerText="Descricao">
+                                <h:outputText value="#{item.descricao}" />
+                        </p:column>
+                    </p:dataTable>
+                    <p:commandButton action="#{ambienteBean.buscarItensAmbienteSelecionado()}" />
+                </h:form>
                 <div class="motivoreserva">
                     <h:outputLabel for="textareaaaa" id="descEventoInput" value="Descrição do evento" />
                 </div>
@@ -54,7 +50,7 @@
             </div>
             <div class="formulariofoda">
                 <h:outputLabel for="dtInicio" value="Em que dia será seu evento?" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
-                    <p:datePicker id="dtInicio" value=""/>
+                <p:datePicker id="dtInicio" value=""/>
                 
                 <h:outputLabel for="hrInicio" value="Quando começa seu evento?" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
                     <p:datePicker id="hrInicio" timeOnly="true" pattern="HH:mm"/>

@@ -6,6 +6,7 @@ import br.senai.model.Ambiente;
 import br.senai.model.Item;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -52,6 +53,18 @@ public class AmbienteBean {
     
     
     /* ----------------------------- Métodos ----------------------------- */
+    
+    /*
+    *   Método preRenderView da página mainUsuario.jsf usado para popular
+    *   a dataTable presente na página.
+    */
+    public void PRVmainUsuario(){
+        ambientes = ambienteDAO.buscarAmbientes();
+        if(ambienteSelecionado != null){
+        ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
+        }
+    }
+    
     
     /*
     *   Função que faz a busca por ambientes registrados no sistema.

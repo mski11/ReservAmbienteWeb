@@ -9,6 +9,9 @@
           <link rel="stylesheet" href="css/styles.css"/>
     </h:head>
     <h:body>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{ambienteBean.PRVmainUsuario()}"/> 
+        </f:metadata>
         <div class="tudo">
             <div class="topoadmin">
                 <div class="logo">
@@ -33,20 +36,22 @@
                 <h:form id="form">
                 <p:growl id="msgs" showDetail="true" />
                     <div id="ambientesUser">
+                        
                         <p:dataTable emptyMessage="Não existem ambientes registrados ainda." rowHover="true" id="dt" var="ambiente" value="#{ambienteBean.ambientes}">
                             <p:column headerText="Ambiente">
                                 <h:outputText value="#{ambiente.idAmbiente}" />
                             </p:column>
-                            <p:column headerText="Status" style="width: 50px;">
-                                <h:outputText value="#{ambiente.status}" />
+                            <p:column headerText="Status" style="width: 60px;">
+                                <h:outputText value="#{ambiente.status}"/>
                             </p:column>
 
-                            <p:column style="width:32px;text-align: center">
-                                <p:commandButton value="Editar" title="View"  action="reservarAmbientes.jsf" style="border:none;width:100%; height:100%;" >
+                            <p:column style="width:90px;text-align: center">
+                                <p:commandButton value="Reservar" title="View"  action="reservarAmbientes.jsf" style="border:none;width:100%; height:100%;" >
                                      <f:setPropertyActionListener value="#{ambiente}" target="#{ambienteBean.ambienteSelecionado}" />
                                 </p:commandButton>
                             </p:column>
                         </p:dataTable>
+                        <p:commandButton value="att" action="#{ambienteBean.buscarAmbiente()}" update="@form"/>
                     </div>
                 </h:form>   
             </div>   
