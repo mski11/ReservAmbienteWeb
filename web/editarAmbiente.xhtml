@@ -47,12 +47,12 @@
 
                         <div id="listaItens">         
                             <h4 id="itensAmbienteHeader">Itens do ambiente</h4>
-                            <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem">
+                            <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem" scrollable="true" scrollHeight="300" scrollWidth="765">
                                 <p:column headerText="Nome" style="width:150px">
                                         <h:outputText value="#{item.nome}" />
                                 </p:column>
                                 
-                                <p:column headerText="Quantidade" style="width:100px">
+                                <p:column headerText="Quantidade" style="width:90px">
                                         <h:outputText value="#{item.quantidade}"/>
                                 </p:column> 
                                 

@@ -9,61 +9,55 @@
           <link rel="stylesheet" href="css/styles.css"/>
     </h:head>
     <h:body>
-<div class="tudo">
-    <div class="containereserva">
-    <button></button>
-    <h5>Preencha todos os campos para fazer sua reserva!</h5>
-    </div>
-    <div class="conteudo">
-        <div class="topofoda">
-            <img src="img/portaabrind.jpg" width="60" height="70" alt="portaabrind"/>
-            <h5>Ambiente:</h5>
-            <h4>#{ambienteBean.ambienteSelecionado.idAmbiente}</h4>
-        </div>
-        <div class="informacaoreserva">
-            <div class="itensambiente">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{ambienteBean.PRVreservarAmbientes()}"/>
+        </f:metadata>
+        <div class="tudo">
+            <div class="containereserva">
+            <button></button>
+            <h5>Preencha todos os campos para fazer sua reserva!</h5>
+            </div>
+            <div class="conteudo">
+                <div class="topofoda">
+                    <img src="img/portaabrind.jpg" width="60" height="70" alt="portaabrind"/>
+                    <h5>Ambiente:</h5>
+                    <h4>#{ambienteBean.ambienteSelecionado.idAmbiente}</h4>
+                </div>
                 <h:form>
-                    <h5>Itens do Ambiente:</h5>
-                    <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" widgetVar="cellItem">
-                        <p:column headerText="Nome" style="width:150px">
-                            <h:outputText value="#{item.nome}" />
-                        </p:column>
+                    <div class="informacaoreserva">
+                        <div class="itensambiente">
+                            <h5>Itens do Ambiente:</h5>
+                            <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" widgetVar="cellItem" scrollable="true" scrollHeight="395" scrollWidth="600">
+                                <p:column headerText="Nome" style="width:150px">
+                                    <h:outputText value="#{item.nome}" />
+                                </p:column>
 
-                        <p:column headerText="Quantidade" style="width:100px">
-                                <h:outputText value="#{item.quantidade}"/>
-                        </p:column> 
+                                <p:column headerText="Quantidade" style="width:100px">
+                                        <h:outputText value="#{item.quantidade}"/>
+                                </p:column>
 
-                        <p:column headerText="Descricao">
-                                <h:outputText value="#{item.descricao}" />
-                        </p:column>
-                    </p:dataTable>
-                    <p:commandButton action="#{ambienteBean.buscarItensAmbienteSelecionado()}" />
+                                <p:column headerText="Descricao">
+                                        <h:outputText value="#{item.descricao}" />
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+                        <div class="formulariofoda">
+                            <h:outputLabel for="dtInicio" value="Em que dia será seu evento?" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
+                            <p:datePicker id="dtInicio" value=""/>
+
+                            <h:outputLabel for="hrInicio" value="Quando começa seu evento?" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
+                                <p:datePicker id="hrInicio" timeOnly="true" pattern="HH:mm"/>
+
+                            <h:outputLabel for="hrFim" value="Quando termina seu evento?" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
+                                <p:datePicker id="hrFim" timeOnly="true" pattern="HH:mm"/>
+                                
+                            <h:outputLabel for="mtvReserva" value="Descreva o seu evento" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
+                                <p:inputText id="mtvReserva" style="height: 50px; width: 100px;"/>
+                        </div>
+                        
+                    </div>
                 </h:form>
-                <div class="motivoreserva">
-                    <h:outputLabel for="textareaaaa" id="descEventoInput" value="Descrição do evento" />
-                </div>
-                
-                <div class="textareaaaa">
-                    <p:inputText class="textareaaaa"/>
-                </div>
-
-            </div>
-            <div class="formulariofoda">
-                <h:outputLabel for="dtInicio" value="Em que dia será seu evento?" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
-                <p:datePicker id="dtInicio" value=""/>
-                
-                <h:outputLabel for="hrInicio" value="Quando começa seu evento?" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
-                    <p:datePicker id="hrInicio" timeOnly="true" pattern="HH:mm"/>
-                
-                <h:outputLabel for="hrFim" value="Quando termina seu evento?" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
-                    <p:datePicker id="hrFim" timeOnly="true" pattern="HH:mm"/>      
             </div>
         </div>
-        
-        
-    </div>
-    
-</div>
-
     </h:body>
 </html>

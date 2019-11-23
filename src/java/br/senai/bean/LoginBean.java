@@ -1,7 +1,7 @@
 package br.senai.bean;
 
 import br.senai.dao.pedidoRegistroDAO;
-import br.senai.dao.UsuarioDAO;
+import br.senai.dao.UserDAO;
 import br.senai.model.PedidoRegistro;
 import br.senai.model.Usuario;
 import java.io.IOException;
@@ -22,7 +22,7 @@ public class LoginBean {
     Usuario userLoginInput = new Usuario();
     Usuario infoUser = new Usuario();
     
-    UsuarioDAO userDAO = new UsuarioDAO();
+    UserDAO userDAO = new UserDAO();
     
     public void login(){
         infoUser = userDAO.loginCheck(userLoginInput);
@@ -67,11 +67,11 @@ public class LoginBean {
         this.pr = pr;
     }
 
-    public UsuarioDAO getUserDAO() {
+    public UserDAO getUserDAO() {
         return userDAO;
     }
 
-    public void setUserDAO(UsuarioDAO userDAO) {
+    public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
 

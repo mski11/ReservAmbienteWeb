@@ -631,8 +631,8 @@ Reservar Ambientes
     background-color: #ECECEC;
 }
 .itensambiente{
-    margin: 0px 0px 0px 40px;
-    height:350px;
+    margin: 30px 0px 0px 25px;
+    height:500px;
     width: 600px;
 }
 .itensambiente h5{
@@ -656,7 +656,7 @@ Reservar Ambientes
     font-weight: bold;
 }
 .motivoreserva{
-    margin: 175px 0 0 0;
+    margin: 10px 0 0 0;
 }
 
 .motivoreserva h5{
@@ -667,10 +667,17 @@ Reservar Ambientes
     font-weight: bold;
 }
 .textareaaaa{
-    
+    padding-top: 50px;
     height: 150px;
     width: 900px;
     margin: auto;
+}
+
+#textarea{
+    height: 180px;
+    width: 500px;
+    padding: 30px 0 10px 40px;
+    margin: auto
 }
 
 #ambientesUser {

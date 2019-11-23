@@ -65,6 +65,12 @@ public class AmbienteBean {
         }
     }
     
+    public void PRVreservarAmbientes(){
+        if(ambienteSelecionado != null){
+        ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
+        }
+    }
+    
     
     /*
     *   Função que faz a busca por ambientes registrados no sistema.
