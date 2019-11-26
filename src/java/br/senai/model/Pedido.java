@@ -1,20 +1,25 @@
 package br.senai.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Pedido {
-    private String descricao, diaReserva, diaPedido,
-            horaInicio, horaFim, diaResposta, respostaMestre;
-    private int idPedido, idUsuario, idAmbiente;
+    private String descricao, diaPedido,
+            horaInicio, horaFim, respostaMestre, idAmbiente;
+    private Date diaReserva;
+    
+    private int idPedido, idUsuario;
     private Boolean statusResposta;
 
     public Pedido(){}
     
-    public Pedido(int idAmbiente, int idUsuario, String diaPedido){
+    public Pedido(String idAmbiente, int idUsuario, String diaPedido){
         this.idAmbiente = idAmbiente;
         this.idUsuario = idUsuario;
         this.diaPedido = diaPedido;
     }
 
-    public Pedido(String descricao, String diaReserva, String horaInicio, String horaFim, int idUsuario, int idAmbiente, String diaPedido) {
+    public Pedido(String descricao, Date diaReserva, String horaInicio, String horaFim, int idUsuario, String idAmbiente, String diaPedido) {
         this.descricao = descricao;
         this.diaReserva = diaReserva;
         this.horaInicio = horaInicio;
@@ -24,7 +29,7 @@ public class Pedido {
         this.diaPedido = diaPedido;
     }
 
-    public Pedido(String descricao, String diaReserva, String diaPedido, String horaInicio, String horaFim, int idPedido, int idUsuario, int idAmbiente, Boolean statusResposta) {
+    public Pedido(String descricao, Date diaReserva, String diaPedido, String horaInicio, String horaFim, int idPedido, int idUsuario, String idAmbiente, Boolean statusResposta) {
         this.descricao = descricao;
         this.diaReserva = diaReserva;
         this.diaPedido = diaPedido;
@@ -54,11 +59,11 @@ public class Pedido {
         this.idUsuario = idUsuario;
     }
 
-    public int getIdAmbiente() {
+    public String getIdAmbiente() {
         return idAmbiente;
     }
 
-    public void setIdAmbiente(int idAmbiente) {
+    public void setIdAmbiente(String idAmbiente) {
         this.idAmbiente = idAmbiente;
     }
 
@@ -70,16 +75,25 @@ public class Pedido {
         this.descricao = descricao;
     }
 
-    public String getDiaReserva() {
+    public Date getDiaReserva() {
         return diaReserva;
     }
 
-    public void setDiaReserva(String diaReserva) {
-        this.diaReserva = diaReserva;
+    public void setDiaReserva(Date diaReserva){
+       this.diaReserva = diaReserva;
     }
+    
+   // public void setDiaReserva(String diaReserva) {
+   //     this.diaReserva = diaReserva;
+   // }
 
     public String getDiaPedido() {
         return diaPedido;
+    }
+    
+    public void setDiaPedido(Date diaPedido){
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        this.diaPedido = formatador.format(diaPedido);
     }
 
     public void setDiaPedido(String diaPedido) {
@@ -90,12 +104,22 @@ public class Pedido {
         return horaInicio;
     }
 
+    public void setHoraInicio(Date horaInicio){
+        SimpleDateFormat formatador = new SimpleDateFormat("HH:mm");
+        this.horaInicio =  formatador.format(horaInicio);
+    }
+    
     public void setHoraInicio(String horaInicio) {
         this.horaInicio = horaInicio;
     }
 
     public String getHoraFim() {
         return horaFim;
+    }
+    
+    public void setHoraFim(Date horaFim){
+        SimpleDateFormat formatador = new SimpleDateFormat("HH:mm");
+        this.horaFim =  formatador.format(horaFim);
     }
 
     public void setHoraFim(String horaFim) {
@@ -108,14 +132,6 @@ public class Pedido {
 
     public void setStatusResposta(Boolean statusResposta) {
         this.statusResposta = statusResposta;
-    }
-
-    public String getDiaResposta() {
-        return diaResposta;
-    }
-
-    public void setDiaResposta(String diaResposta) {
-        this.diaResposta = diaResposta;
     }
 
     public String getRespostaMestre() {

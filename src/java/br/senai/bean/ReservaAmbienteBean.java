@@ -6,6 +6,9 @@ import br.senai.dao.UserDAO;
 import br.senai.model.Ambiente;
 import br.senai.model.Pedido;
 import br.senai.model.Usuario;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -20,9 +23,7 @@ public class ReservaAmbienteBean {
     private AmbienteDAO ambienteDAO = new AmbienteDAO();
     private PedidoReservaDAO pedidoDAO = new PedidoReservaDAO();
     
-    private Ambiente ambienteSelecionado = new Ambiente();
-    private Usuario userInfo = new Usuario();
-    private Pedido PedidoReserva = new Pedido();
+    private Pedido pedidoReserva = new Pedido();
     
     @ManagedProperty(value = "#{ambienteBean}")
     private AmbienteBean ambienteBeanImportado = new AmbienteBean();
@@ -36,7 +37,20 @@ public class ReservaAmbienteBean {
     
  /* --------------------------------- Métodos ------------------------------- */
     
-    
+    public void enviarPedidoReserva(){
+        
+       // LocalDate currentdate = LocalDate.now();
+       // Date data = new Date();
+        
+        
+        
+        //pedidoReserva.setDiaPedido(data);
+        pedidoReserva.setIdUsuario(usuarioBeanImportado.infoUser.getIdUsuario());
+        pedidoReserva.setIdAmbiente(ambienteBeanImportado.getAmbienteSelecionado().getIdAmbiente());
+        
+        pedidoDAO.criarPedido(ambienteBeanImportado.getAmbienteSelecionado(), pedidoReserva, usuarioBeanImportado.getInfoUser());
+        
+    }
     
  /* --------------------------------- Fim de métodos ------------------------ */
     
@@ -67,28 +81,12 @@ public class ReservaAmbienteBean {
         this.pedidoDAO = pedidoDAO;
     }
 
-    public Ambiente getAmbienteSelecionado() {
-        return ambienteSelecionado;
-    }
-
-    public void setAmbienteSelecionado(Ambiente ambienteSelecionado) {
-        this.ambienteSelecionado = ambienteSelecionado;
-    }
-
-    public Usuario getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(Usuario userInfo) {
-        this.userInfo = userInfo;
-    }
-
     public Pedido getPedidoReserva() {
-        return PedidoReserva;
+        return pedidoReserva;
     }
 
-    public void setPedidoReserva(Pedido PedidoReserva) {
-        this.PedidoReserva = PedidoReserva;
+    public void setPedidoReserva(Pedido pedidoReserva) {
+        this.pedidoReserva = pedidoReserva;
     }
 
     public AmbienteBean getAmbienteBeanImportado() {

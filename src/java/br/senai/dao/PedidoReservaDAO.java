@@ -12,13 +12,13 @@ import java.util.logging.Logger;
 
 public class PedidoReservaDAO {
     
-    public void criarPedido(Ambiente ambiente, Pedido pedido, Usuario usuario){
+    public boolean criarPedido(Ambiente ambiente, Pedido pedido, Usuario usuario){
         
         try {
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
             
-            ps = conexao.prepareStatement("INSERT INTO pedidoreserva (idAmbiente, idUsuario, descricaopedido, horainicio, horafim, dataPedido, statusAtual, dataResposta, respostaMestre) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            ps = conexao.prepareStatement("INSERT INTO pedidoreserva (idAmbiente, idUsuario, descricaopedido, horainicio, horafim, dataPedido, statusAtual, repostaMestre) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, ambiente.getIdAmbiente());
             ps.setInt(2, usuario.getIdUsuario());
             ps.setString(3, pedido.getDescricao());
@@ -27,16 +27,16 @@ public class PedidoReservaDAO {
             ps.setString(6, pedido.getDiaPedido());
             ps.setString(7, "N");
             ps.setString(8, "Aguardando resposta!");
-            ps.setString(9, "Aguardando resposta!");
             ps.executeUpdate();
             
             
         } catch (SQLException ex) {
             Logger.getLogger(PedidoReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } finally {
             FabricaConexao.fecharConexao();
         }
-        
+        return true;
     }
     
     public void responderPedido(Pedido pedido, String resposta, String data){
