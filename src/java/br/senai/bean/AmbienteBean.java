@@ -14,17 +14,13 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.CellEditEvent;
 
 @SessionScoped
-@ManagedBean
+@ManagedBean(name="ambienteBean")
 public class AmbienteBean {
     
     /* ----------------------------- Atributos ---------------------------- */
     
     private AmbienteDAO ambienteDAO = new AmbienteDAO();
     
-    /*  Neste Bean, o itensDAO é utilizado somente na hora
-    *   de criar um novo ambiente. Todas outras funções relacionadas
-    *   à itens deveriam ser feitas em ItemBean.
-    */
     private ItemDAO itensDAO = new ItemDAO();
     
     /* Lista receptora do método buscarAmbientes do AmbienteDAO */
@@ -40,19 +36,18 @@ public class AmbienteBean {
     
     
     /* Recebe nome do ambiente no momento da criação. */
-    public Ambiente ambiente = new Ambiente();
+    private Ambiente ambiente = new Ambiente();
     
     /* Usado para criação de novos itens para criação e edição de ambientes */
     private Item item = new Item();
     
     /* Usado para resgatar valores de um ambiente selecionado em dataTables */
-    public Ambiente ambienteSelecionado;
+    private  Ambiente ambienteSelecionado;
+    
+ /* --------------------------------- Fim de atributos -------------------- */
     
     
-    /* ----------------------------- Fim de atributos -------------------- */
-    
-    
-    /* ----------------------------- Métodos ----------------------------- */
+ /* --------------------------------- Métodos ------------------------------- */
     
     /*
     *   Método preRenderView da página mainUsuario.jsf usado para popular
@@ -65,12 +60,15 @@ public class AmbienteBean {
         }
     }
     
+    /*
+    *   Método preRenderView da página reservarAmbientes.jsf usado para popular
+    *   a dataTable presente na página.
+    */
     public void PRVreservarAmbientes(){
         if(ambienteSelecionado != null){
         ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
         }
     }
-    
     
     /*
     *   Função que faz a busca por ambientes registrados no sistema.
@@ -188,10 +186,10 @@ public class AmbienteBean {
         }
     }
 
-    /* ----------------------------- Fim de métodos ---------------------- */
+ /* --------------------------------- Fim de métodos ------------------------ */
     
     
-    /* ----------------------------- Getters e Setters ------------------- */
+ /* --------------------------------- Getters e Setters --------------------- */
     
     public List<Ambiente> getAmbientes() {
         return ambientes;
@@ -249,6 +247,6 @@ public class AmbienteBean {
         this.ambiente = ambiente;
     }
     
-    /* ----------------------------- Fim de Getters e Setters ------------ */
+ /* --------------------------------- Fim de Getters e Setters -------------- */
     
 }

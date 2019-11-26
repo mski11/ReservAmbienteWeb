@@ -14,8 +14,8 @@
         </f:metadata>
         <div class="tudo">
             <div class="containereserva">
-            <button></button>
-            <h5>Preencha todos os campos para fazer sua reserva!</h5>
+                <h:commandButton style="height: 30px; width: 100px; margin-top: 15px; margin-left: 25px;" value="Voltar"/>
+                <h5>Preencha todos os campos para fazer sua reserva!</h5>
             </div>
             <div class="conteudo">
                 <div class="topofoda">
@@ -43,18 +43,20 @@
                         </div>
                         <div class="formulariofoda">
                             <h:outputLabel for="dtInicio" value="Em que dia será seu evento?" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
-                            <p:datePicker id="dtInicio" value=""/>
+                                <p:datePicker id="dtInicio" value="#{reservaAmbienteBean.pedidoReserva.diaReserva}"/>
 
                             <h:outputLabel for="hrInicio" value="Quando começa seu evento?" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
-                                <p:datePicker id="hrInicio" timeOnly="true" pattern="HH:mm"/>
+                                <p:datePicker id="hrInicio" value="#{reservaAmbienteBean.pedidoReserva.horaInicio}" timeOnly="true" pattern="HH:mm" />
 
                             <h:outputLabel for="hrFim" value="Quando termina seu evento?" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
-                                <p:datePicker id="hrFim" timeOnly="true" pattern="HH:mm"/>
+                                <p:datePicker id="hrFim" value="#{reservaAmbienteBean.pedidoReserva.horaFim}" timeOnly="true" pattern="HH:mm"/>
                                 
                             <h:outputLabel for="mtvReserva" value="Descreva o seu evento" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
-                                <p:inputText id="mtvReserva" style="height: 50px; width: 100px;"/>
+                            <p:inputText id="mtvReserva" value="#{reservaAmbienteBean.pedidoReserva.descricao}" style="height: 100px; width: 235px;"/>
                         </div>
-                        
+                        <div id="botoesReserva" style="height: 75px; width: 200px; margin-top: 415px;">
+                            <p:commandButton value="Enviar pedido" class="btn btn-success botao" style="margin-top: 10px; margin-left: 35px; height: 65px; width: 165px; font-size: 1.4em; "/>  
+                        </div>
                     </div>
                 </h:form>
             </div>
