@@ -14,7 +14,7 @@
         </f:metadata>
         <div class="tudo">
             <div class="containereserva">
-                <h:commandButton style="height: 30px; width: 100px; margin-top: 15px; margin-left: 25px;" value="Voltar"/>
+                <h:commandButton style="height: 30px; width: 100px; margin-top: 15px; margin-left: 25px;" value="Voltar" action="mainUsuario.jsf"/>
                 <h5>Preencha todos os campos para fazer sua reserva!</h5>
             </div>
             <div class="conteudo">
@@ -55,7 +55,7 @@
                             <h:outputLabel for="mtvReserva" value="Descreva o seu evento" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
                             <p:inputText id="mtvReserva" value="#{reservaAmbienteBean.pedidoReserva.descricao}" style="height: 100px; width: 235px;"/>
                         </div>
-                        <div id="botoesReserva" style="height: 75px; width: 200px; margin-top: 415px;">
+                        <div id="botoesReserva" style="height: 75px; width: 200px; margin-top: 385px;">
                             <p:commandButton value="Enviar pedido" action="#{reservaAmbienteBean.enviarPedidoReserva()}" class="btn btn-success botao" style="margin-top: 10px; margin-left: 35px; height: 65px; width: 165px; font-size: 1.4em; "/>  
                         </div>
                     </div>

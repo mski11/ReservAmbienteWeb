@@ -3,11 +3,7 @@ package br.senai.bean;
 import br.senai.dao.AmbienteDAO;
 import br.senai.dao.PedidoReservaDAO;
 import br.senai.dao.UserDAO;
-import br.senai.model.Ambiente;
 import br.senai.model.Pedido;
-import br.senai.model.Usuario;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -40,11 +36,11 @@ public class ReservaAmbienteBean {
     public void enviarPedidoReserva(){
         
        // LocalDate currentdate = LocalDate.now();
-       // Date data = new Date();
+       Date data = new Date();
         
         
         
-        //pedidoReserva.setDiaPedido(data);
+        pedidoReserva.setDiaPedido(data);
         pedidoReserva.setIdUsuario(usuarioBeanImportado.infoUser.getIdUsuario());
         pedidoReserva.setIdAmbiente(ambienteBeanImportado.getAmbienteSelecionado().getIdAmbiente());
         

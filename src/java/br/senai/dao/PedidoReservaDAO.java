@@ -7,6 +7,8 @@ import br.senai.util.FabricaConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,16 +17,21 @@ public class PedidoReservaDAO {
     public boolean criarPedido(Ambiente ambiente, Pedido pedido, Usuario usuario){
         
         try {
+            
+            
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
+            Time inicio = new Time(pedido.getHoraInicio().getTime());
+            Time fim = new Time(pedido.getHoraFim().getTime());
+            Date dia = new Date(pedido.getDiaPedido().getTime());
             
             ps = conexao.prepareStatement("INSERT INTO pedidoreserva (idAmbiente, idUsuario, descricaopedido, horainicio, horafim, dataPedido, statusAtual, repostaMestre) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, ambiente.getIdAmbiente());
             ps.setInt(2, usuario.getIdUsuario());
             ps.setString(3, pedido.getDescricao());
-            ps.setString(4, pedido.getHoraInicio());
-            ps.setString(5, pedido.getHoraFim());
-            ps.setString(6, pedido.getDiaPedido());
+            ps.setTime(4, inicio);
+            ps.setTime(5, fim);
+            ps.setDate(6, dia);
             ps.setString(7, "N");
             ps.setString(8, "Aguardando resposta!");
             ps.executeUpdate();
@@ -54,7 +61,6 @@ public class PedidoReservaDAO {
         } catch (SQLException ex) {
             Logger.getLogger(PedidoReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         
     }
     

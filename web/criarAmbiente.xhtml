@@ -48,30 +48,30 @@
 
                         <div id="listaItens">         
                             <h4 id="itensAmbienteHeader">Itens do ambiente</h4>
-                            <p:dataTable id="dt" var="item" value="#{ambienteBean.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem">
+                            <p:dataTable id="dt" var="item" value="#{ambienteBean.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem" scrollable="true" scrollHeight="280" scrollWidth="785">
                                 <p:ajax event="cellEdit" listener="#{ambienteBean.onCellEditNovoAmbiente}" update=":form:msgs" />
 
-                                <p:column headerText="Nome" style="width:150px">
+                                <p:column headerText="Nome" style="width:100px">
                                     <p:cellEditor>
                                         <f:facet name="output"><h:outputText value="#{item.nome}" /></f:facet>
                                         <f:facet name="input"><p:inputText value="#{item.nome}" style="width:96%"/></f:facet>
                                     </p:cellEditor>
                                 </p:column>
 
-                                <p:column headerText="Quantidade" style="width:100px">
+                                <p:column headerText="Quantidade" style="width:60px">
                                     <p:cellEditor >
                                         <f:facet name="output" ><h:outputText value="#{item.quantidade}"/></f:facet>
                                         <f:facet name="input"><p:inputNumber value="#{item.quantidade}" style="width:96%;"/></f:facet>
                                     </p:cellEditor>
                                 </p:column> 
 
-                                <p:column headerText="Descricao">
+                                <p:column headerText="Descricao" style="width: 400px;">
                                     <p:cellEditor>
                                         <f:facet name="output"><h:outputText value="#{item.descricao}" /></f:facet>
                                         <f:facet name="input"><p:inputText value="#{item.descricao}" style="width:96%"/></f:facet>
                                     </p:cellEditor>
                                 </p:column>
-                                <p:column style="width:70px;">
+                                <p:column style="width:40px;">
                                     <p:commandButton value="Excluir item" action="#{ambienteBean.deletarItemNovoAmbiente(item)}" update="@form"/>
                                 </p:column>
                             </p:dataTable>                            

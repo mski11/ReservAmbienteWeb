@@ -1,25 +1,25 @@
 package br.senai.model;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Pedido {
-    private String descricao, diaPedido,
-            horaInicio, horaFim, respostaMestre, idAmbiente;
-    private Date diaReserva;
-    
+    private String descricao, respostaMestre, idAmbiente;
+    private Date diaReserva, diaPedido;
+    private Date horaInicio, horaFim;
     private int idPedido, idUsuario;
     private Boolean statusResposta;
 
     public Pedido(){}
     
-    public Pedido(String idAmbiente, int idUsuario, String diaPedido){
+    public Pedido(String idAmbiente, int idUsuario, Date diaPedido){
         this.idAmbiente = idAmbiente;
         this.idUsuario = idUsuario;
         this.diaPedido = diaPedido;
     }
 
-    public Pedido(String descricao, Date diaReserva, String horaInicio, String horaFim, int idUsuario, String idAmbiente, String diaPedido) {
+    public Pedido(String descricao, Date diaReserva, Date horaInicio, Date horaFim, int idUsuario, String idAmbiente, Date diaPedido) {
         this.descricao = descricao;
         this.diaReserva = diaReserva;
         this.horaInicio = horaInicio;
@@ -29,7 +29,7 @@ public class Pedido {
         this.diaPedido = diaPedido;
     }
 
-    public Pedido(String descricao, Date diaReserva, String diaPedido, String horaInicio, String horaFim, int idPedido, int idUsuario, String idAmbiente, Boolean statusResposta) {
+    public Pedido(String descricao, Date diaReserva, Date diaPedido, Date horaInicio, Date horaFim, int idPedido, int idUsuario, String idAmbiente, Boolean statusResposta) {
         this.descricao = descricao;
         this.diaReserva = diaReserva;
         this.diaPedido = diaPedido;
@@ -87,42 +87,27 @@ public class Pedido {
    //     this.diaReserva = diaReserva;
    // }
 
-    public String getDiaPedido() {
+    public Date getDiaPedido() {
         return diaPedido;
     }
     
     public void setDiaPedido(Date diaPedido){
-        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-        this.diaPedido = formatador.format(diaPedido);
-    }
-
-    public void setDiaPedido(String diaPedido) {
         this.diaPedido = diaPedido;
     }
 
-    public String getHoraInicio() {
+    public Date getHoraInicio() {
         return horaInicio;
     }
 
     public void setHoraInicio(Date horaInicio){
-        SimpleDateFormat formatador = new SimpleDateFormat("HH:mm");
-        this.horaInicio =  formatador.format(horaInicio);
-    }
-    
-    public void setHoraInicio(String horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public String getHoraFim() {
+    public Date getHoraFim() {
         return horaFim;
     }
     
     public void setHoraFim(Date horaFim){
-        SimpleDateFormat formatador = new SimpleDateFormat("HH:mm");
-        this.horaFim =  formatador.format(horaFim);
-    }
-
-    public void setHoraFim(String horaFim) {
         this.horaFim = horaFim;
     }
 

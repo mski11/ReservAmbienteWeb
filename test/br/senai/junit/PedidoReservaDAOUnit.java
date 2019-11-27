@@ -7,6 +7,7 @@ import br.senai.model.Pedido;
 import br.senai.model.Usuario;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -40,11 +41,16 @@ public class PedidoReservaDAOUnit {
         
         LocalDate currentdate = LocalDate.now();
         
-        PedidoReserva.setDiaReserva("26/11/2019");
-        PedidoReserva.setHoraInicio("14:30");
-        PedidoReserva.setHoraFim("16:30");
+        Date diaReserva = new Date(26/11/2019);
+        Date horaInicio = new Date("14:30");
+        Date horaFim = new Date("12:30");
+        Date diaPedido = new Date();
+        
+        PedidoReserva.setDiaReserva(diaReserva);
+        PedidoReserva.setHoraInicio(horaInicio);
+        PedidoReserva.setHoraFim(horaFim);
         PedidoReserva.setDescricao("Descrição do pedido");
-        PedidoReserva.setDiaPedido(currentdate.toString());
+        PedidoReserva.setDiaPedido(diaPedido);
         PedidoReserva.setIdUsuario(usuario.getIdUsuario());
         PedidoReserva.setIdAmbiente(ambiente.getIdAmbiente());
         
