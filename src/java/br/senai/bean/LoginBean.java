@@ -5,6 +5,8 @@ import br.senai.dao.UserDAO;
 import br.senai.model.PedidoRegistro;
 import br.senai.model.Usuario;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -16,6 +18,8 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class LoginBean {
     
+ /* ------------------------------- Atributos ------------------------------- */
+    
     PedidoRegistro pedidoRegistro = new PedidoRegistro();
     pedidoRegistroDAO pr = new pedidoRegistroDAO();
     
@@ -23,6 +27,19 @@ public class LoginBean {
     Usuario infoUser = new Usuario();
     
     UserDAO userDAO = new UserDAO();
+    
+    List listUsuarios = new ArrayList();
+    
+    Usuario usuarioSelecionado = new Usuario();
+    
+ /* --------------------------------- Fim de atributos ---------------------- */
+
+    
+ /* --------------------------------- Métodos ------------------------------- */
+    
+    public void PRVVisualizarUsuarios(){
+        listUsuarios = userDAO.buscarUsuarios();
+    }
     
     public void login(){
         infoUser = userDAO.loginCheck(userLoginInput);
@@ -42,6 +59,10 @@ public class LoginBean {
         }
     }
     
+    public void buscarUsuarios(){
+        listUsuarios = userDAO.buscarUsuarios();
+    }
+    
     
     public void salvar(){
         pr.salvar(pedidoRegistro);
@@ -51,6 +72,11 @@ public class LoginBean {
         return pr.conectar();
     }
 
+ /* --------------------------------- Fim de métodos ------------------------ */
+    
+    
+ /* --------------------------------- Getters e Setters --------------------- */
+    
     public PedidoRegistro getPedidoRegistro() {
         return pedidoRegistro;
     }
@@ -91,6 +117,22 @@ public class LoginBean {
         this.infoUser = infoUser;
     }
     
+    public List getListUsuarios() {
+        return listUsuarios;
+    }
+
+    public void setListUsuarios(List listUsuarios) {
+        this.listUsuarios = listUsuarios;
+    }
     
+     public Usuario getUsuarioSelecionado() {
+        return usuarioSelecionado;
+    }
+
+    public void setUsuarioSelecionado(Usuario usuarioSelecionado) {
+        this.usuarioSelecionado = usuarioSelecionado;
+    }
+        
+ /* --------------------------------- Fim de Getters e Setters -------------- */
     
 }

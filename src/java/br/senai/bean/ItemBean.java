@@ -13,10 +13,17 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class ItemBean {
     
+ /* --------------------------------- Atributos ----------------------------- */
+    
     public ItemDAO itensDAO = new ItemDAO();
     
     @ManagedProperty(value = "ambienteSelecionado")
     public Ambiente ambienteSelecionado;
+    
+ /* --------------------------------- Fim de atributos ---------------------- */
+    
+    
+ /* --------------------------------- Métodos ------------------------------- */
     
     public void buscarItensAmbienteSelecionado(Ambiente ambiente){
         ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambiente.getIdAmbiente()));
@@ -30,6 +37,11 @@ public class ItemBean {
         itensDAO.excluirItem(item.getIdItem());
     }
 
+ /* --------------------------------- Fim de métodos ------------------------ */
+    
+    
+ /* --------------------------------- Getters e Setters --------------------- */
+    
     public ItemDAO getItensDAO() {
         return itensDAO;
     }
@@ -45,5 +57,7 @@ public class ItemBean {
     public void setAmbienteSelecionado(Ambiente ambienteSelecionado) {
         this.ambienteSelecionado = ambienteSelecionado;
     }
+    
+ /* --------------------------------- Fim de Getters e Setters -------------- */
     
 }

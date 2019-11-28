@@ -17,13 +17,13 @@ import org.primefaces.event.CellEditEvent;
 @ManagedBean(name="ambienteBean")
 public class AmbienteBean {
     
-    /* ----------------------------- Atributos ---------------------------- */
+ /* --------------------------------- Atributos ----------------------------- */
     
     private AmbienteDAO ambienteDAO = new AmbienteDAO();
     
     private ItemDAO itensDAO = new ItemDAO();
     
-    /* Lista receptora do método buscarAmbientes do AmbienteDAO */
+    /* Lista receptora do método buscarAmbientes do AmbienteDAO. */
     private List<Ambiente> ambientes = new ArrayList();
     
     
@@ -38,16 +38,24 @@ public class AmbienteBean {
     /* Recebe nome do ambiente no momento da criação. */
     private Ambiente ambiente = new Ambiente();
     
-    /* Usado para criação de novos itens para criação e edição de ambientes */
+    /* Usado para criação de novos itens para criação e edição de ambientes. */
     private Item item = new Item();
     
-    /* Usado para resgatar valores de um ambiente selecionado em dataTables */
+    /* Usado para resgatar valores de um ambiente selecionado em dataTables. */
     private  Ambiente ambienteSelecionado;
     
- /* --------------------------------- Fim de atributos -------------------- */
+ /* --------------------------------- Fim de atributos ---------------------- */
     
     
  /* --------------------------------- Métodos ------------------------------- */
+    
+    /*
+    *   Método preRenderView da página editarAmbiente.jsf
+    *   usado para populara dataTable presente na página.
+    */
+    public void PRVEditAmbiente(){
+        ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
+    }
     
     /*
     *   Método preRenderView da página mainUsuario.jsf usado para popular
@@ -114,8 +122,8 @@ public class AmbienteBean {
     }
     
     /*
-    *   Função usada pelo administrador para excluir itens de ambientes registrados
-    *   no sistema. 
+    *   Função usada pelo administrador para excluir itens
+    *    de ambientes registradosno sistema. 
     */
     public void deletarItem(Item item){
         itensDAO.excluirItem(item.getIdItem());
@@ -123,7 +131,7 @@ public class AmbienteBean {
     }
     
     /*
-    *   
+    *   Método usado para adicionar novos itens
     *
     */
     public void adicionarItem(){

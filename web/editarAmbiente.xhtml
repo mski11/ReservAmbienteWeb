@@ -9,6 +9,9 @@
           <link rel="stylesheet" href="css/styles.css"/>
     </h:head>
     <h:body>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{ambienteBean.PRVEditAmbiente()}"/> 
+        </f:metadata>
         <div class="tudo">        
             <div class="topoadmin">
                 <div class="rectangle2">
@@ -17,7 +20,7 @@
                         <img src="img/logo.png" width="50" height="50"/>
                     </div>
                     <div class="informacoes">
-                       <h4>Sammy</h4>
+                       <h4>#{loginBean.infoUser.nome.split(" ")[0]}</h4>
                        <h6>Administrador</h6>
                        <br/>
                        <h6>Reserve-se</h6>
@@ -47,24 +50,23 @@
 
                         <div id="listaItens">         
                             <h4 id="itensAmbienteHeader">Itens do ambiente</h4>
-                            <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem" scrollable="true" scrollHeight="300" scrollWidth="765">
+                            <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem" scrollable="true" scrollHeight="270" scrollWidth="765">
                                 <p:column headerText="Nome" style="width:150px">
                                         <h:outputText value="#{item.nome}" />
                                 </p:column>
                                 
-                                <p:column headerText="Quantidade" style="width:90px">
+                                <p:column headerText="Quantidade" style="width:70px">
                                         <h:outputText value="#{item.quantidade}"/>
                                 </p:column> 
                                 
-                                <p:column headerText="Descricao">
+                                <p:column headerText="Descricao" style="width:320px;">
                                         <h:outputText value="#{item.descricao}" />
                                 </p:column>
                                 
-                                <p:column style="width:70px;">
+                                <p:column style="width:55px;">
                                     <p:commandButton value="Excluir item" action="#{ambienteBean.deletarItem(item)}" update="@form"/>
                                 </p:column>
                             </p:dataTable>
-                            <p:commandButton action="#{ambienteBean.buscarItensAmbienteSelecionado()}" update="@form"/>
                         </div>
                         <div class="itensadd">
                             <div class="itens">

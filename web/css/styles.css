@@ -288,9 +288,8 @@ fieldset {
 	line-height: 15px;
  }
  .topoadmin .botoesajudasair{
-	 width: 200px;
-	 float: left;
-
+    width: 200px;
+    float: left;
  }
  .topoadmin .botaorelata,.topoadmin .botaosai{
     width: 150px;
@@ -397,7 +396,7 @@ fieldset {
 }
 .itensadd .itens{
     border-left: 5px solid #1E9585;
-    padding: 5px;
+    margin: 5px 0 0 15px;
     float: left;
 }
 .itensadd .itens .btn-success{
@@ -478,12 +477,11 @@ visualisar usuarios
     width: 100%;
 }
 .registrausuario{
-    width: 350px;
+    width: 1300px;
     height: 500px;
-    padding: 5px 0px 0px 20px;  
+    padding: 40px 40px 0px 90px;  
     display: block;
-        float:left;
-
+    float:left;
 }
 .registrausuario2{
     width: 350px;

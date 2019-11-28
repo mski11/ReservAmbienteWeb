@@ -10,6 +10,9 @@
           <link rel="stylesheet" href="css/styles.css"/>
     </h:head>
     <h:body>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{registroUsuarioBean.PRVPedidosRegistro()}"/> 
+        </f:metadata>
         <div class="tudo">
             <div class="topoadmin">
                 <div class="rectangle2">
@@ -18,7 +21,7 @@
                         <img src="img/logo.png" width="50" height="50"/>
                     </div>
                     <div class="informacoes">
-                        <h4>Matheus</h4>
+                        <h4>#{loginBean.infoUser.nome.split(" ")[0]}</h4>
                         <h6>Administrador</h6>
                         <br/>
                         <h6>Reserve-se</h6>
@@ -48,56 +51,52 @@
                 </div>            
             </div> 
             <div class="conteudo">
-                <div class="tituloregistrar">
-                    <h5>Registros</h5>
+                <h2>Pedidos de registro</h2>
+                <div class='container'>
+                    <h:form id="form">
+                        <p:growl id="msgs" showDetail="true"/>
+                        <p:dataTable id="DTPedidosRegistro" var="pedido" value="#{registroUsuarioBean.arrayPedidos}">
+                            <p:column headerText="N° ID">
+                                <h:outputText value="#{pedido.idPedido}" />
+                            </p:column>
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{pedido.nome}" />
+                            </p:column>
+                            <p:column headerText="Telefone">
+                                <h:outputText value="#{pedido.telefone}" />
+                            </p:column>
+                            <p:column headerText="E-Mail">
+                                <h:outputText value="#{pedido.email}" />
+                            </p:column>
+                            <p:column headerText="Matrícula">
+                                <h:outputText value="#{pedido.matricula}" />
+                            </p:column>
+                            <p:column style="width:32px; text-align: center">
+                                <p:commandButton update="form:pedidoDetail" oncomplete="PF('pedidoDialog').show()" icon="pi pi-search" title="Visualizar">
+                                    <f:setPropertyActionListener value="#{pedido}" target="#{registroUsuarioBean.pedidoSelecionado}" />
+                                </p:commandButton>
+                            </p:column> 
+                        </p:dataTable>
+
+                        <p:commandButton value="Atualizar" action="#{registroUsuarioBean.metodoBuscar()}" update="form"></p:commandButton>
+
+                        <p:dialog showEffect="fold" width="450px" header="Descrição do pedido" widgetVar="pedidoDialog" modal="true" hideEffect="fold" resizable="true">
+                            <p:outputPanel id="pedidoDetail" style="text-align:center;">
+                                <p:panelGrid layout="grid" columns="2" rendered="#{not empty registroUsuarioBean.pedidoSelecionado}" columnClasses="label,value">
+                                    <h:outputText value="ID:" /> 
+                                    <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.idPedido}"/>
+
+                                    <h:outputText value="Nome: "/>
+                                    <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.nome}"/>
+
+                                    <h:outputText value="Descrição do pedido de registro: " />
+                                    <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.descricao}"/>
+                                    <p:commandButton value="Aceitar" action="#{registroUsuarioBean.aceitar()}"/>
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
+                    </h:form>
                 </div>
-                <h:form id="form">
-                    <p:growl id="msgs" showDetail="true"/>
-                    <p:dataTable id="DTPedidosRegistro" var="pedido" value="#{registroUsuarioBean.arrayPedidos}">
-                        <f:facet name="header">
-                            Pedidos de registro no sistema
-                        </f:facet>
-                        <p:column headerText="N° ID">
-                            <h:outputText value="#{pedido.idPedido}" />
-                        </p:column>
-                        <p:column headerText="Nome">
-                            <h:outputText value="#{pedido.nome}" />
-                        </p:column>
-                        <p:column headerText="Telefone">
-                            <h:outputText value="#{pedido.telefone}" />
-                        </p:column>
-                        <p:column headerText="E-Mail">
-                            <h:outputText value="#{pedido.email}" />
-                        </p:column>
-                        <p:column headerText="Matrícula">
-                            <h:outputText value="#{pedido.matricula}" />
-                        </p:column>
-                        <p:column style="width:32px; text-align: center">
-                            <p:commandButton update="form:pedidoDetail" oncomplete="PF('pedidoDialog').show()" icon="pi pi-search" title="View">
-                                <f:setPropertyActionListener value="#{pedido}" target="#{registroUsuarioBean.pedidoSelecionado}" />
-                            </p:commandButton>
-                        </p:column> 
-                    </p:dataTable>
-                    
-                    <p:commandButton value="Atualizar" action="#{registroUsuarioBean.metodoBuscar()}" update="form"></p:commandButton>
-                    
-                    <p:dialog showEffect="fold" width="450px" header="Descrição do pedido" widgetVar="pedidoDialog" modal="true" hideEffect="fold" resizable="true">
-                        <p:outputPanel id="pedidoDetail" style="text-align:center;">
-                            <p:panelGrid layout="grid" columns="2" rendered="#{not empty registroUsuarioBean.pedidoSelecionado}" columnClasses="label,value">
-                                <h:outputText value="ID:" /> 
-                                <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.idPedido}"/>
-                                
-                                <h:outputText value="Nome: "/>
-                                <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.nome}"/>
-                                
-                                <h:outputText value="Descrição do pedido de registro: " />
-                                <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.descricao}"/>
-                                <p:commandButton value="Aceitar" action="#{registroUsuarioBean.aceitar()}"/>
-                            </p:panelGrid>
-                        </p:outputPanel>
-                    </p:dialog>
-                </h:form>
-                
             </div>       
         </div>
     </h:body>

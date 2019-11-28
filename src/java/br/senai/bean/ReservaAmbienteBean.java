@@ -13,16 +13,18 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class ReservaAmbienteBean {
     
- /* --------------------------------- Atributos ----------------------------- */
+ /* --------------------------------- Atributos ----------------------------- */    
     
-    private UserDAO usuarioDAO = new UserDAO();
-    private AmbienteDAO ambienteDAO = new AmbienteDAO();
+    /* Usado para criar, buscar, aceitar e negar pedidos  de reserva. */
     private PedidoReservaDAO pedidoDAO = new PedidoReservaDAO();
     
+    /* Objeto usado para criar novos pedidos de reserva. */
     private Pedido pedidoReserva = new Pedido();
+    
     
     @ManagedProperty(value = "#{ambienteBean}")
     private AmbienteBean ambienteBeanImportado = new AmbienteBean();
+    
     
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean usuarioBeanImportado = new LoginBean();
@@ -53,22 +55,6 @@ public class ReservaAmbienteBean {
     
  /* --------------------------------- Getters e Setters --------------------- */
     
-    public UserDAO getUsuarioDAO() {
-        return usuarioDAO;
-    }
-
-    public void setUsuarioDAO(UserDAO usuarioDAO) {
-        this.usuarioDAO = usuarioDAO;
-    }
-
-    public AmbienteDAO getAmbienteDAO() {
-        return ambienteDAO;
-    }
-
-    public void setAmbienteDAO(AmbienteDAO ambienteDAO) {
-        this.ambienteDAO = ambienteDAO;
-    }
-
     public PedidoReservaDAO getPedidoDAO() {
         return pedidoDAO;
     }

@@ -18,30 +18,56 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class RegistroUsuarioBean {
     
- // PedidosDAO importa todos pedidos do sistema para que o admin visualize-os.
+ /* --------------------------------- Atributos ----------------------------- */
+    
+    /* 
+    *   PedidosDAO é usado para importar todos pedidos do
+    *   sistema para que o admin visualize-os.
+    */
     private pedidoRegistroDAO PedidosDAO = new pedidoRegistroDAO();
     
- // novoUsuarioDAO registra novos usuários no sistema.
+    /* Usado para registrar novos usuários no sistema. */    
     private UserDAO novoUsuarioDAO = new UserDAO();
     
-    
+    /* Lista receptora do método buscarPedidos do PedidoRegistroDAO */
     private List<PedidoRegistro> arrayPedidos = new ArrayList<>();
+    
+    /* Usado para resgatar valores de um pedido selecionado em dataTables */
     private PedidoRegistro pedidoSelecionado;
     
+ /* --------------------------------- Fim de atributos ---------------------- */
+    
+    
+ /* --------------------------------- Métodos ------------------------------- */
+    
+    /*
+    *   Método preRenderView da página registrarUsuarios.jsf
+    *   usado para popular a dataTable presente na página.
+    */
+    public void PRVPedidosRegistro(){
+        arrayPedidos = PedidosDAO.buscarPedidos();
+    }
+    
+    
+    /*
+    *   Método usado para aceitar pedidos de registro
+    *   e registrar novos usuários no sistema.
+    */
     public void aceitar(){
         novoUsuarioDAO.registrarUsuario(pedidoSelecionado.getIdPedido());
     }
 
+ /* --------------------------------- Fim de métodos ------------------------ */
+
+
+ /* --------------------------------- Getters e Setters --------------------- */    
+    
     public PedidoRegistro getPedidoSelecionado() {
         return pedidoSelecionado;
     }
 
     public void setPedidoSelecionado(PedidoRegistro pedidoSelecionado) {
         this.pedidoSelecionado = pedidoSelecionado;
-    }
-        
-    public void metodoBuscar(){
-        arrayPedidos = PedidosDAO.buscarPedidos();
     }
     
     public pedidoRegistroDAO getPedidosDAO() {
@@ -66,5 +92,8 @@ public class RegistroUsuarioBean {
 
     public List<PedidoRegistro> getArrayPedidos() {
         return arrayPedidos;
-    }  
+    }
+    
+ /* --------------------------------- Fim de Getters e Setters -------------- */
+
 }

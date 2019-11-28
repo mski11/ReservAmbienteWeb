@@ -7,8 +7,11 @@
     <h:head>
         <title>Reserva Ambientes SENAI</title>
           <link rel="stylesheet" href="css/styles.css"/>
-    </h:head>
+    </h:head>   
     <h:body>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{ambienteBean.PRVmainUsuario()}"/> 
+        </f:metadata>
         <div class="tudo">        
             <div class="topoadmin">
                 <div class="rectangle2">
@@ -17,15 +20,13 @@
                         <img src="img/logo.png" width="50" height="50"/>
                     </div>
                     <div class="informacoes">
-                       <h4>Matheus</h4>
+                       <h4>#{loginBean.infoUser.nome.split(" ")[0]}</h4>
                        <h6>Administrador</h6>
                        <br/>
                        <h6>Reserve-se</h6>
-                       <img src="img/logo-senai.jpg" height="25"/>
                     </div>
                     <div class="botoesajudasair">
-                        <p:button value="Relatar um problema" class="botaorelata" />
-                        <p:button value="Sair" class="botaosai" />
+                        <p:commandButton class="botaosai" value="Sair"/>
                     </div>
                 </div>
                 <div class="rectangle3"> 
@@ -50,7 +51,7 @@
                 </div>            
             </div>
             <div class="conteudo">
-                <h2>Reservas <div class="icon">&#8634;</div></h2>
+                <h2>Ambientes <div class="icon">&#8634;</div></h2>
                 <div class="container">
                     <h:form id="form">
                         <p:growl id="msgs" showDetail="true"/>
@@ -67,11 +68,7 @@
                                     <f:setPropertyActionListener value="#{ambiente}" target="#{ambienteBean.ambienteSelecionado}" />
                                 </p:commandButton>
                             </p:column>
-
-                        </p:dataTable>
-                        
-                        <p:commandButton value="Atualizar lista de ambientes" action="#{ambienteBean.buscarAmbiente()}" update="@form"></p:commandButton>
-                        
+                        </p:dataTable>                        
                     </h:form>
                 </div> 
             </div>
