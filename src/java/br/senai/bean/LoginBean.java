@@ -37,10 +37,18 @@ public class LoginBean {
     
  /* --------------------------------- Métodos ------------------------------- */
     
+    /*
+    *   Método preRenderView que popula a dataTable em
+    *   visualizarUsuarios.jsf antes do carregamento da view.
+    */
     public void PRVVisualizarUsuarios(){
         listUsuarios = userDAO.buscarUsuarios();
     }
     
+    /*
+    *   Método usado para logar o usuário baseado na
+    *   permissão de sua conta.
+    */
     public void login(){
         infoUser = userDAO.loginCheck(userLoginInput);
         try {
@@ -59,6 +67,14 @@ public class LoginBean {
         }
     }
     
+    public void banirUsuario(){
+        userDAO.excluir(usuarioSelecionado);
+        buscarUsuarios();
+    }
+    
+    /*  Método usado para buscar usuários e preencher
+        a dataTable presente em visualizarUsuarios.jsf
+    */
     public void buscarUsuarios(){
         listUsuarios = userDAO.buscarUsuarios();
     }
@@ -71,6 +87,16 @@ public class LoginBean {
     public String conectar(){
         return pr.conectar();
     }
+    
+    public void deslogar(){
+        infoUser = new Usuario();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("Login.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 
  /* --------------------------------- Fim de métodos ------------------------ */
     

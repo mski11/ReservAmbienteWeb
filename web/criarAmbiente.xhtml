@@ -22,9 +22,9 @@
                        <br/>
                        <h6>Reserve-se</h6>
                     </div>
-                    <div class="botoesajudasair">
-                        <p:button value="Relatar um problema" class="botaorelata" />
-                        <p:button value="Sair" class="botaosai" />
+                        <div class="container">
+                            <p:commandButton value="Desconectar" action="#{loginBean.deslogar()}"/> 
+                        </div>
                     </div>
                 </div>
                 <div class="rectangle3"> 
@@ -38,6 +38,7 @@
             <div class="conteudo">
                 <h2>Criar ambiente <div class="icon">&#8634;</div></h2>
                 <div class="container">
+                        <p:commandButton value="Desconectar" action="#{loginBean.deslogar()}"/> 
                     <h:form id="form">
                         <p:growl id="msgs" showDetail="true"/>
 
@@ -48,7 +49,7 @@
 
                         <div id="listaItens">         
                             <h4 id="itensAmbienteHeader">Itens do ambiente</h4>
-                            <p:dataTable id="dt" var="item" value="#{ambienteBean.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem" scrollable="true" scrollHeight="280" scrollWidth="785">
+                            <p:dataTable id="dt" var="item" value="#{ambienteBean.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda." editable="true" editMode="cell" widgetVar="cellItem" scrollable="true" scrollHeight="280" scrollWidth="785">
                                 <p:ajax event="cellEdit" listener="#{ambienteBean.onCellEditNovoAmbiente}" update=":form:msgs" />
 
                                 <p:column headerText="Nome" style="width:100px">

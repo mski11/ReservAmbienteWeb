@@ -27,7 +27,7 @@
                     <div class="informacaoreserva">
                         <div class="itensambiente">
                             <h5>Itens do Ambiente:</h5>
-                            <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" widgetVar="cellItem" scrollable="true" scrollHeight="395" scrollWidth="600">
+                            <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Este ambiente não contém itens." widgetVar="cellItem" scrollable="true" scrollHeight="395" scrollWidth="600">
                                 <p:column headerText="Nome" style="width:150px">
                                     <h:outputText value="#{item.nome}" />
 

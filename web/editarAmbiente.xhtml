@@ -26,8 +26,7 @@
                        <h6>Reserve-se</h6>
                     </div>
                     <div class="botoesajudasair">
-                        <p:button value="Relatar um problema" class="botaorelata" />
-                        <p:button value="Sair" class="botaosai" />
+                        <p:commandButton value="Desconectar" action="#{loginBean.deslogar()}"/> 
                     </div>
                 </div>
                 <div class="rectangle3"> 
@@ -50,7 +49,7 @@
 
                         <div id="listaItens">         
                             <h4 id="itensAmbienteHeader">Itens do ambiente</h4>
-                            <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem" scrollable="true" scrollHeight="270" scrollWidth="765">
+                            <p:dataTable id="dt" var="item" value="#{ambienteBean.ambienteSelecionado.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda." editable="true" editMode="cell" widgetVar="cellItem" scrollable="true" scrollHeight="270" scrollWidth="765">
                                 <p:column headerText="Nome" style="width:150px">
                                         <h:outputText value="#{item.nome}" />
                                 </p:column>

@@ -25,11 +25,9 @@
                         <h6>Administrador</h6>
                         <br/>
                         <h6>Reserve-se</h6>
-                        <img src="img/logo-senai.jpg" height="25"/>
                     </div>
                     <div class="botoesajudasair">
-                        <p:button value="Relatar um problema" class="botaorelata" />
-                        <p:button value="Sair" class="botaosai" />
+                        <p:commandButton value="Desconectar" action="#{loginBean.deslogar()}"/> 
                     </div>
                 </div>
                 <div class="rectangle3"> 
@@ -55,7 +53,7 @@
                 <div class='container'>
                     <h:form id="form">
                         <p:growl id="msgs" showDetail="true"/>
-                        <p:dataTable id="DTPedidosRegistro" var="pedido" value="#{registroUsuarioBean.arrayPedidos}">
+                        <p:dataTable id="DTPedidosRegistro" var="pedido" value="#{registroUsuarioBean.arrayPedidos}" emptyMessage="Não existem pedidos de registro no momento.">
                             <p:column headerText="N° ID">
                                 <h:outputText value="#{pedido.idPedido}" />
                             </p:column>
@@ -78,7 +76,7 @@
                             </p:column> 
                         </p:dataTable>
 
-                        <p:commandButton value="Atualizar" action="#{registroUsuarioBean.metodoBuscar()}" update="form"></p:commandButton>
+                        <p:commandButton value="Atualizar" action="#{registroUsuarioBean.metodoBuscar()}" update="form:DTPedidosRegistro"></p:commandButton>
 
                         <p:dialog showEffect="fold" width="450px" header="Descrição do pedido" widgetVar="pedidoDialog" modal="true" hideEffect="fold" resizable="true">
                             <p:outputPanel id="pedidoDetail" style="text-align:center;">
@@ -91,7 +89,8 @@
 
                                     <h:outputText value="Descrição do pedido de registro: " />
                                     <h:outputText value="#{registroUsuarioBean.pedidoSelecionado.descricao}"/>
-                                    <p:commandButton value="Aceitar" action="#{registroUsuarioBean.aceitar()}"/>
+                                    <p:commandButton value="Aceitar" action="#{registroUsuarioBean.aceitar()}" oncomplete="PF('pedidoDialog').hide()" update="form:DTPedidosRegistro"/>
+                                    <p:commandButton value="Negar" action="#{registroUsuarioBean.negar()}" oncomplete="PF('pedidoDialog').hide()" update="form:DTPedidosRegistro"/>
                                 </p:panelGrid>
                             </p:outputPanel>
                         </p:dialog>

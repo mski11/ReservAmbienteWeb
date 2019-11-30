@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.apache.tomcat.util.http.fileupload.RequestContext;
 
 @ManagedBean
 @SessionScoped
@@ -50,12 +52,31 @@ public class RegistroUsuarioBean {
     
     
     /*
-    *   Método usado para aceitar pedidos de registro
-    *   e registrar novos usuários no sistema.
+    *   Método usado para aceitar pedidos de registro,
+    *   registrando um novo usuário e excluindo o pedido.
     */
     public void aceitar(){
         novoUsuarioDAO.registrarUsuario(pedidoSelecionado.getIdPedido());
+        PedidosDAO.excluirPedido(pedidoSelecionado.getIdPedido());
+        metodoBuscar();
     }
+    
+    /*
+    *   Método usado para negar e excluir pedidos de registro.
+    */
+    public void negar(){
+        PedidosDAO.excluirPedido(pedidoSelecionado.getIdPedido());
+        metodoBuscar();
+    }
+    
+    /*
+    *   Método usado para popular a dataTable
+    *   da página registrarUsuarios.jsf.
+    */
+    public void metodoBuscar(){
+        arrayPedidos = PedidosDAO.buscarPedidos();
+    }
+    
 
  /* --------------------------------- Fim de métodos ------------------------ */
 
