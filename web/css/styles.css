@@ -398,6 +398,7 @@ fieldset {
     border-left: 5px solid #1E9585;
     margin: 5px 0 0 15px;
     float: left;
+    padding-left: 10px;
 }
 .itensadd .itens .btn-success{
     margin-top: 5px;
@@ -409,7 +410,7 @@ fieldset {
 .itensadd .item .btn-item{
     width: 140px;
 }
-.itensadd .qtde .btn-quantidade{
+.itensadd .qtde .btn-quantidade input{
     width: 80px;
 }
 .itensadd .qtde{
@@ -468,6 +469,7 @@ fieldset {
   color: #fff;
   background-color: #dc3545;
   border-color: #dc3545;
+  margin-top: 5px;
 }
 /*
 visualisar usuarios

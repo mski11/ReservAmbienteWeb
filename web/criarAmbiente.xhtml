@@ -17,14 +17,14 @@
                         <img src="img/logo.png" width="50" height="50"/>
                     </div>
                     <div class="informacoes">
-                       <h4>#{loginBean.infoUser.nome.split(" ")[0]}</h4>
+                       <h4>Sammy</h4>
                        <h6>Administrador</h6>
                        <br/>
                        <h6>Reserve-se</h6>
                     </div>
-                        <div class="container">
-                            <p:commandButton value="Desconectar" action="#{loginBean.deslogar()}"/> 
-                        </div>
+                    <div class="botoesajudasair">
+                        <p:button value="Relatar um problema" class="botaorelata" />
+                        <p:button value="Sair" class="botaosai" />
                     </div>
                 </div>
                 <div class="rectangle3"> 
@@ -38,7 +38,6 @@
             <div class="conteudo">
                 <h2>Criar ambiente <div class="icon">&#8634;</div></h2>
                 <div class="container">
-                        <p:commandButton value="Desconectar" action="#{loginBean.deslogar()}"/> 
                     <h:form id="form">
                         <p:growl id="msgs" showDetail="true"/>
 
@@ -49,7 +48,7 @@
 
                         <div id="listaItens">         
                             <h4 id="itensAmbienteHeader">Itens do ambiente</h4>
-                            <p:dataTable id="dt" var="item" value="#{ambienteBean.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda." editable="true" editMode="cell" widgetVar="cellItem" scrollable="true" scrollHeight="280" scrollWidth="785">
+                            <p:dataTable id="dt" var="item" value="#{ambienteBean.itensAmbiente}" emptyMessage="Nenhum item foi registrado ainda. :)" editable="true" editMode="cell" widgetVar="cellItem" scrollable="true" scrollHeight="280" scrollWidth="785">
                                 <p:ajax event="cellEdit" listener="#{ambienteBean.onCellEditNovoAmbiente}" update=":form:msgs" />
 
                                 <p:column headerText="Nome" style="width:100px">
@@ -93,7 +92,7 @@
 
                                 <div class="qtde">
                                     Quantidade<br/>
-                                    <p:inputNumber id="qtdItem" value="#{ambienteBean.item.quantidade}" class="form-control btn-quantidade" placeholder="1-99"  minValue="1" maxValue="99" /> 
+                                    <p:inputNumber id="qtdItem" value="#{ambienteBean.item.quantidade}" class="btn-quantidade" placeholder="1-99"  minValue="1" maxValue="99" /> 
                                 </div>
 
                                 <div class="descricao">

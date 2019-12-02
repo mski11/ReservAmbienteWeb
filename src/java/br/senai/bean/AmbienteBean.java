@@ -8,12 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.CellEditEvent;
 
-@SessionScoped
+@ApplicationScoped
 @ManagedBean(name="ambienteBean")
 public class AmbienteBean {
     
@@ -192,6 +194,15 @@ public class AmbienteBean {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item editado com sucesso!", "Valor antigo: " + oldValue + ", Novo valor:" + newValue);
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
+    }
+    
+    
+    
+    public void testin(){
+        FacesMessage Message = new FacesMessage("Pedido feito!");
+        Message.setSeverity(FacesMessage.SEVERITY_INFO);
+        FacesContext fc = FacesContext.getCurrentInstance();
+        fc.addMessage(null, Message);
     }
 
  /* --------------------------------- Fim de métodos ------------------------ */

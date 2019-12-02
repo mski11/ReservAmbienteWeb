@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Pedido {
     private String descricao, respostaMestre, idAmbiente;
-    private Date diaReserva, diaPedido;
+    private Date diaPedido;
     private Date horaInicio, horaFim;
     private int idPedido, idUsuario;
     private Boolean statusResposta;
@@ -19,9 +19,8 @@ public class Pedido {
         this.diaPedido = diaPedido;
     }
 
-    public Pedido(String descricao, Date diaReserva, Date horaInicio, Date horaFim, int idUsuario, String idAmbiente, Date diaPedido) {
+    public Pedido(String descricao, Date horaInicio, Date horaFim, int idUsuario, String idAmbiente, Date diaPedido) {
         this.descricao = descricao;
-        this.diaReserva = diaReserva;
         this.horaInicio = horaInicio;
         this.horaFim = horaFim;
         this.idUsuario = idUsuario;
@@ -29,9 +28,8 @@ public class Pedido {
         this.diaPedido = diaPedido;
     }
 
-    public Pedido(String descricao, Date diaReserva, Date diaPedido, Date horaInicio, Date horaFim, int idPedido, int idUsuario, String idAmbiente, Boolean statusResposta) {
+    public Pedido(String descricao, Date diaPedido, Date horaInicio, Date horaFim, int idPedido, int idUsuario, String idAmbiente, Boolean statusResposta) {
         this.descricao = descricao;
-        this.diaReserva = diaReserva;
         this.diaPedido = diaPedido;
         this.horaInicio = horaInicio;
         this.horaFim = horaFim;
@@ -73,14 +71,6 @@ public class Pedido {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public Date getDiaReserva() {
-        return diaReserva;
-    }
-
-    public void setDiaReserva(Date diaReserva){
-       this.diaReserva = diaReserva;
     }
     
    // public void setDiaReserva(String diaReserva) {

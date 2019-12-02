@@ -9,198 +9,153 @@
           <link rel="stylesheet" href="css/styles.css"/>
     </h:head>
     <h:body>
-        
-    <div class="tudo">
-
-    <div class="topoadmin">
-            <div class="rectangle2">
-                <div class="adminlogo">
-                    <img src="img/adminuser.png" width="50" height="50"/>
-                    <img src="img/logo.png" width="50" height="50"/>
-                </div>
-                
-                <div class="informacoes">
-                       <h4>#{loginBean.infoUser.nome.split(" ")[0]}</h4>
-                       <h6>Administrador</h6>
-                       <br/>
-                       <h6>Reserve-se</h6>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{reservaAmbienteBean.PRVVisualizarReservas()}"/>
+        </f:metadata>
+        <div class="tudo">
+            <div class="topoadmin">
+                <div class="rectangle2">
+                    <div class="adminlogo">
+                        <img src="img/adminuser.png" width="50" height="50"/>
                     </div>
-                <div class="botoesajudasair">
-                    <p:commandButton value="Desconectar" action="#{loginBean.deslogar()}"/> 
+                    <div class="informacoes">
+                        <h4>#{loginBean.infoUser.nome.split(" ")[0]}</h4>
+                        <h6>Administrador</h6>
+                        <br/>
+                        <h6>Reserve-se</h6>
+                    </div>
+                    <div class="botoesajudasair">
+                        <p:commandButton value="Desconectar" action="#{loginBean.deslogar()}"/> 
+                    </div>
                 </div>
-            </div>
-            <div class="rectangle3"> 
-                              <a href="visualisarReservas.jsf">
-                    <p:button value="Visualizar Reserva" class="visualizaReserva" />
+                <div class="rectangle3"> 
+                    <a href="visualisarReservas.jsf">
+                        <p:button value="Visualizar Reserva" class="visualizaReserva" />
                     </a>
                     <a href="registrarUsuarios.jsf">
-                    <p:button value="Registra Usuarios" class="registrarUsuarios" />
+                        <p:button value="Registra Usuarios" class="registrarUsuarios" />
                     </a>
                     <a href="visualisarUsuarios.jsf">
-                    <p:button value="Visualizar usuários" class="visualizaUsuario" />
+                        <p:button value="Visualizar usuários" class="visualizaUsuario" />
                     </a>
                     <a href="criarAmbiente.jsf">
-                    <p:button value="Criar ambiente" class="criarambiente" />
+                        <p:button value="Criar ambiente" class="criarambiente" />
                     </a>
                     <a href="VisualisarAmbientes.jsf">
-                    <p:button value="Visualizar Ambientes" class="visualizaAmbiente" />
+                        <p:button value="Visualizar Ambientes" class="visualizaAmbiente" />
                     </a>
-            </div>            
+                </div>            
+            </div>
+            <div class="conteudo">
+                <h2 style="margin-bottom: 3px; margin-top: 15px;">Pedidos de reserva</h2>
+                <div class="container">
+                    <h:form id="form">
+                        <p:growl id="msgs" showDetail="true"/>
+                        <p:dataTable id="dtPedidosPendentes" var="pedido" value="#{reservaAmbienteBean.pedidosPendentes}" scrollable="true" scrollWidth="1245" scrollHeight="160" emptyMessage="Não existem usuários registrados.">
+                            <f:facet name="header">Pedidos pendentes</f:facet>
+                            <p:column headerText="ID Usuario" style="width: 65px;">
+                                <h:outputText value="#{pedido.idUsuario}" />
+                            </p:column>
 
-        </div>
-        <div class="conteudo">
-            <br/>
-                        <br />
+                            <p:column headerText="Ambiente requisitado">
+                                <h:outputText value="#{pedido.idAmbiente}" />
+                            </p:column>
 
-        <div class="container demo">
-        
-        
-                       <p:accordionPanel>
-                        <p:tab title="Ambiente: Laboratório Aberto">
-                            <h:panelGrid columns="2" cellpadding="10">
-                               <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                <i class="glyphicon glyphicon-menu-down"></i>
-                            </a>
-                      
-                            <div class="panel-heading" role="tab" id="headingOne">
-                            </div>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturas">
-                          <strong>Considerações do usuário:</strong>
-                          <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pellentesque orci eget dolor congue, at pulvinar nulla
-                        feugiat. Vestibulum et felis vitae neque dictum pretium in aliquet nunc. Maecenas egestas sagittis odio ac luctus.
-                        Phasellus vel lorem mattis, venenatis quam nec, mattis justo. Curabitur vestibulum quam nisi. In vitae porttitor nulla,
-                        in pulvinar nibh. Donec urna libero, ultrices non erat nec, blandit tempor dui. Pellentesque sit amet faucibus ipsum.
-                          </h5><br/>
-                        <br/>
-                            <div class="datareserva">
-                            <strong>Data: 12/12/19</strong>
-                            </div>
-                        <br />
-                        <br />
-                            <div class="horarioInicio">
-                            <strong>Horario de inicio: 14:30</strong>
-                            </div>
-                        <br />
-                            <div class="horarioFim">
-                                <strong>Horario de termino: 17:30</strong>
-                            </div>
-                            <br/>
-                            <div class="botoesescolha">
-                                <button class="btn btn-success botaoaceitar" >Aceitar Reserva</button>
-                                <button class="btn btn-danger botaorejeitar">Rejeitar Reserva</button>
-                                <textarea name="descircao" class="textareadescricao" placeholder="Motivo da rejeição"></textarea>
-                            </div>
-                        </div>
-                            </div>
+                            <p:column headerText="Data do evento">
+                                <h:outputText value="#{pedido.diaPedido}" />
+                            </p:column>
+
+                            <p:column style="width:165px; text-align: center">
+                                <p:commandButton value="Avaliar pedido" update="form:pedidoDetail" oncomplete="PF('pedidoDialog').show()" icon="pi pi-search" title="Avaliar">
+                                    <f:setPropertyActionListener value="#{pedido}" target="#{reservaAmbienteBean.pedidoSelecionado}" />
+                                </p:commandButton>
+                            </p:column> 
+                        </p:dataTable>
+                        <p:dialog showEffect="fold" width="450px" header="Descrição do pedido #{reservaAmbienteBean.pedidoSelecionado.idPedido}" widgetVar="pedidoDialog" modal="true" hideEffect="fold" resizable="true">
+                            <p:outputPanel id="pedidoDetail" style="text-align:center;">
+                                <p:panelGrid layout="grid" columns="2" rendered="#{not empty reservaAmbienteBean.pedidoSelecionado}" columnClasses="label,value">
+                                    <h:outputText value="ID do usuário: "/>
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.idUsuario}"/>
+
+                                    <h:outputText value="Ambiente requisitado:" /> 
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.idAmbiente}"/>
+
+                                    <h:outputText value="Descrição: "/>
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.descricao}"/>
+
+                                    <h:outputText value="Data: "/>
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.diaPedido}"/>
+
+
+                                    <h:outputText value="Hora de início do evento:" /> 
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.horaInicio}"/>
+
+                                    <h:outputText value="Hora de término do evento: "/>
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.horaFim}"/>                                
+                                    <p:commandButton value="Aceitar" action="#{reservaAmbienteBean.aceitarPedido()}" oncomplete="PF('pedidoDialog').hide()"/>
+                                    <p:commandButton value="Negar" oncomplete="PF('negarDialog').show()"/>
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
+                        <p:dialog showEffect="fold" width="450px" header="Confirmar negação de pedido" widgetVar="negarDialog" modal="true" hideEffect="fade" resizable="true">
+                            <p:outputPanel id="banDetail" style="text-align:center;">
+                                <h:outputText value="Justifique a negação do pedido."/><br/>
+                                <p:panelGrid layout="grid" columns="1">
+                                        <p:inputText style="width:200px; height: 90px;" id="justificacao" placeholder="Seu pedido foi negado pois..." value="#{reservaAmbienteBean.pedidoSelecionado.respostaMestre}"/>
+                                        <p:commandButton value="Confirmar negação" action="#{reservaAmbienteBean.negarPedido()}" oncomplete="PF('negarDialog').hide(); PF('pedidoDialog').hide()" update="form:dtPedidosPendentes form:dtPedidosRevisados"/>
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
+                        
+                        
+                        <p:dataTable id="dtPedidosRevisados" var="pedido" value="#{reservaAmbienteBean.pedidosRevisados}" scrollable="true" scrollWidth="1245" scrollHeight="160" emptyMessage="Não existem pedidos de reserva revisados.">
+                            <f:facet name="header">Pedidos revisados</f:facet>
+                            <p:column headerText="ID Pedido" style="width: 65px;">
+                                <h:outputText value="#{pedido.idPedido}" />
+                            </p:column>
+
+                            <p:column headerText="Ambiente requisitado">
+                                <h:outputText value="#{pedido.idAmbiente}" />
+                            </p:column>
+
+                            <p:column headerText="Data do evento">
+                                <h:outputText value="#{pedido.diaPedido}" />
+                            </p:column>
+
+                            <p:column style="width:165px; text-align: center">
+                                <p:commandButton value="Visualizar informações" update="form:pedidoRevisadoDetail" oncomplete="PF('pedidoRevisadoDialog').show()" icon="pi pi-search" title="Revisar">
+                                    <f:setPropertyActionListener value="#{pedido}" target="#{reservaAmbienteBean.pedidoSelecionado}" />
+                                </p:commandButton>
+                            </p:column> 
+                        </p:dataTable>
+                        <p:dialog showEffect="fold" width="450px" header="Descrição do pedido #{reservaAmbienteBean.pedidoSelecionado.idPedido}" widgetVar="pedidoRevisadoDialog" modal="true" hideEffect="fold" resizable="true">
+                            <p:outputPanel id="pedidoRevisadoDetail" style="text-align:center;">
+                                <p:panelGrid layout="grid" columns="2" rendered="#{not empty reservaAmbienteBean.pedidoSelecionado}" columnClasses="label,value">
+                                    <h:outputText value="ID do usuário: "/>
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.idUsuario}"/>
+
+                                    <h:outputText value="Ambiente requisitado:" /> 
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.idAmbiente}"/>
+
+                                    <h:outputText value="Descrição: "/>
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.descricao}"/>
+
+                                    <h:outputText value="Data: "/>
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.diaPedido}"/>
+
+
+                                    <h:outputText value="Hora de início do evento:" /> 
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.horaInicio}"/>
+
+                                    <h:outputText value="Hora de término do evento: "/>
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.horaFim}"/>                                
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
+                    </h:form>
                 </div>
-                            </h:panelGrid>
-                        </p:tab>
-                         <p:tab title="Ambiente: Laboratório Aberto">
-                            <h:panelGrid columns="2" cellpadding="10">
-                               <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                <i class="glyphicon glyphicon-menu-down"></i>
-                            </a>
-                      
-                            <div class="panel-heading" role="tab" id="headingOne">
-                            </div>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturas">
-                          <strong>Considerações do usuário:</strong>
-                          <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pellentesque orci eget dolor congue, at pulvinar nulla
-                        feugiat. Vestibulum et felis vitae neque dictum pretium in aliquet nunc. Maecenas egestas sagittis odio ac luctus.
-                        Phasellus vel lorem mattis, venenatis quam nec, mattis justo. Curabitur vestibulum quam nisi. In vitae porttitor nulla,
-                        in pulvinar nibh. Donec urna libero, ultrices non erat nec, blandit tempor dui. Pellentesque sit amet faucibus ipsum.
-                          </h5><br/>
-                        <br/>
-                            <div class="datareserva">
-                            <strong>Data: 12/12/19</strong>
-                            </div>
-                        <br />
-                        <br />
-                            <div class="horarioInicio">
-                            <strong>Horario de inicio: 14:30</strong>
-                            </div>
-                        <br />
-                            <div class="horarioFim">
-                                <strong>Horario de termino: 17:30</strong>
-                            </div>
-                            <br/>
-                            <div class="botoesescolha">
-                                <button class="btn btn-success botaoaceitar" >Aceitar Reserva</button>
-                                <button class="btn btn-danger botaorejeitar">Rejeitar Reserva</button>
-                                <textarea name="descircao" class="textareadescricao" placeholder="Motivo da rejeição"></textarea>
-                            </div>
-                        </div>
-                            </div>
-                </div>
-                            </h:panelGrid>
-                        </p:tab>
-                             <p:tab title="Ambiente: Laboratório Aberto">
-                            <h:panelGrid columns="2" cellpadding="10">
-                               <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                <i class="glyphicon glyphicon-menu-down"></i>
-                            </a>
-                      
-                            <div class="panel-heading" role="tab" id="headingOne">
-                            </div>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="nomeclaturas">
-                          <strong>Considerações do usuário:</strong>
-                          <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pellentesque orci eget dolor congue, at pulvinar nulla
-                        feugiat. Vestibulum et felis vitae neque dictum pretium in aliquet nunc. Maecenas egestas sagittis odio ac luctus.
-                        Phasellus vel lorem mattis, venenatis quam nec, mattis justo. Curabitur vestibulum quam nisi. In vitae porttitor nulla,
-                        in pulvinar nibh. Donec urna libero, ultrices non erat nec, blandit tempor dui. Pellentesque sit amet faucibus ipsum.
-                          </h5><br/>
-                        <br/>
-                            <div class="datareserva">
-                            <strong>Data: 12/12/19</strong>
-                            </div>
-                        <br />
-                        <br />
-                            <div class="horarioInicio">
-                            <strong>Horario de inicio: 14:30</strong>
-                            </div>
-                        <br />
-                            <div class="horarioFim">
-                                <strong>Horario de termino: 17:30</strong>
-                            </div>
-                            <br/>
-                            <div class="botoesescolha">
-                                <button class="btn btn-success botaoaceitar" >Aceitar Reserva</button>
-                                <button class="btn btn-danger botaorejeitar">Rejeitar Reserva</button>
-                                <textarea name="descircao" class="textareadescricao" placeholder="Motivo da rejeição"></textarea>
-                            </div>
-                        </div>
-                            </div>
-                </div>
-                            </h:panelGrid>
-                        </p:tab>
-                    </p:accordionPanel>
-        
-        
+            </div>
         </div>
-     </div>
-    </div>
-        
     </h:body>
 </html>
 

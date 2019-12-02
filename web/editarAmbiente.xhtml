@@ -5,7 +5,7 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Reserva Ambientes SENAI</title>
+        <title>Editar ambiente - Reserve-se</title>
           <link rel="stylesheet" href="css/styles.css"/>
     </h:head>
     <h:body>
@@ -63,7 +63,7 @@
                                 </p:column>
                                 
                                 <p:column style="width:55px;">
-                                    <p:commandButton value="Excluir item" action="#{ambienteBean.deletarItem(item)}" update="@form"/>
+                                    <p:commandButton value="Excluir item" action="#{ambienteBean.deletarItem(item)}" update="form:dt"/>
                                 </p:column>
                             </p:dataTable>
                         </div>
@@ -76,16 +76,16 @@
                                 </div>
                                 <div class="qtde">
                                     Quantidade<br/>
-                                    <p:inputNumber id="qtdItem" value="#{ambienteBean.item.quantidade}" class="form-control btn-quantidade" placeholder="1-99"  minValue="1" maxValue="99" /> 
+                                    <p:inputNumber id="qtdItem" value="#{ambienteBean.item.quantidade}" class="btn-quantidade" placeholder="1-99"  minValue="1" maxValue="99"/> 
                                 </div>
                                 <div class="descricao">
                                     Descricao<br/>
-                                    <p:inputText id="descItem" value="#{ambienteBean.item.descricao}" type="text" class="form-control btn-quantidade" placeholder="Descreva o item" /> 
+                                    <p:inputText id="descItem" value="#{ambienteBean.item.descricao}"  class="form-control btn-quantidade" placeholder="Descreva o item" /> 
                                 </div>
                                 <div class="botaofodamuitozika">
                                     <h:button value="Limpar todos os Campos" class="btn btn-danger botao" />
                                     <p:commandButton class="btn btn-success botao" value="Adicionar item" action="#{ambienteBean.adicionarItem()}" update="@form"/>                                  <br></br><br></br>
-                                    <p:commandButton value="Criar Ambiente" class="btn btn-success botao" action="#{ambienteBean.criarAmbiente()}"/>  
+                                    <p:commandButton value="Salvar Ambiente" class="btn btn-success botao" action="#{ambienteBean.criarAmbiente()}"/>  
                                 </div>
                             </div>
                         </div>

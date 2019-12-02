@@ -4,13 +4,18 @@ import br.senai.model.Ambiente;
 import br.senai.model.Pedido;
 import br.senai.model.Usuario;
 import br.senai.util.FabricaConexao;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.context.FacesContext;
 
 public class PedidoReservaDAO {
     
@@ -46,22 +51,122 @@ public class PedidoReservaDAO {
         return true;
     }
     
-    public void responderPedido(Pedido pedido, String resposta, String data){
-        
+    public List<Pedido> buscarPedidosPendentes(){
+        try {
+            
+            Connection conexao = FabricaConexao.getConexao(); 
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM pedidoreserva WHERE statusAtual = 'N'");
+            ResultSet rs = ps.executeQuery();
+            List<Pedido> pedidosPendentes = new ArrayList<>();
+
+            while(rs.next()){
+                
+                Pedido pedido = new Pedido();
+                pedido.setIdPedido(rs.getInt("idPedido"));
+                pedido.setIdAmbiente(rs.getString("idAmbiente"));
+                pedido.setIdUsuario(rs.getInt("idUsuario"));
+                pedido.setDescricao(rs.getString("descricaoPedido"));
+                Time inicio = new Time(rs.getTime("horaInicio").getTime());
+                Time fim = new Time(rs.getTime("horaFim").getTime());
+                pedido.setHoraInicio(inicio);
+                pedido.setHoraFim(fim);
+                pedido.setDiaPedido(rs.getDate("dataPedido"));
+                
+                pedidosPendentes.add(pedido);
+            }
+            
+            FabricaConexao.fecharConexao();
+            return pedidosPendentes;            
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new ArrayList();
+    }
+    
+    public List<Pedido> buscarPedidosRevisados(){
+        try {
+            Connection conexao = FabricaConexao.getConexao(); 
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM pedidoreserva WHERE statusAtual = 'Y'");
+            ResultSet rs = ps.executeQuery();
+            List<Pedido> pedidosRevisados = new ArrayList<>();
+
+            while(rs.next()){
+                
+                Pedido pedido = new Pedido();
+                pedido.setIdPedido(rs.getInt("idPedido"));
+                pedido.setIdAmbiente(rs.getString("idAmbiente"));
+                pedido.setIdUsuario(rs.getInt("idUsuario"));
+                pedido.setDescricao(rs.getString("descricaoPedido"));
+                Time inicio = new Time(rs.getTime("horaInicio").getTime());
+                Time fim = new Time(rs.getTime("horaFim").getTime());
+                pedido.setHoraInicio(inicio);
+                pedido.setHoraFim(fim);
+                pedido.setDiaPedido(rs.getDate("dataPedido"));
+                
+                pedidosRevisados.add(pedido);
+            }
+            
+            FabricaConexao.fecharConexao();
+            return pedidosRevisados;            
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new ArrayList();
+    }
+    
+    public boolean responderPedido(Pedido pedido){
         try {
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
             
-            ps = conexao.prepareStatement("UPDATE pedidoreserva SET (statusAtual, dataResposta, respostaMestre) VALUES (?, ?, ?");
+            ps = conexao.prepareStatement("UPDATE pedidoreserva SET statusAtual = ?, repostaMestre = ? WHERE idPedido = ?");
+            ps.setBoolean(1, true);
+            ps.setString(2, pedido.getRespostaMestre());
+            ps.setInt(3, pedido.getIdPedido());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+    
+    public List<Pedido> buscarPedidosUsuario(Usuario usuario){
+        try {
+            Connection conexao = FabricaConexao.getConexao();
             
-            ps.setBoolean(1, pedido.getStatusResposta());
-            ps.setString(2, resposta);
-            ps.setString(3, data);
+            PreparedStatement ps;
+            
+            List<Pedido> pedidosUsuario = new ArrayList();
+            
+            ps = conexao.prepareStatement("SELECT * FROM pedidoreserva WHERE idUsuario = ?");
+            ps.setInt(1, usuario.getIdUsuario());
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Pedido pedido = new Pedido();
+                pedido.setIdPedido(rs.getInt("idPedido"));
+                pedido.setIdAmbiente(rs.getString("idAmbiente"));
+                pedido.setIdUsuario(rs.getInt("idUsuario"));
+                pedido.setDescricao(rs.getString("descricaoPedido"));
+                Time inicio = new Time(rs.getTime("horaInicio").getTime());
+                Time fim = new Time(rs.getTime("horaFim").getTime());
+                pedido.setHoraInicio(inicio);
+                pedido.setHoraFim(fim);
+                pedido.setDiaPedido(rs.getDate("dataPedido"));
+                
+                pedidosUsuario.add(pedido);
+            }
+            FabricaConexao.fecharConexao();
+            return pedidosUsuario;
             
         } catch (SQLException ex) {
             Logger.getLogger(PedidoReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        return new ArrayList();
     }
+    
     
 }

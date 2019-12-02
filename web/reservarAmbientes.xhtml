@@ -14,7 +14,7 @@
         </f:metadata>
         <div class="tudo">
             <div class="containereserva">
-                <h:commandButton style="height: 30px; width: 100px; margin-top: 15px; margin-left: 25px;" value="Voltar" action="mainUsuario.jsf"/>
+                <p:commandButton style="height: 30px; width: 100px; margin-top: 15px; margin-left: 25px;" value="Voltar" action="#{reservaAmbienteBean.redirectMainUsuario()}"/>
                 <h5>Preencha todos os campos para fazer sua reserva!</h5>
             </div>
             <div class="conteudo">
@@ -44,7 +44,7 @@
                         </div>
                         <div class="formulariofoda">
                             <h:outputLabel for="dtInicio" value="Em que dia será seu evento?" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
-                                <p:datePicker id="dtInicio" value="#{reservaAmbienteBean.pedidoReserva.diaReserva}"/>
+                                <p:datePicker id="dtInicio" value="#{reservaAmbienteBean.pedidoReserva.diaPedido}"/>
 
                             <h:outputLabel for="hrInicio" value="Quando começa seu evento?" style="display: block;width:300px;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 1.00em;margin-left: 0;margin-right: 0;font-weight: bold;"/>
                                 <p:datePicker id="hrInicio" value="#{reservaAmbienteBean.pedidoReserva.horaInicio}" timeOnly="true" pattern="HH:mm" />

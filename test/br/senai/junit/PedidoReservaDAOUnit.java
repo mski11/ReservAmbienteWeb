@@ -5,6 +5,7 @@ import br.senai.model.Ambiente;
 import br.senai.model.Item;
 import br.senai.model.Pedido;
 import br.senai.model.Usuario;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,18 +20,16 @@ public class PedidoReservaDAOUnit {
     
     public PedidoReservaDAOUnit() {
     }
-    
     @Test
-    public void testePedidoReserva() {
-        
+    public void testeNegarPedido(){
         PedidoReservaDAO dao = new PedidoReservaDAO();
         
         ArrayList<Item> itensAmbiente = new ArrayList();
-        Ambiente ambiente = new Ambiente("TesteConsistencia", false, itensAmbiente);
+        Ambiente ambiente = new Ambiente("Laboratório Aberto", false, itensAmbiente);
         Pedido PedidoReserva = new Pedido();
         
         Usuario usuario = new Usuario();
-        usuario.setIdUsuario(9);
+        usuario.setIdUsuario(2);
         usuario.setNome("Chrys");
         usuario.setTelefone("91015929");
         usuario.setEmail("chrysterafrz@hotmail.com");
@@ -41,16 +40,60 @@ public class PedidoReservaDAOUnit {
         
         LocalDate currentdate = LocalDate.now();
         
-        Date diaReserva = new Date(26/11/2019);
-        Date horaInicio = new Date("14:30");
-        Date horaFim = new Date("12:30");
-        Date diaPedido = new Date();
-        
-        PedidoReserva.setDiaReserva(diaReserva);
+        Date diaPedido = new Date(26/11/2019);
+        Date horaInicio = new Date("26/11/2019 14:30:00");
+        Date horaFim = new Date("26/11/2019 17:30:00");
+
+        PedidoReserva.setDiaPedido(diaPedido);
         PedidoReserva.setHoraInicio(horaInicio);
         PedidoReserva.setHoraFim(horaFim);
+        
         PedidoReserva.setDescricao("Descrição do pedido");
+        PedidoReserva.setIdUsuario(usuario.getIdUsuario());
+        PedidoReserva.setIdAmbiente(ambiente.getIdAmbiente());
+        
+        dao.criarPedido(ambiente, PedidoReserva, usuario);
+        
+        PedidoReserva.setRespostaMestre("Oi");
+        
+        if(dao.responderPedido(PedidoReserva)){
+            System.out.println("Foi");
+        } else {
+            fail("Nao foi");
+        }
+        
+        
+    }
+    
+    public void testePedidoReserva() {
+        
+        PedidoReservaDAO dao = new PedidoReservaDAO();
+        
+        ArrayList<Item> itensAmbiente = new ArrayList();
+        Ambiente ambiente = new Ambiente("Laboratório Aberto", false, itensAmbiente);
+        Pedido PedidoReserva = new Pedido();
+        
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(2);
+        usuario.setNome("Chrys");
+        usuario.setTelefone("91015929");
+        usuario.setEmail("chrysterafrz@hotmail.com");
+        usuario.setMatricula("1234");
+        
+        
+        
+        
+        LocalDate currentdate = LocalDate.now();
+        
+        Date diaPedido = new Date(26/11/2019);
+        Date horaInicio = new Date("26/11/2019 14:30:00");
+        Date horaFim = new Date("26/11/2019 17:30:00");
+
         PedidoReserva.setDiaPedido(diaPedido);
+        PedidoReserva.setHoraInicio(horaInicio);
+        PedidoReserva.setHoraFim(horaFim);
+        
+        PedidoReserva.setDescricao("Descrição do pedido");
         PedidoReserva.setIdUsuario(usuario.getIdUsuario());
         PedidoReserva.setIdAmbiente(ambiente.getIdAmbiente());
         

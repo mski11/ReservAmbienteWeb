@@ -77,32 +77,28 @@ public class pedidoRegistroDAO {
         
         List<PedidoRegistro> pedidos = new ArrayList<>();
         
-         try {
+        try {
              
-             stmt = conexao.prepareStatement(sql);
-             rs = stmt.executeQuery();
+            stmt = conexao.prepareStatement(sql);
+            rs = stmt.executeQuery();
              
-             while(rs.next()){
-                 
-                PedidoRegistro pedido = new PedidoRegistro();
-                
-                pedido.setIdPedido(rs.getInt("idPedido"));
-                pedido.setNome(rs.getString("nome"));
-                pedido.setTelefone(rs.getString("telefone"));
-                pedido.setEmail(rs.getString("email"));
-                pedido.setMatricula(rs.getString("matricula"));
-                pedido.setDescricao(rs.getString("descricao"));
-                pedidos.add(pedido);
+            while(rs.next()){
+               PedidoRegistro pedido = new PedidoRegistro();
+               pedido.setIdPedido(rs.getInt("idPedido"));
+               pedido.setNome(rs.getString("nome"));
+               pedido.setTelefone(rs.getString("telefone"));
+               pedido.setEmail(rs.getString("email"));
+               pedido.setMatricula(rs.getString("matricula"));
+               pedido.setDescricao(rs.getString("descricao"));
+               pedidos.add(pedido);
             }
              
-         } catch (SQLException ex) {
-             Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
-         }  finally {
-             FabricaConexao.fecharConexao();
-         }
-         
-         return pedidos;
-        
+        } catch (SQLException ex) {
+            Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }  finally {
+            FabricaConexao.fecharConexao();
+        }
+        return pedidos;
     }
     
     public List<PedidoRegistro> buscarPedidos(){
