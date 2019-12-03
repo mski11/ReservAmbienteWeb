@@ -171,6 +171,7 @@ public class PedidoReservaDAO {
             
         } catch (SQLException ex) {
             Logger.getLogger(PedidoReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
         return new ArrayList();
     }

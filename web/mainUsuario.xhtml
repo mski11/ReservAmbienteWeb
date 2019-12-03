@@ -32,11 +32,11 @@
                 </div><br></br>
             </div>
             <div class="conteudo">
-                <h4 style="padding-left: 110px;">Selecione um ambiente para visualizar suas características e efetuar uma reserva!</h4>
+                <h4 style="padding-left: 110px; margin-bottom: 10px; margin-top: 15px;">Selecione um ambiente para visualizar suas características e efetuar uma reserva!</h4>
                 <h:form id="form">
                     <p:growl id="msgs" showDetail="true" />
                     <div id="ambientesUser">
-                        <p:dataTable emptyMessage="Não existem ambientes registrados ainda." id="dt" var="ambiente" value="#{ambienteBean.ambientes}" scrollable="true" scrollHeight="218" scrollWidth="1150px">
+                        <p:dataTable emptyMessage="Não existem ambientes registrados ainda." id="dt" var="ambiente" value="#{ambienteBean.ambientes}" scrollable="true" scrollHeight="190" scrollWidth="1150px">
                             <f:facet name="header">Ambientes disponíveis para reserva</f:facet>
                             <p:column headerText="Ambiente" style="width: 546px; text-align: center;">
                                 <h:outputText value="#{ambiente.idAmbiente}" />
@@ -49,7 +49,7 @@
                             </p:column>
                         </p:dataTable>
                         
-                        <p:dataTable emptyMessage="Você ainda não fez nenhum pedido de reserva." id="dtPedidosUsuario" var="pedido" value="#{ambienteBean.pedidosUsuario}" scrollable="true" scrollHeight="190" scrollWidth="1150px">
+                        <p:dataTable emptyMessage="Você ainda não fez nenhum pedido de reserva." id="dtPedidosUsuario" var="pedido" value="#{ambienteBean.pedidosUsuario}" scrollable="true" scrollHeight="109" scrollWidth="1150px">
                             <f:facet name="header">Meus pedidos de reserva</f:facet>
                             <p:column headerText="Pedido" style="text-align: center; width: 60px;">
                                 <h:outputText value="#{pedido.idPedido}" />

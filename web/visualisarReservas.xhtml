@@ -7,8 +7,10 @@
     <h:head>
         <title>Pedidos de reserva - Reserve-se</title>
           <link rel="stylesheet" href="css/styles.css"/>
+          
     </h:head>
     <h:body>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
         <f:metadata>
             <f:event type="preRenderView" listener="#{reservaAmbienteBean.PRVVisualizarReservas()}"/>
         </f:metadata>
@@ -52,7 +54,7 @@
                 <div class="container">
                     <h:form id="form">
                         <p:growl id="msgs" showDetail="true"/>
-                        <p:dataTable id="dtPedidosPendentes" var="pedido" value="#{reservaAmbienteBean.pedidosPendentes}" scrollable="true" scrollWidth="1245" scrollHeight="160" emptyMessage="Não existem novos pedidos de reserva.">
+                        <p:dataTable id="dtPedidosPendentes" var="pedido" value="#{reservaAmbienteBean.pedidosPendentes}" scrollable="true" scrollWidth="1245" scrollHeight="145" emptyMessage="Não existem novos pedidos de reserva.">
                             <f:facet name="header">Pedidos pendentes</f:facet>
                             <p:column headerText="ID Usuario" style="width: 65px;">
                                 <h:outputText value="#{pedido.idUsuario}" />
@@ -67,7 +69,7 @@
                             </p:column>
 
                             <p:column style="width:165px; text-align: center">
-                                <p:commandButton value="Avaliar pedido" update="form:pedidoDetail" oncomplete="PF('pedidoDialog').show()" icon="pi pi-search" title="Avaliar">
+                                <p:commandButton value="Avaliar pedido" update="form:pedidoDetail" oncomplete="PF('pedidoDialog').show()" icon="pi pi-bookmark" title="Avaliar">
                                     <f:setPropertyActionListener value="#{pedido}" target="#{reservaAmbienteBean.pedidoSelecionado}" />
                                 </p:commandButton>
                             </p:column> 
@@ -93,8 +95,8 @@
 
                                     <h:outputText value="Hora de término do evento: "/>
                                     <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.horaFim}"/>                                
-                                    <p:commandButton value="Aceitar" action="#{reservaAmbienteBean.aceitarPedido()}" oncomplete="PF('pedidoDialog').hide()"/>
-                                    <p:commandButton value="Negar" oncomplete="PF('negarDialog').show()"/>
+                                    <p:commandButton value="Aceitar" action="#{reservaAmbienteBean.aceitarPedido()}" oncomplete="PF('pedidoDialog').hide()" update="form:dtPedidosPendentes form:dtPedidosRevisados"/>
+                                    <p:commandButton value="Negar" oncomplete="PF('negarDialog').show()" update="@form"/>
                                 </p:panelGrid>
                             </p:outputPanel>
                         </p:dialog>
@@ -109,7 +111,7 @@
                         </p:dialog>
                         
                         
-                        <p:dataTable id="dtPedidosRevisados" var="pedido" value="#{reservaAmbienteBean.pedidosRevisados}" scrollable="true" scrollWidth="1245" scrollHeight="160" emptyMessage="Não existem pedidos de reserva revisados.">
+                        <p:dataTable id="dtPedidosRevisados" var="pedido" value="#{reservaAmbienteBean.pedidosRevisados}" scrollable="true" scrollWidth="1245" scrollHeight="145" emptyMessage="Não existem pedidos de reserva revisados.">
                             <f:facet name="header">Pedidos revisados</f:facet>
                             <p:column headerText="ID Pedido" style="width: 65px;">
                                 <h:outputText value="#{pedido.idPedido}" />
@@ -123,8 +125,8 @@
                                 <h:outputText value="#{pedido.diaPedido}" />
                             </p:column>
 
-                            <p:column style="width:165px; text-align: center">
-                                <p:commandButton value="Visualizar informações" update="form:pedidoRevisadoDetail" oncomplete="PF('pedidoRevisadoDialog').show()" icon="pi pi-search" title="Revisar">
+                            <p:column style="width:180px; text-align: center">
+                                <p:commandButton value="Visualizar informações" update="form:pedidoRevisadoDetail" oncomplete="PF('pedidoRevisadoDialog').show()" icon="pi pi-eye" title="Revisar">
                                     <f:setPropertyActionListener value="#{pedido}" target="#{reservaAmbienteBean.pedidoSelecionado}" />
                                 </p:commandButton>
                             </p:column> 

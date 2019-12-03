@@ -10,6 +10,7 @@
           <link rel="stylesheet" href="css/styles.css"/>
     </h:head>
     <h:body>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
         <f:metadata>
             <f:event type="preRenderView" listener="#{registroUsuarioBean.PRVPedidosRegistro()}"/> 
         </f:metadata>
@@ -32,7 +33,7 @@
                 </div>
                 <div class="rectangle3"> 
                     <a href="visualisarReservas.jsf">
-                        <p:button value="Visualisar Reserva" class="visualisaReserva" />
+                        <p:button value="Visualizar Reserva" class="visualisaReserva" />
                     </a>
                     <a href="registrarUsuarios.jsf">
                         <p:button value="Registra Usuarios" class="registrarUsuarios" />
@@ -53,14 +54,14 @@
                 <div class='container'>
                     <h:form id="form">
                         <p:growl id="msgs" showDetail="true"/>
-                        <p:dataTable id="DTPedidosRegistro" var="pedido" value="#{registroUsuarioBean.arrayPedidos}" emptyMessage="Não existem pedidos de registro no momento.">
-                            <p:column headerText="N° ID">
+                        <p:dataTable id="DTPedidosRegistro" var="pedido" value="#{registroUsuarioBean.arrayPedidos}" emptyMessage="Não existem pedidos de registro no momento." scrollable="true" scrollHeight="379" scrollWidth="1245">
+                            <p:column headerText="N° ID" style="text-align: center; width: 45px;">
                                 <h:outputText value="#{pedido.idPedido}" />
                             </p:column>
-                            <p:column headerText="Nome">
+                            <p:column headerText="Nome" style="text-align: center;">
                                 <h:outputText value="#{pedido.nome}" />
                             </p:column>
-                            <p:column headerText="Telefone">
+                            <p:column headerText="Telefone" style="text-align: center; width: 150px;">
                                 <h:outputText value="#{pedido.telefone}" />
                             </p:column>
                             <p:column headerText="E-Mail">
@@ -75,9 +76,7 @@
                                 </p:commandButton>
                             </p:column> 
                         </p:dataTable>
-
-                        <p:commandButton value="Atualizar" action="#{registroUsuarioBean.metodoBuscar()}" update="form:DTPedidosRegistro"></p:commandButton>
-
+                        
                         <p:dialog showEffect="fold" width="450px" header="Descrição do pedido" widgetVar="pedidoDialog" modal="true" hideEffect="fold" resizable="true">
                             <p:outputPanel id="pedidoDetail" style="text-align:center;">
                                 <p:panelGrid layout="grid" columns="2" rendered="#{not empty registroUsuarioBean.pedidoSelecionado}" columnClasses="label,value">

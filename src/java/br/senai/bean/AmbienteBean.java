@@ -160,6 +160,14 @@ public class AmbienteBean {
         }
     } 
     
+    public void redirectVisualisarAmbientes(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("VisualisarAmbientes.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(ReservaAmbienteBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+    
     /*
     *   Função que faz a busca por ambientes registrados no sistema.
     *   A lista receptora é usada para impressão em dataTables.

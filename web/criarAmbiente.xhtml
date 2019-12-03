@@ -9,6 +9,7 @@
           <link rel="stylesheet" href="css/styles.css"/>
     </h:head>
     <h:body>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
         <f:metadata>
             <f:event type="preRenderView" listener="#{ambienteBean.PRVCriarAmbiente()}"/> 
         </f:metadata>        
@@ -74,7 +75,7 @@
                                     </p:cellEditor>
                                 </p:column>
                                 <p:column style="width:40px;">
-                                    <p:commandButton value="Excluir item" action="#{ambienteBean.deletarItemNovoAmbiente(item)}" update="@form"/>
+                                    <p:commandButton value="Excluir item" action="#{ambienteBean.deletarItemNovoAmbiente(item)}" update="form:dt"/>
                                 </p:column>
                             </p:dataTable>                            
 
