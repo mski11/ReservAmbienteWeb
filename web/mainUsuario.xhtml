@@ -34,15 +34,12 @@
             <div class="conteudo">
                 <h4 style="padding-left: 110px;">Selecione um ambiente para visualizar suas características e efetuar uma reserva!</h4>
                 <h:form id="form">
-                <p:growl id="msgs" showDetail="true" />
+                    <p:growl id="msgs" showDetail="true" />
                     <div id="ambientesUser">
-                        <p:dataTable emptyMessage="Não existem ambientes registrados ainda." rowHover="true" id="dt" var="ambiente" value="#{ambienteBean.ambientes}">
-                            <p:column headerText="Ambiente">
+                        <p:dataTable emptyMessage="Não existem ambientes registrados ainda." id="dt" var="ambiente" value="#{ambienteBean.ambientes}" scrollable="true" scrollHeight="218" scrollWidth="1150px">
+                            <f:facet name="header">Ambientes disponíveis para reserva</f:facet>
+                            <p:column headerText="Ambiente" style="width: 546px; text-align: center;">
                                 <h:outputText value="#{ambiente.idAmbiente}" />
-                            </p:column>
-                            
-                            <p:column headerText="Status" style="width: 60px;">
-                                <h:outputText value="#{ambiente.status}"/>
                             </p:column>
 
                             <p:column style="width:90px;text-align: center">
@@ -52,22 +49,50 @@
                             </p:column>
                         </p:dataTable>
                         
-                        <p:dataTable emptyMessage="Não existem ambientes registrados ainda." rowHover="true" id="dt" var="ambiente" value="#{ambienteBean.ambientes}">
+                        <p:dataTable emptyMessage="Você ainda não fez nenhum pedido de reserva." id="dtPedidosUsuario" var="pedido" value="#{ambienteBean.pedidosUsuario}" scrollable="true" scrollHeight="190" scrollWidth="1150px">
                             <f:facet name="header">Meus pedidos de reserva</f:facet>
-                            <p:column headerText="Ambiente">
-                                <h:outputText value="#{ambiente.idAmbiente}" />
+                            <p:column headerText="Pedido" style="text-align: center; width: 60px;">
+                                <h:outputText value="#{pedido.idPedido}" />
                             </p:column>
                             
-                            <p:column headerText="Status" style="width: 60px;">
-                                <h:outputText value="#{ambiente.status}"/>
+                            <p:column headerText="Ambiente requisitado" style="width: 260px; text-align: center;">
+                                <h:outputText value="#{pedido.idAmbiente}"/>
+                            </p:column>
+                            
+                            <p:column headerText="Dia do pedido" style="width: 200px; text-align: center;">
+                                <h:outputText value="#{pedido.diaPedido}"/>
                             </p:column>
 
                             <p:column style="width:90px;text-align: center">
-                                <p:commandButton value="Reservar" title="View" action="#{reservaAmbienteBean.redirectReservarAmbientes()}" style="border:none;width:100%; height:100%;" >
-                                     <f:setPropertyActionListener value="#{ambiente}" target="#{ambienteBean.ambienteSelecionado}" />
+                                <p:commandButton value="Visualizar" title="Informações" update="form:reservaDetail" oncomplete="PF('reservaDialog').show()" style="border:none;width:100%; height:100%;" >
+                                     <f:setPropertyActionListener value="#{pedido}" target="#{reservaAmbienteBean.pedidoSelecionado}" />
                                 </p:commandButton>
                             </p:column>
-                        </p:dataTable>
+                        </p:dataTable>        
+                        <p:dialog showEffect="fold" width="450px" header="Pedido de reserva" widgetVar="reservaDialog" modal="true" hideEffect="fade" resizable="true">
+                            <p:outputPanel id="reservaDetail" style="text-align:center;">
+                                <p:panelGrid layout="grid" columns="2" rendered="#{not empty reservaAmbienteBean.pedidoSelecionado}" columnClasses="label,value">
+                                    <h:outputText value="Ambiente requisitado:" /> 
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.idAmbiente}"/>
+
+                                    <h:outputText value="Descrição: "/>
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.descricao}"/>
+
+                                    <h:outputText value="Data: "/>
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.diaPedido}"/>
+
+
+                                    <h:outputText value="Hora de início do evento:" /> 
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.horaInicio}"/>
+
+                                    <h:outputText value="Hora de término do evento: "/>
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.horaFim}"/>
+                                
+                                    <h:outputText value="Resposta do administrador"/>
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.respostaMestre}"/>
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
                     </div>
                 </h:form>   
             </div>   

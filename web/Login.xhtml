@@ -15,33 +15,23 @@
                 <div class="reserve"><h1>Reserve-se</h1></div>
                 <h:form> 
                     <div class="login">
-                        
                         <p:inputText value="#{loginBean.userLoginInput.email}" class="form-control usuario" placeholder="Usuario"/>
                         <p:inputText value="#{loginBean.userLoginInput.pass}" type="password" class="form-control senha" placeholder="Senha"/>
-                        
                         <p:commandButton  value="Entrar" action="#{loginBean.login()}" class="btn botao"/>
-                        <div class="esqueci"><a href="" style="text-decoration: underline">Esqueceu sua senha?</a></div>
                     </div>
                 </h:form>
             </div>
-            
-            <div class="conteudo">
-                <br/>
-                <br/>
-                <br/>
-                                <p:commandButton value="Desconectar" action="#{loginBean.deslogar()}"/> 
-
+            <div class="conteudo"><br/><br/><br/>
                 <div class="texto">
                     <h:outputLabel value="#{loginBean.conectar()}"/>
-                    
-                        <p>O que é o Reserve-se?</p>
-                        O Reserve-se  é um site de reserva de ambientes do SENAI com o objetivo de deixar o processo fácil, acessível e rápido.<br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <p>Por que escolher o SENAI?</p>
-                        O SENAI conta com vários ambientes com equipamentos de alta qualidade e com capacidades variadas. Seja qual for o propósito de sua reserva, nosso equipamento será sei fiel aliado e estaremos sempre dispostos ã ajuda-lo!<br/>
-                        <br/><br/>
+                    <p>O que é o Reserve-se?</p>
+                    O Reserve-se  é um site de reserva de ambientes do SENAI com o objetivo de deixar o processo fácil, acessível e rápido.<br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <p>Por que escolher o SENAI?</p>
+                    O SENAI conta com vários ambientes com equipamentos de alta qualidade e com capacidades variadas. Seja qual for o propósito de sua reserva, nosso equipamento será seu fiel aliado e estaremos sempre dispostos a ajudá-lo!<br/>
+                    <br/><br/>
                 </div>
                 <div class="formulario">
                     <h:form class="form-horizontal">
@@ -55,7 +45,6 @@
                                     <p:inputText value="#{loginBean.pedidoRegistro.email}" type="email" class="form-control" placeholder="Digite seu Email"/><br/>
                                     <p:inputText value="#{loginBean.pedidoRegistro.matricula}" type="matricula" class="form-control" placeholder="Numero de Matricula SENAI"/><br/>
                                     <p:inputTextarea value="#{loginBean.pedidoRegistro.descricao}" id="textarearegistro" rows="8" cols="40" queryDelay="750" minQueryLength="4" class="form-control" placeholder="Digite aqui o por que de você querer reservar um ambiente, ex: Sou palestrante, Professor..."/>
-                                    
                                 </h:panelGrid>
                                 <button action="#{loginBean.salvar()}" class="btn btn-success botao">Enviar solicitação de acesso!</button>
                             </p:panel>

@@ -1,5 +1,6 @@
 package br.senai.dao;
 
+import br.senai.bean.ReservaAmbienteBean;
 import br.senai.model.Ambiente;
 import br.senai.model.Pedido;
 import br.senai.model.Usuario;
@@ -40,14 +41,18 @@ public class PedidoReservaDAO {
             ps.setString(7, "N");
             ps.setString(8, "Aguardando resposta!");
             ps.executeUpdate();
-            
-            
+                   
         } catch (SQLException ex) {
             Logger.getLogger(PedidoReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         } finally {
             FabricaConexao.fecharConexao();
         }
+        try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("VisualisarAmbientes.jsf");
+            } catch (IOException ex) {
+                Logger.getLogger(ReservaAmbienteBean.class.getName()).log(Level.SEVERE, null, ex);
+        }  
         return true;
     }
     
@@ -156,6 +161,8 @@ public class PedidoReservaDAO {
                 pedido.setHoraInicio(inicio);
                 pedido.setHoraFim(fim);
                 pedido.setDiaPedido(rs.getDate("dataPedido"));
+                pedido.setStatusResposta(rs.getBoolean("statusAtual"));
+                pedido.setRespostaMestre(rs.getString("repostaMestre"));
                 
                 pedidosUsuario.add(pedido);
             }

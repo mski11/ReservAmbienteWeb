@@ -9,9 +9,13 @@ package br.senai.bean;
 import br.senai.dao.pedidoRegistroDAO;
 import br.senai.dao.UserDAO;
 import br.senai.model.PedidoRegistro;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.apache.tomcat.util.http.fileupload.RequestContext;
@@ -37,6 +41,9 @@ public class RegistroUsuarioBean {
     /* Usado para resgatar valores de um pedido selecionado em dataTables */
     private PedidoRegistro pedidoSelecionado;
     
+    @ManagedProperty(value = "#{loginBean}")
+    private LoginBean loginBeanImportado;
+    
  /* --------------------------------- Fim de atributos ---------------------- */
     
     
@@ -47,7 +54,15 @@ public class RegistroUsuarioBean {
     *   usado para popular a dataTable presente na página.
     */
     public void PRVPedidosRegistro(){
-        arrayPedidos = PedidosDAO.buscarPedidos();
+        if(loginBeanImportado.infoUser != null){
+            if(loginBeanImportado.infoUser.isMestre()){
+                arrayPedidos = PedidosDAO.buscarPedidos();
+            } else {
+                redirectMainUsuario();
+            }
+        } else {
+            redirectLogin();
+        }
     }
     
     
@@ -77,11 +92,44 @@ public class RegistroUsuarioBean {
         arrayPedidos = PedidosDAO.buscarPedidos();
     }
     
+    /*
+    *   Função de redirecionamento de página para
+    *   a página mainUsuario.jsf
+    */
+    public void redirectMainUsuario(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("mainUsuario.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(ReservaAmbienteBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /*
+    *   Função de redirecionamento de página para
+    *   a página Login.jsf
+    */
+    public void redirectLogin(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("Login.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(ReservaAmbienteBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+    
 
  /* --------------------------------- Fim de métodos ------------------------ */
 
 
  /* --------------------------------- Getters e Setters --------------------- */    
+
+    public LoginBean getLoginBeanImportado() {
+        return loginBeanImportado;
+    }
+
+    public void setLoginBeanImportado(LoginBean loginBeanImportado) {
+        this.loginBeanImportado = loginBeanImportado;
+    }
+    
     
     public PedidoRegistro getPedidoSelecionado() {
         return pedidoSelecionado;

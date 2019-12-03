@@ -24,7 +24,7 @@ public class LoginBean {
     pedidoRegistroDAO pr = new pedidoRegistroDAO();
     
     Usuario userLoginInput = new Usuario();
-    Usuario infoUser = new Usuario();
+    Usuario infoUser;
     
     UserDAO userDAO = new UserDAO();
     
@@ -42,8 +42,40 @@ public class LoginBean {
     *   visualizarUsuarios.jsf antes do carregamento da view.
     */
     public void PRVVisualizarUsuarios(){
-        listUsuarios = userDAO.buscarUsuarios();
+        if(infoUser != null){
+            if(infoUser.isMestre()){
+                listUsuarios = userDAO.buscarUsuarios();
+            } else {
+                redirectMainUsuario();
+            }
+        } else {
+            redirectLogin();
+        }
     }
+    
+    /*
+    *   Função de redirecionamento de página para
+    *   a página mainUsuario.jsf
+    */
+    public void redirectMainUsuario(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("mainUsuario.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(ReservaAmbienteBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /*
+    *   Função de redirecionamento de página para
+    *   a página Login.jsf
+    */
+    public void redirectLogin(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("Login.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(ReservaAmbienteBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
     
     /*
     *   Método usado para logar o usuário baseado na

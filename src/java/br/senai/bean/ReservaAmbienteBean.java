@@ -34,7 +34,7 @@ public class ReservaAmbienteBean {
     
     
     @ManagedProperty(value = "#{loginBean}")
-    private LoginBean usuarioBeanImportado = new LoginBean();
+    private LoginBean loginBeanImportado;
     
     private List<Pedido> pedidosPendentes = new ArrayList();
     private List<Pedido> pedidosRevisados = new ArrayList();
@@ -48,10 +48,22 @@ public class ReservaAmbienteBean {
  /* --------------------------------- Métodos ------------------------------- */
     
     public void PRVVisualizarReservas(){
-        pedidosPendentes = pedidoDAO.buscarPedidosPendentes();
-        pedidosRevisados = pedidoDAO.buscarPedidosRevisados();
+        if(loginBeanImportado.infoUser != null){
+            if(loginBeanImportado.infoUser.isMestre()){
+            pedidosPendentes = pedidoDAO.buscarPedidosPendentes();
+            pedidosRevisados = pedidoDAO.buscarPedidosRevisados();
+            } else {
+                redirectMainUsuario();
+            }
+        } else {
+            redirectLogin();
+        }
     }
     
+    /*
+    *   Função de redirecionamento de página para
+    *   a página mainUsuario.jsf
+    */
     public void redirectReservarAmbientes(){
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("reservarAmbientes.jsf");
@@ -60,17 +72,30 @@ public class ReservaAmbienteBean {
         }
     }
     
+    /*
+    *   Função de redirecionamento de página para
+    *   a página mainUsuario.jsf
+    */
     public void redirectMainUsuario(){
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("mainUsuario.jsf");
         } catch (IOException ex) {
             Logger.getLogger(ReservaAmbienteBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+    }
+    
+    public void redirectLogin(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("Login.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(ReservaAmbienteBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+    
     public void enviarPedidoReserva(){
-        pedidoReserva.setIdUsuario(usuarioBeanImportado.infoUser.getIdUsuario());
+        pedidoReserva.setIdUsuario(loginBeanImportado.infoUser.getIdUsuario());
         pedidoReserva.setIdAmbiente(ambienteBeanImportado.getAmbienteSelecionado().getIdAmbiente());
-        pedidoDAO.criarPedido(ambienteBeanImportado.getAmbienteSelecionado(), pedidoReserva, usuarioBeanImportado.getInfoUser());
+        pedidoDAO.criarPedido(ambienteBeanImportado.getAmbienteSelecionado(), pedidoReserva, loginBeanImportado.getInfoUser());
     }
     
     public void pedidoRealizadoMsg() {
@@ -148,14 +173,16 @@ public class ReservaAmbienteBean {
         this.ambienteBeanImportado = ambienteBeanImportado;
     }
 
-    public LoginBean getUsuarioBeanImportado() {
-        return usuarioBeanImportado;
+     public LoginBean getLoginBeanImportado() {
+        return loginBeanImportado;
     }
 
-    public void setUsuarioBeanImportado(LoginBean usuarioBeanImportado) {
-        this.usuarioBeanImportado = usuarioBeanImportado;
+    public void setLoginBeanImportado(LoginBean loginBeanImportado) {
+        this.loginBeanImportado = loginBeanImportado;
     }
     
  /* --------------------------------- Fim de Getters e Setters --------------- */
+
+   
     
 }

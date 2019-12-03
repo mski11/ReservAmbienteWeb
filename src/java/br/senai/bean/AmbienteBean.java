@@ -2,20 +2,26 @@ package br.senai.bean;
 
 import br.senai.dao.AmbienteDAO;
 import br.senai.dao.ItemDAO;
+import br.senai.dao.PedidoReservaDAO;
 import br.senai.model.Ambiente;
 import br.senai.model.Item;
+import br.senai.model.Pedido;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.CellEditEvent;
 
-@ApplicationScoped
+@SessionScoped
 @ManagedBean(name="ambienteBean")
 public class AmbienteBean {
     
@@ -25,9 +31,12 @@ public class AmbienteBean {
     
     private ItemDAO itensDAO = new ItemDAO();
     
+    private PedidoReservaDAO pedidosDAO = new PedidoReservaDAO();
+    
     /* Lista receptora do método buscarAmbientes do AmbienteDAO. */
     private List<Ambiente> ambientes = new ArrayList();
     
+    private List<Pedido> pedidosUsuario = new ArrayList();
     
     /*
     *   Lista que recebe itens e guarda-os em sessão no bean
@@ -36,6 +45,8 @@ public class AmbienteBean {
     */
     private List<Item> itensNovoAmbiente = new ArrayList();
     
+    @ManagedProperty(value = "#{loginBean}")
+    private LoginBean loginBeanImportado;
     
     /* Recebe nome do ambiente no momento da criação. */
     private Ambiente ambiente = new Ambiente();
@@ -53,32 +64,101 @@ public class AmbienteBean {
     
     /*
     *   Método preRenderView da página editarAmbiente.jsf
-    *   usado para populara dataTable presente na página.
+    *   usado para popular a dataTable presente na página.
     */
     public void PRVEditAmbiente(){
-        ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
+        if(loginBeanImportado.infoUser != null){
+            if(loginBeanImportado.infoUser.isMestre()){
+            ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
+            } else {
+                redirectMainUsuario();
+            }
+        } else {
+            redirectLogin();
+        }
     }
+    
+    /*
+    *   Método preRenderView da página editarAmbiente.jsf
+    *   usado para popular a dataTable presente na página.
+    */
+    public void PRVVisualizarAmbientes(){
+        if(loginBeanImportado.infoUser != null){
+            if(loginBeanImportado.infoUser.isMestre()){
+                ambientes = ambienteDAO.buscarAmbientes();
+            } else {
+                redirectMainUsuario();
+            }
+        } else {
+            redirectLogin();
+        }
+    }
+    
+    /*
+    *   Método preRenderView da página criarAmbiente.jsf
+    *   usado para evitar que usuários normais acessem a página.
+    */
+    public void PRVCriarAmbiente(){
+        if(loginBeanImportado.infoUser != null){
+            if(!loginBeanImportado.infoUser.isMestre()){
+                redirectMainUsuario();
+            } 
+        } else {
+            redirectLogin();
+        }
+    }
+    
     
     /*
     *   Método preRenderView da página mainUsuario.jsf usado para popular
     *   a dataTable presente na página.
     */
     public void PRVmainUsuario(){
-        ambientes = ambienteDAO.buscarAmbientes();
-        if(ambienteSelecionado != null){
-        ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
+        if(loginBeanImportado.infoUser != null){
+            ambientes = ambienteDAO.buscarAmbientes();
+            pedidosUsuario = pedidosDAO.buscarPedidosUsuario(loginBeanImportado.infoUser);
+        } else {
+            redirectLogin();
         }
     }
+    
+    
     
     /*
     *   Método preRenderView da página reservarAmbientes.jsf usado para popular
     *   a dataTable presente na página.
     */
     public void PRVreservarAmbientes(){
-        if(ambienteSelecionado != null){
-        ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
+        if(loginBeanImportado.infoUser != null){
+            if(ambienteSelecionado != null){
+            ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
+            } else {
+                redirectMainUsuario();
+            }
+        } else {
+            redirectLogin();
         }
     }
+    
+    /*
+    *   Função de redirecionamento de página para
+    *   a página mainUsuario.jsf
+    */
+    public void redirectMainUsuario(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("mainUsuario.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(ReservaAmbienteBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void redirectLogin(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("Login.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(ReservaAmbienteBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
     
     /*
     *   Função que faz a busca por ambientes registrados no sistema.
@@ -209,6 +289,32 @@ public class AmbienteBean {
     
     
  /* --------------------------------- Getters e Setters --------------------- */
+
+    public LoginBean getLoginBeanImportado() {
+        return loginBeanImportado;
+    }
+
+    public void setLoginBeanImportado(LoginBean loginBeanImportado) {
+        this.loginBeanImportado = loginBeanImportado;
+    }
+
+
+    
+    public PedidoReservaDAO getPedidosDAO() {
+        return pedidosDAO;
+    }
+
+    public void setPedidosDAO(PedidoReservaDAO pedidosDAO) {
+        this.pedidosDAO = pedidosDAO;
+    }
+
+    public List<Pedido> getPedidosUsuario() {
+        return pedidosUsuario;
+    }
+
+    public void setPedidosUsuario(List<Pedido> pedidosUsuario) {
+        this.pedidosUsuario = pedidosUsuario;
+    }
     
     public List<Ambiente> getAmbientes() {
         return ambientes;
