@@ -37,6 +37,14 @@ public class LoginBean {
     
  /* --------------------------------- Métodos ------------------------------- */
     
+     /*
+    *   Método preRenderView que popula a dataTable em
+    *   Login.jsf antes do carregamento da view.
+    */
+    public void PRVLogin(){
+        pedidoRegistro = new PedidoRegistro();
+    }
+    
     /*
     *   Método preRenderView que popula a dataTable em
     *   visualizarUsuarios.jsf antes do carregamento da view.

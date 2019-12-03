@@ -10,8 +10,8 @@ public class FabricaConexao {
         
     private static Connection conexao;
     private static final String URL_CONEXAO = "jdbc:mysql://localhost/reservese";
-    private static final String USUARIO = "root";
-    private static final String SENHA = "";
+    private static final String USUARIO = "senaictai";
+    private static final String SENHA = "ctai123";
     
     public static Connection getConexao(){
         if(conexao == null){

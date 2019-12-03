@@ -108,6 +108,7 @@ public class PedidoReservaDAO {
                 pedido.setHoraInicio(inicio);
                 pedido.setHoraFim(fim);
                 pedido.setDiaPedido(rs.getDate("dataPedido"));
+                pedido.setRespostaMestre(rs.getString("repostaMestre"));
                 
                 pedidosRevisados.add(pedido);
             }

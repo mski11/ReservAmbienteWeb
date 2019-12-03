@@ -42,6 +42,7 @@ public class pedidoRegistroDAO {
            return false;
         } catch (Exception ex) {
              Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
+             System.out.println(ex);
         }
         return true;
     }

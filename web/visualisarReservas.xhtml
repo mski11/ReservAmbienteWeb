@@ -56,15 +56,15 @@
                         <p:growl id="msgs" showDetail="true"/>
                         <p:dataTable id="dtPedidosPendentes" var="pedido" value="#{reservaAmbienteBean.pedidosPendentes}" scrollable="true" scrollWidth="1245" scrollHeight="145" emptyMessage="Não existem novos pedidos de reserva.">
                             <f:facet name="header">Pedidos pendentes</f:facet>
-                            <p:column headerText="ID Usuario" style="width: 65px;">
+                            <p:column headerText="ID Usuario" style="width: 65px; text-align: center;">
                                 <h:outputText value="#{pedido.idUsuario}" />
                             </p:column>
 
-                            <p:column headerText="Ambiente requisitado">
+                            <p:column headerText="Ambiente requisitado" style="text-align: center;">
                                 <h:outputText value="#{pedido.idAmbiente}" />
                             </p:column>
 
-                            <p:column headerText="Data do evento">
+                            <p:column headerText="Data do evento" style="text-align: center;">
                                 <h:outputText value="#{pedido.diaPedido}" />
                             </p:column>
 
@@ -113,15 +113,15 @@
                         
                         <p:dataTable id="dtPedidosRevisados" var="pedido" value="#{reservaAmbienteBean.pedidosRevisados}" scrollable="true" scrollWidth="1245" scrollHeight="145" emptyMessage="Não existem pedidos de reserva revisados.">
                             <f:facet name="header">Pedidos revisados</f:facet>
-                            <p:column headerText="ID Pedido" style="width: 65px;">
+                            <p:column headerText="ID Pedido" style="width: 65px; text-align: center;">
                                 <h:outputText value="#{pedido.idPedido}" />
                             </p:column>
 
-                            <p:column headerText="Ambiente requisitado">
+                            <p:column headerText="Ambiente requisitado" style="text-align: center;">
                                 <h:outputText value="#{pedido.idAmbiente}" />
                             </p:column>
 
-                            <p:column headerText="Data do evento">
+                            <p:column headerText="Data do evento" style="text-align: center;">
                                 <h:outputText value="#{pedido.diaPedido}" />
                             </p:column>
 
@@ -131,7 +131,7 @@
                                 </p:commandButton>
                             </p:column> 
                         </p:dataTable>
-                        <p:dialog showEffect="fold" width="450px" header="Descrição do pedido #{reservaAmbienteBean.pedidoSelecionado.idPedido}" widgetVar="pedidoRevisadoDialog" modal="true" hideEffect="fold" resizable="true">
+                        <p:dialog showEffect="fold" width="450px" header="Descrição do pedido" widgetVar="pedidoRevisadoDialog" modal="true" hideEffect="fold" resizable="true">
                             <p:outputPanel id="pedidoRevisadoDetail" style="text-align:center;">
                                 <p:panelGrid layout="grid" columns="2" rendered="#{not empty reservaAmbienteBean.pedidoSelecionado}" columnClasses="label,value">
                                     <h:outputText value="ID do usuário: "/>
@@ -151,7 +151,10 @@
                                     <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.horaInicio}"/>
 
                                     <h:outputText value="Hora de término do evento: "/>
-                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.horaFim}"/>                                
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.horaFim}"/>
+                                    
+                                    <h:outputText value="Resposta"/>
+                                    <h:outputText value="#{reservaAmbienteBean.pedidoSelecionado.respostaMestre}"/>
                                 </p:panelGrid>
                             </p:outputPanel>
                         </p:dialog>

@@ -55,15 +55,15 @@
                 <h:form id="form">
                     <p:growl id="msgs" showDetail="true"/>
                     <p:dataTable id="dtUsuarios" var="usuario" value="#{loginBean.listUsuarios}" scrollable="true" scrollWidth="1245" scrollHeight="375" emptyMessage="Não existem usuários registrados.">
-                        <p:column headerText="ID" style="width: 30px;">
+                        <p:column headerText="ID" style="width: 30px; text-align: center;">
                             <h:outputText value="#{usuario.idUsuario}" />
                         </p:column>
                         
-                        <p:column headerText="Nome">
+                        <p:column headerText="Nome" style="text-align: center;">
                             <h:outputText value="#{usuario.nome}" />
                         </p:column>
                         
-                        <p:column headerText="E-Mail">
+                        <p:column headerText="E-Mail" style="text-align: center;">
                             <h:outputText value="#{usuario.email}" />
                         </p:column>
 
