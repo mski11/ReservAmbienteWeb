@@ -13,15 +13,24 @@ import java.util.logging.Logger;
 
 public class pedidoRegistroDAO {
     
-     public String conectar(){
+    /*
+    *   Método usado pelos desenvolvedores para checar se
+    *   a conexão com banco de dados foi realizada.
+    */
+    public String conectar(){
         Connection conexao = FabricaConexao.getConexao();
-        
         if(conexao == null)
             return "Conexão não pode ser realizada";
         else
         return "Conexão efetuada com sucesso";
     }
     
+    /*
+    *   Método usado para salvar um novo pedido de 
+    *   registro no banco de dados.
+    *   @param PR PedidoRegistro - Pedido de registro criado pelo usuário.
+    *   @return boolean - TRUE = Sucesso; FALSE = Função defeituosa.
+    */
     public boolean salvar(PedidoRegistro PR) {
         try {
             Connection conexao = FabricaConexao.getConexao();
@@ -47,20 +56,22 @@ public class pedidoRegistroDAO {
         return true;
     }
     
+    /*
+    *   Método usado para deletar um pedido 
+    *   de registro no banco de dados.
+    *   @param idPedido int - ID do pedido de registro que se deseja excluir.
+    *   @return boolean - TRUE = Sucesso; FALSE = Função defeituosa.
+    */
     public boolean excluirPedido(int idPedido){
-        
         Connection conexao = FabricaConexao.getConexao();
         String DELETE = "DELETE FROM pedidoregistro WHERE idpedido = ?";
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        
         try {
-            
             stmt = conexao.prepareStatement(DELETE);
             stmt.setInt(1, idPedido);
             stmt.executeUpdate();
             FabricaConexao.fecharConexao();
-         
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
@@ -68,43 +79,13 @@ public class pedidoRegistroDAO {
         return true;
     }
     
-    public List<PedidoRegistro> findAll(){
-        
-        Connection conexao = FabricaConexao.getConexao(); 
-        String sql = "SELECT * FROM pedidoregistro";
-        
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        
-        List<PedidoRegistro> pedidos = new ArrayList<>();
-        
-        try {
-             
-            stmt = conexao.prepareStatement(sql);
-            rs = stmt.executeQuery();
-             
-            while(rs.next()){
-               PedidoRegistro pedido = new PedidoRegistro();
-               pedido.setIdPedido(rs.getInt("idPedido"));
-               pedido.setNome(rs.getString("nome"));
-               pedido.setTelefone(rs.getString("telefone"));
-               pedido.setEmail(rs.getString("email"));
-               pedido.setMatricula(rs.getString("matricula"));
-               pedido.setDescricao(rs.getString("descricao"));
-               pedidos.add(pedido);
-            }
-             
-        } catch (SQLException ex) {
-            Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }  finally {
-            FabricaConexao.fecharConexao();
-        }
-        return pedidos;
-    }
-    
+     /*
+    *   Método usado para buscar pedidos de registro
+    *   no banco de dados.
+    *   @return List<PedidoRegistro> - Pedidos de registro encontrados.
+    */
     public List<PedidoRegistro> buscarPedidos(){
         try {
-            
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps = conexao.prepareStatement("SELECT * FROM pedidoregistro;");
             ResultSet rs = ps.executeQuery();
@@ -125,7 +106,7 @@ public class pedidoRegistroDAO {
             return pedidos;
                     
         } catch (SQLException ex) {
-            Logger.getLogger(LivroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(pedidoRegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return new ArrayList();
     }

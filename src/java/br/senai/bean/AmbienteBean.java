@@ -27,15 +27,19 @@ public class AmbienteBean {
     
  /* --------------------------------- Atributos ----------------------------- */
     
+    /* Usado para CRUD's relacionados aos ambientes. */
     private AmbienteDAO ambienteDAO = new AmbienteDAO();
     
+    /* Usado para CRUD's relacionados aos itens de ambientes. */
     private ItemDAO itensDAO = new ItemDAO();
     
+    /* Usado para CRUD's relacionados aos pedidos de reserva. */
     private PedidoReservaDAO pedidosDAO = new PedidoReservaDAO();
     
     /* Lista receptora do método buscarAmbientes do AmbienteDAO. */
     private List<Ambiente> ambientes = new ArrayList();
     
+    /* Lista receptora do método buscarPedidosUsuário do pedidosDAO. */
     private List<Pedido> pedidosUsuario = new ArrayList();
     
     /*
@@ -45,6 +49,10 @@ public class AmbienteBean {
     */
     private List<Item> itensNovoAmbiente = new ArrayList();
     
+    /*  
+    *   LoginBean importado para uso das informações
+    *   do usuário em funções deste Bean.
+    */
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBeanImportado;
     
@@ -79,7 +87,7 @@ public class AmbienteBean {
     }
     
     /*
-    *   Método preRenderView da página editarAmbiente.jsf
+    *   Método preRenderView da página VisualisarAmbientes.jsf
     *   usado para popular a dataTable presente na página.
     */
     public void PRVVisualizarAmbientes(){
@@ -152,6 +160,10 @@ public class AmbienteBean {
         }
     }
     
+    /*
+    *   Função de redirecionamento de página para
+    *   a página Login.jsf
+    */
     public void redirectLogin(){
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("Login.jsf");
@@ -159,7 +171,10 @@ public class AmbienteBean {
             Logger.getLogger(ReservaAmbienteBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
-    
+    /*
+    *   Função de redirecionamento de página para
+    *   a página VisualisarAmbientes.jsf
+    */
     public void redirectVisualisarAmbientes(){
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("VisualisarAmbientes.jsf");
@@ -221,59 +236,18 @@ public class AmbienteBean {
     }
     
     /*
-    *   Método usado para adicionar novos itens
-    *
+    *   Método usado para adicionar novos itens em ambientes já criados
     */
     public void adicionarItem(){
-        /*
-        FacesContext context = FacesContext.getCurrentInstance();
-        
-        if(item.getNome() == null || item.getNome() == ""){
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!",  "Você precisa inserir um nome para o item!") );
-        } else {
-        */
         itensDAO.inserirItem(item, ambienteSelecionado.getIdAmbiente());
         ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambienteSelecionado.getIdAmbiente()));
-        
     }
     
     /*
-    public void validaCampoItem(FacesContext context, UIComponent toValidate, Object value){
-        
-        boolean valida = false;
-        
-        if(value == null || value == "" || value == "0"){
-            valida = false;
-        } else {
-            valida = true;
-        }
-            ((UIInput) toValidate).setValid(!valida);
-            
-            FacesMessage message = new FacesMessage("Nenhum dos valores do item podem estar vazios.");
-            message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            context.addMessage(toValidate.getClientId(context), message);            
-        }
-                    
-        /* Código da net
-        boolean validax = false;
-        
-        if(value != null){
-            for (char letra : ((String) value).toCharArray()) {
-                if(letra < ‘0’ || letra > ‘9’) {
-                    valida = true;
-                    break;
-                }
-            }
-
-            ((UIInput) toValidate).setValid(!valida);
-
-            FacesMessage message = new FacesMessage(" Valor com numeros!");
-            message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            context.addMessage(toValidate.getClientId(context), message);
-        
-         } 
+    *   Método usado para display de FacesMessage quando
+    *   itens forem editados na criação de um novo ambiente.
+    *   @param event - evento de edição do valor do item inserido na tabela.
     */
-    
     public void onCellEditNovoAmbiente(CellEditEvent event) {
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
@@ -282,15 +256,6 @@ public class AmbienteBean {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item editado com sucesso!", "Valor antigo: " + oldValue + ", Novo valor:" + newValue);
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
-    }
-    
-    
-    
-    public void testin(){
-        FacesMessage Message = new FacesMessage("Pedido feito!");
-        Message.setSeverity(FacesMessage.SEVERITY_INFO);
-        FacesContext fc = FacesContext.getCurrentInstance();
-        fc.addMessage(null, Message);
     }
 
  /* --------------------------------- Fim de métodos ------------------------ */

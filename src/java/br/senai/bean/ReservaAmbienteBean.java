@@ -28,17 +28,25 @@ public class ReservaAmbienteBean {
     /* Objeto usado para criar novos pedidos de reserva. */
     private Pedido pedidoReserva = new Pedido();
     
-    
+    /* AmbienteBean importado para uso em funções relacionadas aos ambientes. */
     @ManagedProperty(value = "#{ambienteBean}")
     private AmbienteBean ambienteBeanImportado = new AmbienteBean();
     
-    
+    /* LoginBean importado para uso em funções relacionadas ao usuario. */
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBeanImportado;
     
+    /* 
+    *   DataTables receptoras dos métodos buscarPedidosPendentes e
+    *   buscarPedidosRevisados do PedidoReservaDAO.
+    */
     private List<Pedido> pedidosPendentes = new ArrayList();
     private List<Pedido> pedidosRevisados = new ArrayList();
     
+    /* 
+    *   Objeto Pedido que armazena informações do
+    *   pedido de reserva selecionado.
+    */
     private Pedido pedidoSelecionado = new Pedido();
     
     
@@ -47,6 +55,10 @@ public class ReservaAmbienteBean {
     
  /* --------------------------------- Métodos ------------------------------- */
     
+    /*
+    *   Método preRenderView que popula as dataTables em
+    *   visualisarReservas.jsf antes do carregamento da view.
+    */
     public void PRVVisualizarReservas(){
         if(loginBeanImportado.infoUser != null){
             if(loginBeanImportado.infoUser.isMestre()){
@@ -61,7 +73,7 @@ public class ReservaAmbienteBean {
     }
     
     /*
-    *   Função de redirecionamento de página para
+    *   Método de redirecionamento de página para
     *   a página mainUsuario.jsf
     */
     public void redirectReservarAmbientes(){
@@ -84,6 +96,10 @@ public class ReservaAmbienteBean {
         }
     }
     
+    /*
+    *   Método de redirecionamento de página para
+    *   a página Login.jsf
+    */
     public void redirectLogin(){
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("Login.jsf");
@@ -92,28 +108,30 @@ public class ReservaAmbienteBean {
         }
     } 
     
+    /*
+    *   Método usado para criar um novo pedido de reserva de ambiente
+    *   baseado no ID do usuário logado, ID do ambiente selecionado e
+    *   informações inseridas na página reservarAmbientes.jsf.
+    */
     public void enviarPedidoReserva(){
         pedidoReserva.setIdUsuario(loginBeanImportado.infoUser.getIdUsuario());
         pedidoReserva.setIdAmbiente(ambienteBeanImportado.getAmbienteSelecionado().getIdAmbiente());
         pedidoDAO.criarPedido(ambienteBeanImportado.getAmbienteSelecionado(), pedidoReserva, loginBeanImportado.getInfoUser());
     }
-    
-    public void pedidoRealizadoMsg() {
-        addMessage("Concluído", "Pedido de reserva realizado com sucesso.");
-    }
-    
-    public void addMessage(String summary, String detail) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
-    
 
-    
+    /*
+    *   Método usado para aceitar um pedido de reserva
+    *   na página visualisarReservas.jsf
+    */
     public void aceitarPedido(){
         pedidoSelecionado.setRespostaMestre("Seu pedido foi aceito! Nos vêmos lá. ;)");
         pedidoDAO.responderPedido(pedidoSelecionado);
     }
     
+    /*
+    *   Método usado para negar um pedido de
+    *   reserva selecionado.
+    */    
     public void negarPedido(){
         pedidoDAO.responderPedido(pedidoSelecionado);
     }

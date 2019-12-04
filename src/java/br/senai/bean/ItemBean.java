@@ -15,8 +15,10 @@ public class ItemBean {
     
  /* --------------------------------- Atributos ----------------------------- */
     
+    /* Usado para CRUD's relacionados a Item */
     public ItemDAO itensDAO = new ItemDAO();
     
+    /* AmbienteBean importado para uso em funções relacionadas aos ambientes. */
     @ManagedProperty(value = "ambienteSelecionado")
     public Ambiente ambienteSelecionado;
     
@@ -25,14 +27,26 @@ public class ItemBean {
     
  /* --------------------------------- Métodos ------------------------------- */
     
+    /* 
+    *   Método usado para buscar os itens do ambiente selecionado.
+    *   @param ambiente Ambiente - Ambiente selecionado que se deseja ver os itens.
+    */
     public void buscarItensAmbienteSelecionado(Ambiente ambiente){
         ambienteSelecionado.setItensAmbiente(itensDAO.buscarItens(ambiente.getIdAmbiente()));
     }
     
+    /* 
+    *   Método usado para adicionar um item no ambiente selecionado.
+    *   @param ambiente Item - Informações do item adicionado.
+    */
     public void adicionarItem(Item item){
         itensDAO.inserirItem(item, ambienteSelecionado.getIdAmbiente());
     }
     
+    /* 
+    *   Método usado para deletar um item no ambiente selecionado.
+    *   @param ambiente Item - Informações do item deletado.
+    */
     public void deletarItem(Item item){
         itensDAO.excluirItem(item.getIdItem());
     }

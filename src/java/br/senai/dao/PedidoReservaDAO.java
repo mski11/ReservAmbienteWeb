@@ -20,11 +20,16 @@ import javax.faces.context.FacesContext;
 
 public class PedidoReservaDAO {
     
+    /*
+    *   Método usado para salvar um novo pedido de reserva de
+    *   ambiente no banco de dados e em seguida redirecionar.
+    *   @param ambiente Ambiente - Ambiente selecionado.
+    *   @param pedido Pedido - Informações do pedido.
+    *   @param usuario Usuario - Usuário logado que fez o pedido.
+    *   @return boolean - TRUE = Sucesso; FALSE = Função defeituosa.
+    */
     public boolean criarPedido(Ambiente ambiente, Pedido pedido, Usuario usuario){
-        
         try {
-            
-            
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
             Time inicio = new Time(pedido.getHoraInicio().getTime());
@@ -41,7 +46,6 @@ public class PedidoReservaDAO {
             ps.setString(7, "N");
             ps.setString(8, "Aguardando resposta!");
             ps.executeUpdate();
-                   
         } catch (SQLException ex) {
             Logger.getLogger(PedidoReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
             return false;
@@ -56,16 +60,18 @@ public class PedidoReservaDAO {
         return true;
     }
     
+     /*
+    *   Método usado para buscar pedidos de reserva
+    *   que ainda não foram revisados no banco de dados.
+    *   @return List<Pedido> - Pedidos de reserva pendentes encontrados.
+    */
     public List<Pedido> buscarPedidosPendentes(){
         try {
-            
             Connection conexao = FabricaConexao.getConexao(); 
             PreparedStatement ps = conexao.prepareStatement("SELECT * FROM pedidoreserva WHERE statusAtual = 'N'");
             ResultSet rs = ps.executeQuery();
             List<Pedido> pedidosPendentes = new ArrayList<>();
-
             while(rs.next()){
-                
                 Pedido pedido = new Pedido();
                 pedido.setIdPedido(rs.getInt("idPedido"));
                 pedido.setIdAmbiente(rs.getString("idAmbiente"));
@@ -76,28 +82,28 @@ public class PedidoReservaDAO {
                 pedido.setHoraInicio(inicio);
                 pedido.setHoraFim(fim);
                 pedido.setDiaPedido(rs.getDate("dataPedido"));
-                
                 pedidosPendentes.add(pedido);
             }
-            
             FabricaConexao.fecharConexao();
             return pedidosPendentes;            
-           
         } catch (SQLException ex) {
             Logger.getLogger(PedidoReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return new ArrayList();
     }
     
+    /*
+    *   Método usado para buscar pedidos de reserva
+    *   que já foram revisados no banco de dados.
+    *   @return List<Pedido> - Pedidos de reserva pendentes encontrados.
+    */
     public List<Pedido> buscarPedidosRevisados(){
         try {
             Connection conexao = FabricaConexao.getConexao(); 
             PreparedStatement ps = conexao.prepareStatement("SELECT * FROM pedidoreserva WHERE statusAtual = 'Y'");
             ResultSet rs = ps.executeQuery();
             List<Pedido> pedidosRevisados = new ArrayList<>();
-
             while(rs.next()){
-                
                 Pedido pedido = new Pedido();
                 pedido.setIdPedido(rs.getInt("idPedido"));
                 pedido.setIdAmbiente(rs.getString("idAmbiente"));
@@ -109,19 +115,22 @@ public class PedidoReservaDAO {
                 pedido.setHoraFim(fim);
                 pedido.setDiaPedido(rs.getDate("dataPedido"));
                 pedido.setRespostaMestre(rs.getString("repostaMestre"));
-                
                 pedidosRevisados.add(pedido);
             }
-            
             FabricaConexao.fecharConexao();
             return pedidosRevisados;            
-           
         } catch (SQLException ex) {
             Logger.getLogger(PedidoReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return new ArrayList();
     }
     
+    /*
+    *   Método usado para responder um pedido de
+    *   reserva.
+    *   @param pedido Pedido - Pedido de reserva que será respondido.
+    *   @return boolean - TRUE = Sucesso; FALSE = Função defeituosa.
+    */
     public boolean responderPedido(Pedido pedido){
         try {
             Connection conexao = FabricaConexao.getConexao();
@@ -139,18 +148,20 @@ public class PedidoReservaDAO {
         return true;
     }
     
+    /*
+    *   Método usado para buscar pedidos de reserva
+    *   que foram feitos pelo usuário logado.
+    *   @param usuario Usuario - Usuario logado no sistema e que fez os pedidos.
+    *   @return List<Pedido> - Pedidos de reserva pendentes encontrados.
+    */
     public List<Pedido> buscarPedidosUsuario(Usuario usuario){
         try {
             Connection conexao = FabricaConexao.getConexao();
-            
             PreparedStatement ps;
-            
             List<Pedido> pedidosUsuario = new ArrayList();
-            
             ps = conexao.prepareStatement("SELECT * FROM pedidoreserva WHERE idUsuario = ?");
             ps.setInt(1, usuario.getIdUsuario());
             ResultSet rs = ps.executeQuery();
-            
             while(rs.next()){
                 Pedido pedido = new Pedido();
                 pedido.setIdPedido(rs.getInt("idPedido"));
@@ -164,12 +175,10 @@ public class PedidoReservaDAO {
                 pedido.setDiaPedido(rs.getDate("dataPedido"));
                 pedido.setStatusResposta(rs.getBoolean("statusAtual"));
                 pedido.setRespostaMestre(rs.getString("repostaMestre"));
-                
                 pedidosUsuario.add(pedido);
             }
             FabricaConexao.fecharConexao();
             return pedidosUsuario;
-            
         } catch (SQLException ex) {
             Logger.getLogger(PedidoReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex);

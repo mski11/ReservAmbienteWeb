@@ -19,17 +19,31 @@ import javax.faces.context.FacesContext;
 public class LoginBean {
     
  /* ------------------------------- Atributos ------------------------------- */
-    
+    /*
+    *   Objeto usado para criação de novos pedidos de
+    *   registro baseados nas informações inseridas pelo usuário.
+    */  
     PedidoRegistro pedidoRegistro = new PedidoRegistro();
+    
+    /* Usado para CRUD's relacionados a Pedidos de registro */
     pedidoRegistroDAO pr = new pedidoRegistroDAO();
     
+    /* Usado para checagem de login com a função loginCheck do UserDAO. */
     Usuario userLoginInput = new Usuario();
+    
+    /* Objeto usuario que armazena informações do usuário logado */
     Usuario infoUser;
     
+    /* Usado para CRUD's relacionados ao usuário */
     UserDAO userDAO = new UserDAO();
     
+    /* Lista que popula a dataTable presente em visualisarUsuarios.jsf */
     List listUsuarios = new ArrayList();
     
+    /*  
+    *   Objeto usuário que recebe informações do usuário selecionado   
+    *   na página visualisarUsuarios.jsf
+    */
     Usuario usuarioSelecionado = new Usuario();
     
  /* --------------------------------- Fim de atributos ---------------------- */
@@ -107,27 +121,32 @@ public class LoginBean {
         }
     }
     
+    /*
+    *   Método usado para banir usuários
+    *   do sistema.
+    */
     public void banirUsuario(){
         userDAO.excluir(usuarioSelecionado);
         buscarUsuarios();
     }
     
-    /*  Método usado para buscar usuários e preencher
-        a dataTable presente em visualizarUsuarios.jsf
+    /*  
+    *   Método usado para buscar usuários e preencher
+    *   a dataTable presente em visualizarUsuarios.jsf
     */
     public void buscarUsuarios(){
         listUsuarios = userDAO.buscarUsuarios();
     }
     
-    
+    /* Método usado para salvar um novo pedido de registro no sistema */
     public void salvar(){
         pr.salvar(pedidoRegistro);
     }
     
-    public String conectar(){
-        return pr.conectar();
-    }
-    
+    /*
+    *   Método usado para deslogar usuário do sistema e mandá-lo
+    *   de volta à página Login.jsf
+    */
     public void deslogar(){
         infoUser = new Usuario();
         try {

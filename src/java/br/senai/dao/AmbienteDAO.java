@@ -14,20 +14,20 @@ import java.util.logging.Logger;
 
 public class AmbienteDAO {
     
-    private ItemDAO itensDAO;
-    
+    /*
+    *   Método usado para registrar um novo ambiente
+    *   no banco de dados.
+    *   @param ambiente Ambiente - Informação do novo ambiente.
+    *   @return boolean - TRUE = Sucesso; FALSE = Função defeituosa.
+    */
     public boolean criarAmbiente(Ambiente ambiente){
-        
         try { 
-            
             Connection conexao = FabricaConexao.getConexao();
             PreparedStatement ps;
-            
             ps = conexao.prepareStatement("INSERT INTO ambiente (idAmbiente, status) VALUES (?, ?)"); 
             ps.setString(1, ambiente.getIdAmbiente());
             ps.setString(2, "N");
             ps.executeUpdate();
-            
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
@@ -37,6 +37,10 @@ public class AmbienteDAO {
         return true;
     }
     
+    /*
+    *   Método usado para buscar ambientes no banco de dados.
+    *   @return List<Ambiente> - Ambientes encontrados.
+    */    
     public List<Ambiente> buscarAmbientes(){
         try{
             
@@ -67,6 +71,12 @@ public class AmbienteDAO {
         return new ArrayList();
     }
     
+    /*
+    ******* MÉTODO NÃO IMPLEMENTADO ********
+    *
+    *   Método usado para editar o nome de um ambiente no banco de dados.
+    *   @param idAmbiente String - ID do ambiente que se deseja editar.
+    *
     public void editarIdAmbiente(String idAmbiente){
         try {
             
@@ -94,7 +104,14 @@ public class AmbienteDAO {
         }     
         
     }
+    */
     
+    /*
+    ******* MÉTODO NÃO IMPLEMENTADO ********
+    *
+    *   Método usado para excluir um ambiente no banco de dados.
+    *   @param idAmbiente String - ID do ambiente que se deseja remover.
+    *
     public void excluirAmbiente(String idAmbiente){
         try {
             Connection conexao = FabricaConexao.getConexao();
@@ -114,7 +131,8 @@ public class AmbienteDAO {
             Logger.getLogger(AmbienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             FabricaConexao.fecharConexao();
-        } /* top */
+        } 
     }
+    */
     
 }

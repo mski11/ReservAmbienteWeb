@@ -41,6 +41,7 @@ public class RegistroUsuarioBean {
     /* Usado para resgatar valores de um pedido selecionado em dataTables */
     private PedidoRegistro pedidoSelecionado;
     
+    /* LoginBean importado para uso em funções relacionadas ao usuario. */
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBeanImportado;
     

@@ -11,6 +11,11 @@ import static org.junit.Assert.*;
 
 public class ItemDAOUnit {
     
+    /*
+    *   Testes unitários comentados não foram descartados completamente,
+    *   só não foram ajustados à novas alterações nas funções do sistema.
+    */
+    
     @Test
     public void testeAdicionarItem(){
         
@@ -39,7 +44,7 @@ public class ItemDAOUnit {
             System.out.println("Item: " + i.getNome());
     }
     
-    
+    /*
     public void teste(){
         Item item = new Item("Nome", "Descricao", 1);
         List<Item> itensAmbiente = new ArrayList();
@@ -54,4 +59,5 @@ public class ItemDAOUnit {
             fail("Erro! O item não foi inserido no ambiente.");
         }
     }
+    */
 }
